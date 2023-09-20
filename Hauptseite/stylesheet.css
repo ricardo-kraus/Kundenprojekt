@@ -90,7 +90,7 @@
 
 .checkmark:after {
   content: "\2713"; /* Unicode checkmark character ✓ */
-  font-size: 13px; /* Adjust the size of the checkmark */
+  font-size: 12px; /* Adjust the size of the checkmark */
   color: white; /* Checkmark color */
   display: none;
 }
