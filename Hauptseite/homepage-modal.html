@@ -64,7 +64,7 @@
                 </div>
                 <label class="check mt-3"
                   >Done
-                  <input class="ms-1" type="checkbox" />
+                  <input class="ms-1" type="checkbox" id="checkbox-monday1" />
                   <span class="checkmark"></span>
                 </label>
               </div>
@@ -91,7 +91,7 @@
                 </div>
                 <label class="check mt-3"
                   >Done
-                  <input class="ms-1" type="checkbox" />
+                  <input class="ms-1" type="checkbox" id="checkbox-monday2" />
                   <span class="checkmark"></span>
                 </label>
               </div>
@@ -120,7 +120,7 @@
                 </button>
                 <label class="check mt-3"
                   >Done
-                  <input class="ms-1" type="checkbox" />
+                  <input class="ms-1" type="checkbox" id="checkbox-tuesday1" />
                   <span class="checkmark"></span>
                 </label>
               </div>
@@ -149,7 +149,7 @@
                 </button>
                 <label class="check mt-3"
                   >Done
-                  <input class="ms-1" type="checkbox" />
+                  <input class="ms-1" type="checkbox" id="checkbox-wednesday1" />
                   <span class="checkmark"></span>
                 </label>
               </div>
@@ -178,7 +178,7 @@
                 </button>
                 <label class="check mt-3"
                   >Done
-                  <input class="ms-1" type="checkbox" />
+                  <input class="ms-1" type="checkbox" id="checkbox-thursday1"/>
                   <span class="checkmark"></span>
                 </label>
               </div>
@@ -207,7 +207,7 @@
                 </button>
                 <label class="check mt-3"
                   >Done
-                  <input class="ms-1" type="checkbox" />
+                  <input class="ms-1" type="checkbox" id="checkbox-friday1"/>
                   <span class="checkmark"></span>
                 </label>
               </div>
@@ -486,6 +486,31 @@
       </div>
     </div>
     <script src="https://unpkg.com/@popperjs/core@2"></script>
+    <script>
+      function updateLocalStorage() {
+        const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+
+        checkboxes.forEach((checkbox) => {
+          checkbox.addEventListener("change", function () {
+            const id = this.id; // Get the ID of the clicked checkbox
+            const checked = this.checked; // Get the checked state
+            localStorage.setItem(id, checked); // Update local storage
+          });
+        });
+
+        // Initialize checkboxes based on local storage
+        checkboxes.forEach((checkbox) => {
+          const id = checkbox.id; // Get the ID of the checkbox
+          const checked = localStorage.getItem(id); // Get the stored value
+          if (checked !== null) {
+            checkbox.checked = checked === "true"; // Set the checkbox state
+          }
+        });
+      }
+
+      // Call the updateLocalStorage function to initialize checkboxes
+      updateLocalStorage();
+    </script>
     <script>
       // Function to toggle Dark Mode
       function toggleDarkMode() {
