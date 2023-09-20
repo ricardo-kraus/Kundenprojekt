@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="light">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Bootstrap demo</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="stylesheet.css" />
+  </head>
+  <body>
+    <nav class="navbar bg-body-tertiary">
+      <div class="container-fluid">
+        <span class="navbar-brand mb-0 h1">Task plan</span>
+        <button
+          class="btn me-2 btn-outline-secondary"
+          type="button"
+          id="darkmode"
+        >
+          Darkmode
+        </button>
+        <a class="navbar-brand" href="#">
+            <img src="/git/Kundenprojekt/Hauptseite/Logo-TIE-International.png" alt="TIE" width="48" height="40">
+          </a>
+      </div>
+    </nav>
+    <div class="fs-3 ms-3" id="kw"></div>
+    <div class="container text-center mx-auto">
+      <div
+        class="row"
+      >
+        <div class="col bg-light-subtle">
+          <div class="bg-red mb-4">Monday</div>
+          <div class="card mx-auto mb-5">
+            <div class="card-body">
+              <h5 class="card-title">Task</h5>
+              <p class="card-text">
+                Some quick example text to build on the card title and make up
+                the bulk of the card's content.
+              </p>
+              <div class="d-flex justify-content-between align-items-center">
+                <div>
+                  <a href="#" class="btn btn-outline-primary btn-sm-custom"
+                    >Comment</a
+                  >
+                </div>
+                <label class="check mt-3"
+                  >Done
+                  <input class="ms-1" type="checkbox" />
+                  <span class="checkmark"></span>
+                </label>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col bg-secondary-subtle">
+          <div class="bg-red mb-4">Tuesday</div>
+          <div class="card mx-auto">
+            <div class="card-body">
+              <h5 class="card-title">Task</h5>
+              <p class="card-text">
+                Some quick example text to build on the card title and make up
+                the bulk of the card's content.
+              </p>
+              <div class="d-flex justify-content-between align-items-center">
+                <div>
+                  <a href="#" class="btn btn-outline-primary btn-sm-custom"
+                    >Comment</a
+                  >
+                </div>
+                <label class="check mt-3"
+                  >Done
+                  <input class="ms-1" type="checkbox" />
+                  <span class="checkmark"></span>
+                </label>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col bg-light-subtle">
+          <div class="bg-red mb-4">Wednesday</div>
+          <div class="card mx-auto">
+            <div class="card-body">
+              <h5 class="card-title">Task</h5>
+              <p class="card-text">
+                Some quick example text to build on the card title and make up
+                the bulk of the card's content.
+              </p>
+              <div class="d-flex justify-content-between align-items-center">
+                <div>
+                  <a href="#" class="btn btn-outline-primary btn-sm-custom"
+                    >Comment</a
+                  >
+                </div>
+                <label class="check mt-3"
+                  >Done
+                  <input class="ms-1" type="checkbox" />
+                  <span class="checkmark"></span>
+                </label>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col bg-secondary-subtle">
+          <div class="bg-red mb-4">Thursday</div>
+          <div class="card mx-auto">
+            <div class="card-body">
+              <h5 class="card-title">Task</h5>
+              <p class="card-text">
+                Some quick example text to build on the card title and make up
+                the bulk of the card's content.
+              </p>
+              <div class="d-flex justify-content-between align-items-center">
+                <div>
+                  <a href="#" class="btn btn-outline-primary btn-sm-custom"
+                    >Comment</a
+                  >
+                </div>
+                <label class="check mt-3"
+                  >Done
+                  <input class="ms-1" type="checkbox" />
+                  <span class="checkmark"></span>
+                </label>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col bg-light-subtle">
+          <div class="bg-red mb-4">Friday</div>
+          <div class="card mx-auto">
+            <div class="card-body">
+              <h5 class="card-title">Task</h5>
+              <p class="card-text">
+                Some quick example text to build on the card title and make up
+                the bulk of the card's content.
+              </p>
+              <div class="d-flex justify-content-between align-items-center">
+                <div>
+                  <a href="#" class="btn btn-outline-primary btn-sm-custom"
+                    >Comment</a
+                  >
+                </div>
+                <label class="check mt-3"
+                  >Done
+                  <input class="ms-1" type="checkbox" />
+                  <span class="checkmark"></span>
+                </label>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script>
+      document.getElementById("darkmode").addEventListener("click", changeMode);
+      function changeMode() {
+        if (document.getElementById("darkmode").innerText === "Darkmode") {
+          document.getElementById("darkmode").innerText = "Lightmode";
+        } else document.getElementById("darkmode").innerText = "Darkmode";
+      }
+      let date = new Date();
+      function getWeekNumber(date) {
+        date = new Date(date);
+        date.setHours(0, 0, 0, 0);
+        date.setDate(date.getDate() + 4 - (date.getDay() || 7));
+        let yearStart = new Date(date.getFullYear(), 0, 1);
+        let weekNumber = Math.ceil(((date - yearStart) / 86400000 + 1) / 7);
+        return weekNumber;
+      }
+      let currentWeek = getWeekNumber(date);
+      let currentWeekString = currentWeek.toString();
+      document.getElementById("kw").innerHTML = "KW " + currentWeekString;
+    </script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>
