@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task Assignment</title>
+    <link rel="stylesheet" href="3AdminPage.css">
+</head>
+<body>
+    <h1>Admin view</h1>
+    <div id="app">
+        <div class="column">
+            <h2>Person</h2>
+            <ul id="people-list"></ul>
+            <form id="add-person-form">
+                <input type="text" id="person-name" placeholder="Enter a name">
+                <button type="submit">Add Person</button>
+            </form>
+        </div>
+        <div class="column">
+            <h2>Tasks</h2>
+            <ul id="tasks-list"></ul>
+            <form id="add-task-form">
+                <input type="text" id="task-name" placeholder="Enter a task">
+                <button type="submit">Add Task</button>
+            </form>
+        </div>
+        <div class="column">
+            <h2>Task Assignment</h2>
+            <button id="assign-button">Assign Tasks</button>
+            <ul id="task-assignment"></ul>
+        </div>
+    </div>
+    <script src="3AdminPage.js"></script>
+</body>
+</html>
