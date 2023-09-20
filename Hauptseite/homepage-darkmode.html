@@ -47,14 +47,7 @@
               </div>
               <div class="d-flex justify-content-between align-items-center">
                 <div>
-                  <button type="button"
-                  class="btn btn-outline-primary btn-sm-custom"
-                  data-bs-toggle="popover"
-                  data-bs-placement="bottom"
-                  data-bs-custom-class="custom-popover"
-                  data-bs-title="Comments"
-                  data-bs-content="And here's some amazing content. It's very engaging. Right?"
-                  data-bs-target="#example-popover">
+                  <button class="btn btn-outline-primary btn-sm-custom">
                     Comment
                   </button>
                 </div>
@@ -77,16 +70,11 @@
                 the bulk of the card's content.
               </div>
               <div class="d-flex justify-content-between align-items-center">
-                <button type="button"
-                  class="btn btn-outline-primary btn-sm-custom"
-                  data-bs-toggle="popover"
-                  data-bs-placement="bottom"
-                  data-bs-custom-class="custom-popover"
-                  data-bs-title="Comments"
-                  data-bs-content="And here's some amazing content. It's very engaging. Right?"
-                  data-bs-target="#example-popover">
-                    Comment
-                  </button>
+                <div>
+                  <a href="#" class="btn btn-outline-primary btn-sm-custom"
+                    >Comment</a
+                  >
+                </div>
                 <label class="check mt-3"
                   >Done
                   <input class="ms-1" type="checkbox" />
@@ -106,16 +94,11 @@
                 the bulk of the card's content.
               </div>
               <div class="d-flex justify-content-between align-items-center">
-                <button type="button"
-                  class="btn btn-outline-primary btn-sm-custom"
-                  data-bs-toggle="popover"
-                  data-bs-placement="bottom"
-                  data-bs-custom-class="custom-popover"
-                  data-bs-title="Comments"
-                  data-bs-content="And here's some amazing content. It's very engaging. Right?"
-                  data-bs-target="#example-popover">
-                    Comment
-                  </button>
+                <div>
+                  <a href="#" class="btn btn-outline-primary btn-sm-custom"
+                    >Comment</a
+                  >
+                </div>
                 <label class="check mt-3"
                   >Done
                   <input class="ms-1" type="checkbox" />
@@ -135,16 +118,11 @@
                 the bulk of the card's content.
               </div>
               <div class="d-flex justify-content-between align-items-center">
-                <button type="button"
-                  class="btn btn-outline-primary btn-sm-custom"
-                  data-bs-toggle="popover"
-                  data-bs-placement="bottom"
-                  data-bs-custom-class="custom-popover"
-                  data-bs-title="Comments"
-                  data-bs-content="And here's some amazing content. It's very engaging. Right?"
-                  data-bs-target="#example-popover">
-                    Comment
-                </button>
+                <div>
+                  <a href="#" class="btn btn-outline-primary btn-sm-custom"
+                    >Comment</a
+                  >
+                </div>
                 <label class="check mt-3"
                   >Done
                   <input class="ms-1" type="checkbox" />
@@ -164,16 +142,11 @@
                 the bulk of the card's content.
               </div>
               <div class="d-flex justify-content-between align-items-center">
-                <button type="button"
-                  class="btn btn-outline-primary btn-sm-custom"
-                  data-bs-toggle="popover"
-                  data-bs-placement="bottom"
-                  data-bs-custom-class="custom-popover"
-                  data-bs-title="Comments"
-                  data-bs-content= "And here's some amazing content. It's very engaging. Right?"
-                  data-bs-target="#example-popover">
-                    Comment
-                </button>
+                <div>
+                  <a href="#" class="btn btn-outline-primary btn-sm-custom"
+                    >Comment</a
+                  >
+                </div>
                 <label class="check mt-3"
                   >Done
                   <input class="ms-1" type="checkbox" />
@@ -185,7 +158,6 @@
         </div>
       </div>
     </div>
-    <script src="https://unpkg.com/@popperjs/core@2"></script>
     <script>
       // Function to toggle Dark Mode
       function toggleDarkMode() {
@@ -226,27 +198,10 @@
       let currentWeekString = currentWeek.toString();
       document.getElementById("kw").innerHTML = "KW " + currentWeekString;
     </script>
-    
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
       integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
       crossorigin="anonymous"
     ></script>
-    <script>
-      // Initialize the popover on the button with the correct target
-      const popoverTriggerList = document.querySelectorAll(
-        '[data-bs-toggle="popover"]'
-      );
-      const popoverList = [...popoverTriggerList].map(
-        (popoverTriggerEl) => new bootstrap.Popover(popoverTriggerEl)
-      );
-    </script>
-    <script>
-      let buttonElement = document.querySelector('button[data-bs-toggle="popover"]');
-      let content = buttonElement.getAttribute("data-bs-content");
-
-      console.log(content)
-      console.log(document.getElementsByTagName("button"))
-    </script>
   </body>
 </html>

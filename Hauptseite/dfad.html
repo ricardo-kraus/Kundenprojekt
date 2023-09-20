@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Bootstrap demo</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9"
+      crossorigin="anonymous"
+    />
+  </head>
+  <body>
+    <button
+      id="popover"
+      type="button"
+      class="btn btn-lg btn-danger"
+      data-bs-toggle="popover"
+      data-bs-title="Popover title"
+      data-bs-content="And here's some amazing content. It's very engaging. Right?"
+      data-bs-target="#example-popover"
+    >
+      Click to toggle popover
+    </button>
+    <div id="contenteditable" contenteditable="true">text</div>
+    <button id="save">save</button>
+    <script>
+      // Funktion zur Aktualisierung des Popover-Inhalts
+      function updatePopoverContent() {
+        let content = document.getElementById("contenteditable").innerHTML;
+        let popoverbutton = document.getElementById("popover");
+        let popover = new bootstrap.Popover(popoverbutton); // Änderung hier, um ein neues Popover-Objekt zu erstellen
+        popoverbutton.setAttribute("data-bs-content", content);
+
+        console.log(content);
+      }
+      document.getElementById("save").addEventListener("click", function () {
+        // Rufe die Funktion zur Aktualisierung des Popover-Inhalts auf
+        updatePopoverContent();
+      });
+      // Warte, bis das Bootstrap-JavaScript vollständig geladen ist
+
+      document.getElementById("popover").addEventListener("click", function () {
+        // Rufe die Funktion zur Aktualisierung des Popover-Inhalts auf
+        updatePopoverContent();
+      });
+    </script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>
