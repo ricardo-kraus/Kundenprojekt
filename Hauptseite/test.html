@@ -23,27 +23,35 @@
     >
       Click to toggle popover
     </button>
-    <div id="contenteditable" contenteditable="true">text</div>
-    <button id="save">save</button>
     <script>
-      // Funktion zur Aktualisierung des Popover-Inhalts
-      function updatePopoverContent() {
-        let content = document.getElementById("contenteditable").innerHTML;
-        let popoverbutton = document.getElementById("popover");
-        let popover = new bootstrap.Popover(popoverbutton); // Änderung hier, um ein neues Popover-Objekt zu erstellen
-        popoverbutton.setAttribute("data-bs-content", content);
 
-        console.log(content);
-      }
-      document.getElementById("save").addEventListener("click", function () {
-        // Rufe die Funktion zur Aktualisierung des Popover-Inhalts auf
-        updatePopoverContent();
-      });
-      // Warte, bis das Bootstrap-JavaScript vollständig geladen ist
-
-      document.getElementById("popover").addEventListener("click", function () {
-        // Rufe die Funktion zur Aktualisierung des Popover-Inhalts auf
-        updatePopoverContent();
+      document.addEventListener("DOMContentLoaded", function () {
+        const popoverTriggerList = document.querySelectorAll('[data-bs-toggle="popover"]')
+        const popoverList = [...popoverTriggerList].map(popoverTriggerEl => new bootstrap.Popover(popoverTriggerEl))
+        // Initialize the popover
+        let popoverButton = document.getElementById("popover-button");
+        let popover = new bootstrap.Popover(popoverButton, {
+          content: createEditableTextBox(),
+          html: true,
+        });
+        function createEditableTextBox() {
+          const editableTextBox = document.createElement("div");
+          editableTextBox.setAttribute("contenteditable", "true");
+          editableTextBox.textContent = "Edit this text...";
+          editableTextBox.addEventListener("blur", function () {
+            // Update the popover content when the editable textbox loses focus
+            popoverButton.setAttribute(
+              "data-bs-content",
+              editableTextBox.textContent
+            );
+          });
+          return editableTextBox;
+        }
+        popoverButton.addEventListener("click", function () {
+          const content = createEditableTextBox();
+          popover.config.content = content;
+          popover.show();
+        });
       });
     </script>
     <script
