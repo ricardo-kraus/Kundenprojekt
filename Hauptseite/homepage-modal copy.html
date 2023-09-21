@@ -46,7 +46,9 @@
           <div id="cardmonday">
             <div class="card mx-auto mb-5">
               <div class="card-body">
-                <div class="card-title fs-5 fw-semibold" id="cardtitlemonday1">Task</div>
+                <div class="card-title fs-5 fw-semibold" id="cardtitlemonday1">
+                  Task
+                </div>
                 <div class="card-text" id="cardnamemonday1">Name</div>
                 <div class="d-flex justify-content-between align-items-center">
                   <div>
@@ -1302,11 +1304,11 @@
       if (savedMode === "dark") {
         // Apply dark mode
         document.documentElement.setAttribute("data-bs-theme", "dark");
-        document.getElementById("darkmode").innerText = "Darkmode";
+        document.getElementById("darkmode").innerText = "Lightmode";
       } else {
         // Apply light mode (default)
         document.documentElement.setAttribute("data-bs-theme", "light");
-        document.getElementById("darkmode").innerText = "Lightmode";
+        document.getElementById("darkmode").innerText = "Darkmode";
       }
       // Attach the toggleDarkMode function to the Darkmode button's click event
       document
