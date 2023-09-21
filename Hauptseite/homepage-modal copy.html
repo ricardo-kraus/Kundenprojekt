@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="light">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Bootstrap demo modal</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="stylesheet.css" />
+  </head>
+  <body>
+    <!-- navbar -->
+    <nav class="navbar bg-body-tertiary">
+      <div class="container-fluid">
+        <span class="navbar-brand mb-0 h1">Task plan</span>
+
+        <div class="justify-content-end">
+          <button
+            class="btn me-2 btn-outline-secondary"
+            type="button"
+            id="darkmode"
+          >
+            Darkmode
+          </button>
+          <a class="navbar-brand">
+            <img
+              src="/Hauptseite/Logo-TIE-International.png"
+              alt="TIE"
+              width="48"
+              height="40"
+            />
+          </a>
+        </div>
+      </div>
+    </nav>
+    <div class="fs-3 ms-3" id="kw"></div>
+    <div class="container text-center mx-auto">
+      <div class="row">
+        <!-- monday -->
+        <div class="col bg-light-subtle">
+          <div class="bg-red mb-4">Monday</div>
+          <div id="card">
+            <div class="card mx-auto mb-5">
+              <div class="card-body">
+                <h5 class="card-title">Task</h5>
+                <div class="card-text">
+                  Some quick example text to build on the card title and make up
+                  the bulk of the card's content.
+                </div>
+                <div class="d-flex justify-content-between align-items-center">
+                  <div>
+                    <button
+                      type="button"
+                      class="btn btn-outline-primary btn-sm-custom"
+                      data-bs-toggle="modal"
+                      data-bs-target="#exampleModalmonday1"
+                      data-bs-whatever="@monday1"
+                    >
+                      Comment
+                    </button>
+                  </div>
+                  <label class="check mt-3"
+                    >Done
+                    <input class="ms-1" type="checkbox" id="checkbox-monday1" />
+                    <span class="checkmark"></span>
+                  </label>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- tuesday -->
+        <div class="col bg-secondary-subtle">
+          <div class="bg-red mb-4">Tuesday</div>
+          <div class="card mx-auto mb-5">
+            <div class="card-body">
+              <h5 class="card-title">Task</h5>
+              <div class="card-text">
+                Some quick example text to build on the card title and make up
+                the bulk of the card's content.
+              </div>
+              <div class="d-flex justify-content-between align-items-center">
+                <button
+                  type="button"
+                  class="btn btn-outline-primary btn-sm-custom"
+                  data-bs-toggle="modal"
+                  data-bs-target="#exampleModaltuesday"
+                  data-bs-whatever="@tuesday"
+                >
+                  Comment
+                </button>
+                <label class="check mt-3"
+                  >Done
+                  <input class="ms-1" type="checkbox" id="checkbox-tuesday1" />
+                  <span class="checkmark"></span>
+                </label>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- wednesday -->
+        <div class="col bg-light-subtle">
+          <div class="bg-red mb-4">Wednesday</div>
+          <div class="card mx-auto">
+            <div class="card-body">
+              <h5 class="card-title">Task</h5>
+              <div class="card-text">
+                Some quick example text to build on the card title and make up
+                the bulk of the card's content.
+              </div>
+              <div class="d-flex justify-content-between align-items-center">
+                <button
+                  type="button"
+                  class="btn btn-outline-primary btn-sm-custom"
+                  data-bs-toggle="modal"
+                  data-bs-target="#exampleModalwednesday"
+                  data-bs-whatever="@wednesday"
+                >
+                  Comment
+                </button>
+                <label class="check mt-3"
+                  >Done
+                  <input
+                    class="ms-1"
+                    type="checkbox"
+                    id="checkbox-wednesday1"
+                  />
+                  <span class="checkmark"></span>
+                </label>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- thursday -->
+        <div class="col bg-secondary-subtle">
+          <div class="bg-red mb-4">Thursday</div>
+          <div class="card mx-auto">
+            <div class="card-body">
+              <h5 class="card-title">Task</h5>
+              <div class="card-text">
+                Some quick example text to build on the card title and make up
+                the bulk of the card's content.
+              </div>
+              <div class="d-flex justify-content-between align-items-center">
+                <button
+                  type="button"
+                  class="btn btn-outline-primary btn-sm-custom"
+                  data-bs-toggle="modal"
+                  data-bs-target="#exampleModalthursday"
+                  data-bs-whatever="@thursday"
+                >
+                  Comment
+                </button>
+                <label class="check mt-3"
+                  >Done
+                  <input class="ms-1" type="checkbox" id="checkbox-thursday1" />
+                  <span class="checkmark"></span>
+                </label>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- friday -->
+        <div class="col bg-light-subtle">
+          <div class="bg-red mb-4">Friday</div>
+          <div class="card mx-auto">
+            <div class="card-body">
+              <h5 class="card-title">Task</h5>
+              <div class="card-text">
+                Some quick example text to build on the card title and make up
+                the bulk of the card's content.
+              </div>
+              <div class="d-flex justify-content-between align-items-center">
+                <button
+                  type="button"
+                  class="btn btn-outline-primary btn-sm-custom"
+                  data-bs-toggle="modal"
+                  data-bs-target="#exampleModalfriday"
+                  data-bs-whatever="@friday"
+                >
+                  Comment
+                </button>
+                <label class="check mt-3"
+                  >Done
+                  <input class="ms-1" type="checkbox" id="checkbox-friday1" />
+                  <span class="checkmark"></span>
+                </label>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- modal for monday -->
+    <div
+      class="modal fade"
+      id="exampleModalmonday1"
+      tabindex="-1"
+      aria-labelledby="exampleModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="exampleModalLabel">Comments</h1>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body">
+            <form>
+              <div class="mb-3">
+                <label for="recipient-name" class="col-form-label"
+                  >Comments:</label
+                >
+                <input type="text" class="form-control" id="recipient-name" />
+              </div>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-outline-primary"
+              data-bs-dismiss="modal"
+            >
+              Close
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      class="modal fade"
+      id="exampleModalmonday2"
+      tabindex="-1"
+      aria-labelledby="exampleModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="exampleModalLabel">Comments</h1>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body">
+            <form>
+              <div class="mb-3">
+                <label for="recipient-name" class="col-form-label"
+                  >Comments:</label
+                >
+                <input type="text" class="form-control" id="recipient-name" />
+              </div>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-outline-primary"
+              data-bs-dismiss="modal"
+            >
+              Close
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- modal for tuesday -->
+    <div
+      class="modal fade"
+      id="exampleModaltuesday"
+      tabindex="-1"
+      aria-labelledby="exampleModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="exampleModalLabel">Comments</h1>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body">
+            <form>
+              <div class="mb-3">
+                <label for="recipient-name" class="col-form-label"
+                  >Comments:</label
+                >
+                <input type="text" class="form-control" id="recipient-name" />
+              </div>
+              <!-- <div class="mb-3">
+                <label for="message-text" class="col-form-label"
+                  >New Comment:</label
+                >
+                <textarea class="form-control" id="message-text"></textarea>
+              </div> -->
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-outline-primary"
+              data-bs-dismiss="modal"
+            >
+              Close
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- modal for wednesday -->
+    <div
+      class="modal fade"
+      id="exampleModalwednesday"
+      tabindex="-1"
+      aria-labelledby="exampleModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="exampleModalLabel">Comments</h1>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body">
+            <form>
+              <div class="mb-3">
+                <label for="recipient-name" class="col-form-label"
+                  >Comments:</label
+                >
+                <input type="text" class="form-control" id="recipient-name" />
+              </div>
+              <!-- <div class="mb-3">
+                <label for="message-text" class="col-form-label"
+                  >New Comment:</label
+                >
+                <textarea class="form-control" id="message-text"></textarea>
+              </div> -->
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-outline-primary"
+              data-bs-dismiss="modal"
+            >
+              Close
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- modal for thursday -->
+    <div
+      class="modal fade"
+      id="exampleModalthursday"
+      tabindex="-1"
+      aria-labelledby="exampleModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="exampleModalLabel">Comments</h1>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body">
+            <form>
+              <div class="mb-3">
+                <label for="recipient-name" class="col-form-label"
+                  >Comments:</label
+                >
+                <input type="text" class="form-control" id="recipient-name" />
+              </div>
+              <!-- <div class="mb-3">
+                <label for="message-text" class="col-form-label"
+                  >New Comment:</label
+                >
+                <textarea class="form-control" id="message-text"></textarea>
+              </div> -->
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-outline-primary"
+              data-bs-dismiss="modal"
+            >
+              Close
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- modal for friday -->
+    <div
+      class="modal fade"
+      id="exampleModalfriday"
+      tabindex="-1"
+      aria-labelledby="exampleModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="exampleModalLabel">Comments</h1>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body">
+            <form>
+              <div class="mb-3">
+                <label for="recipient-name" class="col-form-label"
+                  >Comments:</label
+                >
+                <input type="text" class="form-control" id="recipient-name" />
+              </div>
+              <!-- <div class="mb-3">
+                <label for="message-text" class="col-form-label"
+                  >New Comment:</label
+                >
+                <textarea class="form-control" id="message-text"></textarea>
+              </div> -->
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-outline-primary"
+              data-bs-dismiss="modal"
+            >
+              Close
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="https://unpkg.com/@popperjs/core@2"></script>
+    <!-- localstorage for checkbox -->
+    <script>
+      function updateLocalStorage() {
+        const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+
+        checkboxes.forEach((checkbox) => {
+          checkbox.addEventListener("change", function () {
+            const id = this.id; // Get the ID of the clicked checkbox
+            const checked = this.checked; // Get the checked state
+            localStorage.setItem(id, checked); // Update local storage
+          });
+        });
+
+        // Initialize checkboxes based on local storage
+        checkboxes.forEach((checkbox) => {
+          const id = checkbox.id; // Get the ID of the checkbox
+          const checked = localStorage.getItem(id); // Get the stored value
+          if (checked !== null) {
+            checkbox.checked = checked === "true"; // Set the checkbox state
+          }
+        });
+      }
+
+      // Call the updateLocalStorage function to initialize checkboxes
+      updateLocalStorage();
+    </script>
+    <!-- darkmode and weeknumber -->
+    <script>
+      // Function to toggle Dark Mode
+      function toggleDarkMode() {
+        const htmlTag = document.documentElement;
+        const darkmodeButton = document.getElementById("darkmode");
+
+        // Toggle the data-bs-theme attribute value
+        if (htmlTag.getAttribute("data-bs-theme") === "dark") {
+          htmlTag.setAttribute("data-bs-theme", "light");
+          darkmodeButton.innerText = "Lightmode";
+        } else {
+          htmlTag.setAttribute("data-bs-theme", "dark");
+          darkmodeButton.innerText = "Darkmode";
+        }
+      }
+
+      // Attach the toggleDarkMode function to the Darkmode button's click event
+      document
+        .getElementById("darkmode")
+        .addEventListener("click", toggleDarkMode);
+      document.getElementById("darkmode").addEventListener("click", changeMode);
+      function changeMode() {
+        if (document.getElementById("darkmode").innerText === "Darkmode") {
+          document.getElementById("darkmode").innerText = "Lightmode";
+        } else document.getElementById("darkmode").innerText = "Darkmode";
+      }
+      // Kalenderwoche Anzeigen
+      let date = new Date();
+      function getWeekNumber(date) {
+        date = new Date(date);
+        date.setHours(0, 0, 0, 0);
+        date.setDate(date.getDate() + 4 - (date.getDay() || 7));
+        let yearStart = new Date(date.getFullYear(), 0, 1);
+        let weekNumber = Math.ceil(((date - yearStart) / 86400000 + 1) / 7);
+        return weekNumber;
+      }
+      let currentWeek = getWeekNumber(date);
+      let currentWeekString = currentWeek.toString();
+      document.getElementById("kw").innerHTML = "KW " + currentWeekString;
+    </script>
+    <!-- amount of cards -->
+    <script>
+      // amount of the cards in monday as an example
+      let amountmonday = 2;
+
+      // cards in monday
+      let card = document.getElementById("card").innerHTML;
+
+      // one card in monday that is used to add a new card to the variable "card"
+      let onecard = card
+
+      // add the right amount of cards to monday
+      for (let i = 1; i < amountmonday; i++) {
+        document.getElementById("card").innerHTML = card + onecard
+        card = document.getElementById("card").innerHTML
+      }
+
+      console.log(card);
+    </script>
+      
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>
