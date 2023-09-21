@@ -38,24 +38,23 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 
   function createListItem(text, parentElement) {
-      const listItem = document.createElement("li");
-      listItem.textContent = text;
-      parentElement.appendChild(listItem);
-  }
+    const listItem = document.createElement("li");
+    listItem.textContent = text;
+    parentElement.appendChild(listItem);
+}
 
   function assignTasks(people, tasks) {
       const assignments = {};
 
-      // Kopiere die Aufgaben, um sie später zu mischen
       const shuffledTasks = [...tasks];
 
-      // Mische die Aufgaben
+
       for (let i = shuffledTasks.length - 1; i > 0; i--) {
           const j = Math.floor(Math.random() * (i + 1));
           [shuffledTasks[i], shuffledTasks[j]] = [shuffledTasks[j], shuffledTasks[i]];
       }
 
-      // Initialisiere Zuordnung
+  
       for (const person of people) {
           assignments[person] = [];
       }
@@ -63,11 +62,11 @@ document.addEventListener("DOMContentLoaded", function () {
       let taskIndex = 0;
 
       for (let i = 0; i < shuffledTasks.length; i++) {
-          const person = people[i % people.length]; // Wechsle zwischen den Personen
+          const person = people[i % people.length]; 
           assignments[person].push(shuffledTasks[i]);
       }
 
-      // Überprüfe, ob einige Personen keine Aufgaben haben
+
       for (const person of people) {
           if (assignments[person].length === 0) {
               assignments[person].push("No task");

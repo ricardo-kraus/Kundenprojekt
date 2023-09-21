@@ -11,14 +11,18 @@ body {
 }
 
 .container {
+    margin-top: 4%;
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
     padding: 20px;
-    max-width: 1200px;
-    margin: 0 auto;
+    max-width: 150%;
+    padding-left: 6%;
+    transform: scale(0.95); 
+    transform-origin: top left; 
+    
+    
 }
-
 
 header {
     position: relative; 
@@ -41,7 +45,6 @@ h1 {
     color: rgb(255, 255, 255);
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
     margin: 0;
-    text-decoration: underline;
 }
 
 
@@ -59,16 +62,16 @@ h1 {
     margin-right: 0;
 }
 
-.column:hover {
-    transform: translateY(-6px);
-}
 
 
-h2 {
+
+.blockTitle {
     font-size: 24px;
     margin-bottom: 20px;
     color: rgb(56, 55, 114);
-    text-decoration: underline;
+    width: 100%;
+    border-bottom: 1px solid grey;
+    font-weight: 600;
 }
 
 
@@ -130,11 +133,11 @@ input[type="text"]:focus {
 }
 
 .title {
-    font-size: 48px;
+    font-size: 55px;
+    font-weight: 550;
     color: rgb(56, 55, 114);
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
     margin: 0;
-    text-decoration: underline;
     text-align: center;
     padding: 20px 0; 
     background-color: rgba(255, 255, 255, 0.8); 
@@ -142,3 +145,4 @@ input[type="text"]:focus {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   
 }
+
