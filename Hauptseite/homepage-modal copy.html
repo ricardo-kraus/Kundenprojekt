@@ -1290,12 +1290,24 @@
         if (htmlTag.getAttribute("data-bs-theme") === "dark") {
           htmlTag.setAttribute("data-bs-theme", "light");
           darkmodeButton.innerText = "Lightmode";
+          localStorage.setItem("mode", "light");
         } else {
           htmlTag.setAttribute("data-bs-theme", "dark");
           darkmodeButton.innerText = "Darkmode";
+          localStorage.setItem("mode", "dark");
         }
       }
-
+      // Check local storage for the saved mode
+      const savedMode = localStorage.getItem("mode");
+      if (savedMode === "dark") {
+        // Apply dark mode
+        document.documentElement.setAttribute("data-bs-theme", "dark");
+        document.getElementById("darkmode").innerText = "Darkmode";
+      } else {
+        // Apply light mode (default)
+        document.documentElement.setAttribute("data-bs-theme", "light");
+        document.getElementById("darkmode").innerText = "Lightmode";
+      }
       // Attach the toggleDarkMode function to the Darkmode button's click event
       document
         .getElementById("darkmode")
@@ -1437,8 +1449,12 @@
     <script>
       let mondaytask1 = document.getElementById("cardtitlemonday1");
       let mondayname1 = document.getElementById("cardnamemonday1");
-      mondaytask1.innerHTML = "Abwaschen"
-      mondayname1.innerHTML = "Ricardo"
+
+      // task name
+      mondaytask1.innerHTML = "Abwaschen";
+
+      // person who has to do the task
+      mondayname1.innerHTML = "Ricardo";
     </script>
 
     <script
