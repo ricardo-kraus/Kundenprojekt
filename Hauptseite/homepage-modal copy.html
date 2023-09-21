@@ -41,13 +41,15 @@
     <div class="container text-center mx-auto">
       <div class="row">
         <!-- monday -->
-        <div class="col bg-light-subtle">
-          <div class="bg-red mb-4">Monday</div>
+        <div class="col bg-light-subtle rounded-start-4">
+          <div class="bg-red mb-4 rounded-4">Monday</div>
           <div id="cardmonday">
             <div class="card mx-auto mb-5">
               <div class="card-body">
-                <h5 class="card-title" id="cardtitle">Task</h5>
-                <div class="card-text">Name</div>
+                <div class="card-title fs-5 fw-semibold" id="cardtitlemonday1">
+                  Task
+                </div>
+                <div class="card-text" id="cardnamemonday1">Name</div>
                 <div class="d-flex justify-content-between align-items-center">
                   <div>
                     <button
@@ -72,11 +74,11 @@
         </div>
         <!-- tuesday -->
         <div class="col bg-secondary-subtle">
-          <div class="bg-red mb-4">Tuesday</div>
+          <div class="bg-red mb-4 rounded-4">Tuesday</div>
           <div id="cardtuesday">
             <div class="card mx-auto mb-5">
               <div class="card-body">
-                <h5 class="card-title">Task</h5>
+                <div class="card-title fs-5 fw-semibold">Task</div>
                 <div class="card-text">Name</div>
                 <div class="d-flex justify-content-between align-items-center">
                   <button
@@ -104,11 +106,11 @@
         </div>
         <!-- wednesday -->
         <div class="col bg-light-subtle">
-          <div class="bg-red mb-4">Wednesday</div>
+          <div class="bg-red mb-4 rounded-4">Wednesday</div>
           <div id="cardwednesday">
             <div class="card mx-auto mb-5">
               <div class="card-body">
-                <h5 class="card-title">Task</h5>
+                <div class="card-title fs-5 fw-semibold">Task</div>
                 <div class="card-text">Name</div>
                 <div class="d-flex justify-content-between align-items-center">
                   <button
@@ -136,11 +138,11 @@
         </div>
         <!-- thursday -->
         <div class="col bg-secondary-subtle">
-          <div class="bg-red mb-4">Thursday</div>
+          <div class="bg-red mb-4 rounded-4">Thursday</div>
           <div id="cardthursday">
             <div class="card mx-auto mb-5">
               <div class="card-body">
-                <h5 class="card-title">Task</h5>
+                <div class="card-title fs-5 fw-semibold">Task</div>
                 <div class="card-text">Name</div>
                 <div class="d-flex justify-content-between align-items-center">
                   <button
@@ -167,12 +169,12 @@
           </div>
         </div>
         <!-- friday -->
-        <div class="col bg-light-subtle">
-          <div class="bg-red mb-4">Friday</div>
+        <div class="col bg-light-subtle rounded-end-4">
+          <div class="bg-red mb-4 rounded-4">Friday</div>
           <div id="cardfriday">
             <div class="card mx-auto mb-5">
               <div class="card-body">
-                <h5 class="card-title">Task</h5>
+                <div class="card-title fs-5 fw-semibold">Task</div>
                 <div class="card-text">Name</div>
                 <div class="d-flex justify-content-between align-items-center">
                   <button
@@ -197,47 +199,48 @@
       </div>
     </div>
     <!-- modal for monday -->
-    <div
-      class="modal fade"
-      id="exampleModalmonday1"
-      tabindex="-1"
-      aria-labelledby="exampleModalLabel"
-      aria-hidden="true"
-    >
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h1 class="modal-title fs-5" id="exampleModalLabel">Comments</h1>
-            <button
-              type="button"
-              class="btn-close"
-              data-bs-dismiss="modal"
-              aria-label="Close"
-            ></button>
-          </div>
-          <div class="modal-body">
-            <form>
-              <div class="mb-3">
-                <label for="recipient-name" class="col-form-label"
-                  >Comments:</label
-                >
-                <input type="text" class="form-control" id="recipient-name" />
-              </div>
-            </form>
-          </div>
-          <div class="modal-footer">
-            <button
-              type="button"
-              class="btn btn-outline-primary"
-              data-bs-dismiss="modal"
-            >
-              Close
-            </button>
+    <div id="modalmonday">
+      <div
+        class="modal fade"
+        id="exampleModalmonday1"
+        tabindex="-1"
+        aria-labelledby="exampleModalLabel"
+        aria-hidden="true"
+      >
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h1 class="modal-title fs-5" id="exampleModalLabel">Comments</h1>
+              <button
+                type="button"
+                class="btn-close"
+                data-bs-dismiss="modal"
+                aria-label="Close"
+              ></button>
+            </div>
+            <div class="modal-body">
+              <form>
+                <div class="mb-3">
+                  <label for="recipient-name" class="col-form-label"
+                    >Comments:</label
+                  >
+                  <input type="text" class="form-control" id="recipient-name" />
+                </div>
+              </form>
+            </div>
+            <div class="modal-footer">
+              <button
+                type="button"
+                class="btn btn-outline-primary"
+                data-bs-dismiss="modal"
+              >
+                Close
+              </button>
+            </div>
           </div>
         </div>
       </div>
-    </div>
-    <div id="modalmonday">
+
       <div
         class="modal fade"
         id="exampleModalmonday2"
@@ -278,168 +281,975 @@
           </div>
         </div>
       </div>
+      <div
+        class="modal fade"
+        id="exampleModalmonday3"
+        tabindex="-1"
+        aria-labelledby="exampleModalLabel"
+        aria-hidden="true"
+      >
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h1 class="modal-title fs-5" id="exampleModalLabel">Comments</h1>
+              <button
+                type="button"
+                class="btn-close"
+                data-bs-dismiss="modal"
+                aria-label="Close"
+              ></button>
+            </div>
+            <div class="modal-body">
+              <form>
+                <div class="mb-3">
+                  <label for="recipient-name" class="col-form-label"
+                    >Comments:</label
+                  >
+                  <input type="text" class="form-control" id="recipient-name" />
+                </div>
+              </form>
+            </div>
+            <div class="modal-footer">
+              <button
+                type="button"
+                class="btn btn-outline-primary"
+                data-bs-dismiss="modal"
+              >
+                Close
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        class="modal fade"
+        id="exampleModalmonday4"
+        tabindex="-1"
+        aria-labelledby="exampleModalLabel"
+        aria-hidden="true"
+      >
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h1 class="modal-title fs-5" id="exampleModalLabel">Comments</h1>
+              <button
+                type="button"
+                class="btn-close"
+                data-bs-dismiss="modal"
+                aria-label="Close"
+              ></button>
+            </div>
+            <div class="modal-body">
+              <form>
+                <div class="mb-3">
+                  <label for="recipient-name" class="col-form-label"
+                    >Comments:</label
+                  >
+                  <input type="text" class="form-control" id="recipient-name" />
+                </div>
+              </form>
+            </div>
+            <div class="modal-footer">
+              <button
+                type="button"
+                class="btn btn-outline-primary"
+                data-bs-dismiss="modal"
+              >
+                Close
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        class="modal fade"
+        id="exampleModalmonday4"
+        tabindex="-1"
+        aria-labelledby="exampleModalLabel"
+        aria-hidden="true"
+      >
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h1 class="modal-title fs-5" id="exampleModalLabel">Comments</h1>
+              <button
+                type="button"
+                class="btn-close"
+                data-bs-dismiss="modal"
+                aria-label="Close"
+              ></button>
+            </div>
+            <div class="modal-body">
+              <form>
+                <div class="mb-3">
+                  <label for="recipient-name" class="col-form-label"
+                    >Comments:</label
+                  >
+                  <input type="text" class="form-control" id="recipient-name" />
+                </div>
+              </form>
+            </div>
+            <div class="modal-footer">
+              <button
+                type="button"
+                class="btn btn-outline-primary"
+                data-bs-dismiss="modal"
+              >
+                Close
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        class="modal fade"
+        id="exampleModalmonday5"
+        tabindex="-1"
+        aria-labelledby="exampleModalLabel"
+        aria-hidden="true"
+      >
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h1 class="modal-title fs-5" id="exampleModalLabel">Comments</h1>
+              <button
+                type="button"
+                class="btn-close"
+                data-bs-dismiss="modal"
+                aria-label="Close"
+              ></button>
+            </div>
+            <div class="modal-body">
+              <form>
+                <div class="mb-3">
+                  <label for="recipient-name" class="col-form-label"
+                    >Comments:</label
+                  >
+                  <input type="text" class="form-control" id="recipient-name" />
+                </div>
+              </form>
+            </div>
+            <div class="modal-footer">
+              <button
+                type="button"
+                class="btn btn-outline-primary"
+                data-bs-dismiss="modal"
+              >
+                Close
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
-
     <!-- modal for tuesday -->
-    <div
-      class="modal fade"
-      id="exampleModaltuesday1"
-      tabindex="-1"
-      aria-labelledby="exampleModalLabel"
-      aria-hidden="true"
-    >
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h1 class="modal-title fs-5" id="exampleModalLabel">Comments</h1>
-            <button
-              type="button"
-              class="btn-close"
-              data-bs-dismiss="modal"
-              aria-label="Close"
-            ></button>
+    <div id="modaltuesday">
+      <div
+        class="modal fade"
+        id="exampleModaltuesday1"
+        tabindex="-1"
+        aria-labelledby="exampleModalLabel"
+        aria-hidden="true"
+      >
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h1 class="modal-title fs-5" id="exampleModalLabel">Comments</h1>
+              <button
+                type="button"
+                class="btn-close"
+                data-bs-dismiss="modal"
+                aria-label="Close"
+              ></button>
+            </div>
+            <div class="modal-body">
+              <form>
+                <div class="mb-3">
+                  <label for="recipient-name" class="col-form-label"
+                    >Comments:</label
+                  >
+                  <input type="text" class="form-control" id="recipient-name" />
+                </div>
+              </form>
+            </div>
+            <div class="modal-footer">
+              <button
+                type="button"
+                class="btn btn-outline-primary"
+                data-bs-dismiss="modal"
+              >
+                Close
+              </button>
+            </div>
           </div>
-          <div class="modal-body">
-            <form>
-              <div class="mb-3">
-                <label for="recipient-name" class="col-form-label"
-                  >Comments:</label
-                >
-                <input type="text" class="form-control" id="recipient-name" />
-              </div>
-            </form>
+        </div>
+      </div>
+      <div
+        class="modal fade"
+        id="exampleModaltuesday2"
+        tabindex="-1"
+        aria-labelledby="exampleModalLabel"
+        aria-hidden="true"
+      >
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h1 class="modal-title fs-5" id="exampleModalLabel">Comments</h1>
+              <button
+                type="button"
+                class="btn-close"
+                data-bs-dismiss="modal"
+                aria-label="Close"
+              ></button>
+            </div>
+            <div class="modal-body">
+              <form>
+                <div class="mb-3">
+                  <label for="recipient-name" class="col-form-label"
+                    >Comments:</label
+                  >
+                  <input type="text" class="form-control" id="recipient-name" />
+                </div>
+              </form>
+            </div>
+            <div class="modal-footer">
+              <button
+                type="button"
+                class="btn btn-outline-primary"
+                data-bs-dismiss="modal"
+              >
+                Close
+              </button>
+            </div>
           </div>
-          <div class="modal-footer">
-            <button
-              type="button"
-              class="btn btn-outline-primary"
-              data-bs-dismiss="modal"
-            >
-              Close
-            </button>
+        </div>
+      </div>
+      <div
+        class="modal fade"
+        id="exampleModaltuesday3"
+        tabindex="-1"
+        aria-labelledby="exampleModalLabel"
+        aria-hidden="true"
+      >
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h1 class="modal-title fs-5" id="exampleModalLabel">Comments</h1>
+              <button
+                type="button"
+                class="btn-close"
+                data-bs-dismiss="modal"
+                aria-label="Close"
+              ></button>
+            </div>
+            <div class="modal-body">
+              <form>
+                <div class="mb-3">
+                  <label for="recipient-name" class="col-form-label"
+                    >Comments:</label
+                  >
+                  <input type="text" class="form-control" id="recipient-name" />
+                </div>
+              </form>
+            </div>
+            <div class="modal-footer">
+              <button
+                type="button"
+                class="btn btn-outline-primary"
+                data-bs-dismiss="modal"
+              >
+                Close
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        class="modal fade"
+        id="exampleModaltuesday4"
+        tabindex="-1"
+        aria-labelledby="exampleModalLabel"
+        aria-hidden="true"
+      >
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h1 class="modal-title fs-5" id="exampleModalLabel">Comments</h1>
+              <button
+                type="button"
+                class="btn-close"
+                data-bs-dismiss="modal"
+                aria-label="Close"
+              ></button>
+            </div>
+            <div class="modal-body">
+              <form>
+                <div class="mb-3">
+                  <label for="recipient-name" class="col-form-label"
+                    >Comments:</label
+                  >
+                  <input type="text" class="form-control" id="recipient-name" />
+                </div>
+              </form>
+            </div>
+            <div class="modal-footer">
+              <button
+                type="button"
+                class="btn btn-outline-primary"
+                data-bs-dismiss="modal"
+              >
+                Close
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        class="modal fade"
+        id="exampleModaltuesday5"
+        tabindex="-1"
+        aria-labelledby="exampleModalLabel"
+        aria-hidden="true"
+      >
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h1 class="modal-title fs-5" id="exampleModalLabel">Comments</h1>
+              <button
+                type="button"
+                class="btn-close"
+                data-bs-dismiss="modal"
+                aria-label="Close"
+              ></button>
+            </div>
+            <div class="modal-body">
+              <form>
+                <div class="mb-3">
+                  <label for="recipient-name" class="col-form-label"
+                    >Comments:</label
+                  >
+                  <input type="text" class="form-control" id="recipient-name" />
+                </div>
+              </form>
+            </div>
+            <div class="modal-footer">
+              <button
+                type="button"
+                class="btn btn-outline-primary"
+                data-bs-dismiss="modal"
+              >
+                Close
+              </button>
+            </div>
           </div>
         </div>
       </div>
     </div>
     <!-- modal for wednesday -->
-    <div
-      class="modal fade"
-      id="exampleModalwednesday1"
-      tabindex="-1"
-      aria-labelledby="exampleModalLabel"
-      aria-hidden="true"
-    >
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h1 class="modal-title fs-5" id="exampleModalLabel">Comments</h1>
-            <button
-              type="button"
-              class="btn-close"
-              data-bs-dismiss="modal"
-              aria-label="Close"
-            ></button>
+    <div id="modalwednesday">
+      <div
+        class="modal fade"
+        id="exampleModalwednesday1"
+        tabindex="-1"
+        aria-labelledby="exampleModalLabel"
+        aria-hidden="true"
+      >
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h1 class="modal-title fs-5" id="exampleModalLabel">Comments</h1>
+              <button
+                type="button"
+                class="btn-close"
+                data-bs-dismiss="modal"
+                aria-label="Close"
+              ></button>
+            </div>
+            <div class="modal-body">
+              <form>
+                <div class="mb-3">
+                  <label for="recipient-name" class="col-form-label"
+                    >Comments:</label
+                  >
+                  <input type="text" class="form-control" id="recipient-name" />
+                </div>
+              </form>
+            </div>
+            <div class="modal-footer">
+              <button
+                type="button"
+                class="btn btn-outline-primary"
+                data-bs-dismiss="modal"
+              >
+                Close
+              </button>
+            </div>
           </div>
-          <div class="modal-body">
-            <form>
-              <div class="mb-3">
-                <label for="recipient-name" class="col-form-label"
-                  >Comments:</label
-                >
-                <input type="text" class="form-control" id="recipient-name" />
-              </div>
-            </form>
+        </div>
+      </div>
+      <div
+        class="modal fade"
+        id="exampleModalwednesday2"
+        tabindex="-1"
+        aria-labelledby="exampleModalLabel"
+        aria-hidden="true"
+      >
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h1 class="modal-title fs-5" id="exampleModalLabel">Comments</h1>
+              <button
+                type="button"
+                class="btn-close"
+                data-bs-dismiss="modal"
+                aria-label="Close"
+              ></button>
+            </div>
+            <div class="modal-body">
+              <form>
+                <div class="mb-3">
+                  <label for="recipient-name" class="col-form-label"
+                    >Comments:</label
+                  >
+                  <input type="text" class="form-control" id="recipient-name" />
+                </div>
+              </form>
+            </div>
+            <div class="modal-footer">
+              <button
+                type="button"
+                class="btn btn-outline-primary"
+                data-bs-dismiss="modal"
+              >
+                Close
+              </button>
+            </div>
           </div>
-          <div class="modal-footer">
-            <button
-              type="button"
-              class="btn btn-outline-primary"
-              data-bs-dismiss="modal"
-            >
-              Close
-            </button>
+        </div>
+      </div>
+      <div
+        class="modal fade"
+        id="exampleModalwednesday3"
+        tabindex="-1"
+        aria-labelledby="exampleModalLabel"
+        aria-hidden="true"
+      >
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h1 class="modal-title fs-5" id="exampleModalLabel">Comments</h1>
+              <button
+                type="button"
+                class="btn-close"
+                data-bs-dismiss="modal"
+                aria-label="Close"
+              ></button>
+            </div>
+            <div class="modal-body">
+              <form>
+                <div class="mb-3">
+                  <label for="recipient-name" class="col-form-label"
+                    >Comments:</label
+                  >
+                  <input type="text" class="form-control" id="recipient-name" />
+                </div>
+              </form>
+            </div>
+            <div class="modal-footer">
+              <button
+                type="button"
+                class="btn btn-outline-primary"
+                data-bs-dismiss="modal"
+              >
+                Close
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        class="modal fade"
+        id="exampleModalwednesday4"
+        tabindex="-1"
+        aria-labelledby="exampleModalLabel"
+        aria-hidden="true"
+      >
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h1 class="modal-title fs-5" id="exampleModalLabel">Comments</h1>
+              <button
+                type="button"
+                class="btn-close"
+                data-bs-dismiss="modal"
+                aria-label="Close"
+              ></button>
+            </div>
+            <div class="modal-body">
+              <form>
+                <div class="mb-3">
+                  <label for="recipient-name" class="col-form-label"
+                    >Comments:</label
+                  >
+                  <input type="text" class="form-control" id="recipient-name" />
+                </div>
+              </form>
+            </div>
+            <div class="modal-footer">
+              <button
+                type="button"
+                class="btn btn-outline-primary"
+                data-bs-dismiss="modal"
+              >
+                Close
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        class="modal fade"
+        id="exampleModalwednesday5"
+        tabindex="-1"
+        aria-labelledby="exampleModalLabel"
+        aria-hidden="true"
+      >
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h1 class="modal-title fs-5" id="exampleModalLabel">Comments</h1>
+              <button
+                type="button"
+                class="btn-close"
+                data-bs-dismiss="modal"
+                aria-label="Close"
+              ></button>
+            </div>
+            <div class="modal-body">
+              <form>
+                <div class="mb-3">
+                  <label for="recipient-name" class="col-form-label"
+                    >Comments:</label
+                  >
+                  <input type="text" class="form-control" id="recipient-name" />
+                </div>
+              </form>
+            </div>
+            <div class="modal-footer">
+              <button
+                type="button"
+                class="btn btn-outline-primary"
+                data-bs-dismiss="modal"
+              >
+                Close
+              </button>
+            </div>
           </div>
         </div>
       </div>
     </div>
     <!-- modal for thursday -->
-    <div
-      class="modal fade"
-      id="exampleModalthursday1"
-      tabindex="-1"
-      aria-labelledby="exampleModalLabel"
-      aria-hidden="true"
-    >
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h1 class="modal-title fs-5" id="exampleModalLabel">Comments</h1>
-            <button
-              type="button"
-              class="btn-close"
-              data-bs-dismiss="modal"
-              aria-label="Close"
-            ></button>
+    <div id="modalthursday">
+      <div
+        class="modal fade"
+        id="exampleModalthursday1"
+        tabindex="-1"
+        aria-labelledby="exampleModalLabel"
+        aria-hidden="true"
+      >
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h1 class="modal-title fs-5" id="exampleModalLabel">Comments</h1>
+              <button
+                type="button"
+                class="btn-close"
+                data-bs-dismiss="modal"
+                aria-label="Close"
+              ></button>
+            </div>
+            <div class="modal-body">
+              <form>
+                <div class="mb-3">
+                  <label for="recipient-name" class="col-form-label"
+                    >Comments:</label
+                  >
+                  <input type="text" class="form-control" id="recipient-name" />
+                </div>
+              </form>
+            </div>
+            <div class="modal-footer">
+              <button
+                type="button"
+                class="btn btn-outline-primary"
+                data-bs-dismiss="modal"
+              >
+                Close
+              </button>
+            </div>
           </div>
-          <div class="modal-body">
-            <form>
-              <div class="mb-3">
-                <label for="recipient-name" class="col-form-label"
-                  >Comments:</label
-                >
-                <input type="text" class="form-control" id="recipient-name" />
-              </div>
-            </form>
+        </div>
+      </div>
+      <div
+        class="modal fade"
+        id="exampleModalthursday2"
+        tabindex="-1"
+        aria-labelledby="exampleModalLabel"
+        aria-hidden="true"
+      >
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h1 class="modal-title fs-5" id="exampleModalLabel">Comments</h1>
+              <button
+                type="button"
+                class="btn-close"
+                data-bs-dismiss="modal"
+                aria-label="Close"
+              ></button>
+            </div>
+            <div class="modal-body">
+              <form>
+                <div class="mb-3">
+                  <label for="recipient-name" class="col-form-label"
+                    >Comments:</label
+                  >
+                  <input type="text" class="form-control" id="recipient-name" />
+                </div>
+              </form>
+            </div>
+            <div class="modal-footer">
+              <button
+                type="button"
+                class="btn btn-outline-primary"
+                data-bs-dismiss="modal"
+              >
+                Close
+              </button>
+            </div>
           </div>
-          <div class="modal-footer">
-            <button
-              type="button"
-              class="btn btn-outline-primary"
-              data-bs-dismiss="modal"
-            >
-              Close
-            </button>
+        </div>
+      </div>
+      <div
+        class="modal fade"
+        id="exampleModalthursday3"
+        tabindex="-1"
+        aria-labelledby="exampleModalLabel"
+        aria-hidden="true"
+      >
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h1 class="modal-title fs-5" id="exampleModalLabel">Comments</h1>
+              <button
+                type="button"
+                class="btn-close"
+                data-bs-dismiss="modal"
+                aria-label="Close"
+              ></button>
+            </div>
+            <div class="modal-body">
+              <form>
+                <div class="mb-3">
+                  <label for="recipient-name" class="col-form-label"
+                    >Comments:</label
+                  >
+                  <input type="text" class="form-control" id="recipient-name" />
+                </div>
+              </form>
+            </div>
+            <div class="modal-footer">
+              <button
+                type="button"
+                class="btn btn-outline-primary"
+                data-bs-dismiss="modal"
+              >
+                Close
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        class="modal fade"
+        id="exampleModalthursday4"
+        tabindex="-1"
+        aria-labelledby="exampleModalLabel"
+        aria-hidden="true"
+      >
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h1 class="modal-title fs-5" id="exampleModalLabel">Comments</h1>
+              <button
+                type="button"
+                class="btn-close"
+                data-bs-dismiss="modal"
+                aria-label="Close"
+              ></button>
+            </div>
+            <div class="modal-body">
+              <form>
+                <div class="mb-3">
+                  <label for="recipient-name" class="col-form-label"
+                    >Comments:</label
+                  >
+                  <input type="text" class="form-control" id="recipient-name" />
+                </div>
+              </form>
+            </div>
+            <div class="modal-footer">
+              <button
+                type="button"
+                class="btn btn-outline-primary"
+                data-bs-dismiss="modal"
+              >
+                Close
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        class="modal fade"
+        id="exampleModalthursday5"
+        tabindex="-1"
+        aria-labelledby="exampleModalLabel"
+        aria-hidden="true"
+      >
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h1 class="modal-title fs-5" id="exampleModalLabel">Comments</h1>
+              <button
+                type="button"
+                class="btn-close"
+                data-bs-dismiss="modal"
+                aria-label="Close"
+              ></button>
+            </div>
+            <div class="modal-body">
+              <form>
+                <div class="mb-3">
+                  <label for="recipient-name" class="col-form-label"
+                    >Comments:</label
+                  >
+                  <input type="text" class="form-control" id="recipient-name" />
+                </div>
+              </form>
+            </div>
+            <div class="modal-footer">
+              <button
+                type="button"
+                class="btn btn-outline-primary"
+                data-bs-dismiss="modal"
+              >
+                Close
+              </button>
+            </div>
           </div>
         </div>
       </div>
     </div>
     <!-- modal for friday -->
-    <div
-      class="modal fade"
-      id="exampleModalfriday1"
-      tabindex="-1"
-      aria-labelledby="exampleModalLabel"
-      aria-hidden="true"
-    >
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h1 class="modal-title fs-5" id="exampleModalLabel">Comments</h1>
-            <button
-              type="button"
-              class="btn-close"
-              data-bs-dismiss="modal"
-              aria-label="Close"
-            ></button>
+    <div id="modalfriday">
+      <div
+        class="modal fade"
+        id="exampleModalfriday1"
+        tabindex="-1"
+        aria-labelledby="exampleModalLabel"
+        aria-hidden="true"
+      >
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h1 class="modal-title fs-5" id="exampleModalLabel">Comments</h1>
+              <button
+                type="button"
+                class="btn-close"
+                data-bs-dismiss="modal"
+                aria-label="Close"
+              ></button>
+            </div>
+            <div class="modal-body">
+              <form>
+                <div class="mb-3">
+                  <label for="recipient-name" class="col-form-label"
+                    >Comments:</label
+                  >
+                  <input type="text" class="form-control" id="recipient-name" />
+                </div>
+              </form>
+            </div>
+            <div class="modal-footer">
+              <button
+                type="button"
+                class="btn btn-outline-primary"
+                data-bs-dismiss="modal"
+              >
+                Close
+              </button>
+            </div>
           </div>
-          <div class="modal-body">
-            <form>
-              <div class="mb-3">
-                <label for="recipient-name" class="col-form-label"
-                  >Comments:</label
-                >
-                <input type="text" class="form-control" id="recipient-name" />
-              </div>
-            </form>
+        </div>
+      </div>
+      <div
+        class="modal fade"
+        id="exampleModalfriday2"
+        tabindex="-1"
+        aria-labelledby="exampleModalLabel"
+        aria-hidden="true"
+      >
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h1 class="modal-title fs-5" id="exampleModalLabel">Comments</h1>
+              <button
+                type="button"
+                class="btn-close"
+                data-bs-dismiss="modal"
+                aria-label="Close"
+              ></button>
+            </div>
+            <div class="modal-body">
+              <form>
+                <div class="mb-3">
+                  <label for="recipient-name" class="col-form-label"
+                    >Comments:</label
+                  >
+                  <input type="text" class="form-control" id="recipient-name" />
+                </div>
+              </form>
+            </div>
+            <div class="modal-footer">
+              <button
+                type="button"
+                class="btn btn-outline-primary"
+                data-bs-dismiss="modal"
+              >
+                Close
+              </button>
+            </div>
           </div>
-          <div class="modal-footer">
-            <button
-              type="button"
-              class="btn btn-outline-primary"
-              data-bs-dismiss="modal"
-            >
-              Close
-            </button>
+        </div>
+      </div>
+      <div
+        class="modal fade"
+        id="exampleModalfriday3"
+        tabindex="-1"
+        aria-labelledby="exampleModalLabel"
+        aria-hidden="true"
+      >
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h1 class="modal-title fs-5" id="exampleModalLabel">Comments</h1>
+              <button
+                type="button"
+                class="btn-close"
+                data-bs-dismiss="modal"
+                aria-label="Close"
+              ></button>
+            </div>
+            <div class="modal-body">
+              <form>
+                <div class="mb-3">
+                  <label for="recipient-name" class="col-form-label"
+                    >Comments:</label
+                  >
+                  <input type="text" class="form-control" id="recipient-name" />
+                </div>
+              </form>
+            </div>
+            <div class="modal-footer">
+              <button
+                type="button"
+                class="btn btn-outline-primary"
+                data-bs-dismiss="modal"
+              >
+                Close
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        class="modal fade"
+        id="exampleModalfriday4"
+        tabindex="-1"
+        aria-labelledby="exampleModalLabel"
+        aria-hidden="true"
+      >
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h1 class="modal-title fs-5" id="exampleModalLabel">Comments</h1>
+              <button
+                type="button"
+                class="btn-close"
+                data-bs-dismiss="modal"
+                aria-label="Close"
+              ></button>
+            </div>
+            <div class="modal-body">
+              <form>
+                <div class="mb-3">
+                  <label for="recipient-name" class="col-form-label"
+                    >Comments:</label
+                  >
+                  <input type="text" class="form-control" id="recipient-name" />
+                </div>
+              </form>
+            </div>
+            <div class="modal-footer">
+              <button
+                type="button"
+                class="btn btn-outline-primary"
+                data-bs-dismiss="modal"
+              >
+                Close
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        class="modal fade"
+        id="exampleModalfriday5"
+        tabindex="-1"
+        aria-labelledby="exampleModalLabel"
+        aria-hidden="true"
+      >
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h1 class="modal-title fs-5" id="exampleModalLabel">Comments</h1>
+              <button
+                type="button"
+                class="btn-close"
+                data-bs-dismiss="modal"
+                aria-label="Close"
+              ></button>
+            </div>
+            <div class="modal-body">
+              <form>
+                <div class="mb-3">
+                  <label for="recipient-name" class="col-form-label"
+                    >Comments:</label
+                  >
+                  <input type="text" class="form-control" id="recipient-name" />
+                </div>
+              </form>
+            </div>
+            <div class="modal-footer">
+              <button
+                type="button"
+                class="btn btn-outline-primary"
+                data-bs-dismiss="modal"
+              >
+                Close
+              </button>
+            </div>
           </div>
         </div>
       </div>
@@ -482,12 +1292,24 @@
         if (htmlTag.getAttribute("data-bs-theme") === "dark") {
           htmlTag.setAttribute("data-bs-theme", "light");
           darkmodeButton.innerText = "Lightmode";
+          localStorage.setItem("mode", "light");
         } else {
           htmlTag.setAttribute("data-bs-theme", "dark");
           darkmodeButton.innerText = "Darkmode";
+          localStorage.setItem("mode", "dark");
         }
       }
-
+      // Check local storage for the saved mode
+      const savedMode = localStorage.getItem("mode");
+      if (savedMode === "dark") {
+        // Apply dark mode
+        document.documentElement.setAttribute("data-bs-theme", "dark");
+        document.getElementById("darkmode").innerText = "Lightmode";
+      } else {
+        // Apply light mode (default)
+        document.documentElement.setAttribute("data-bs-theme", "light");
+        document.getElementById("darkmode").innerText = "Darkmode";
+      }
       // Attach the toggleDarkMode function to the Darkmode button's click event
       document
         .getElementById("darkmode")
@@ -515,7 +1337,7 @@
     <!-- amount of cards -->
     <script>
       // amount of the cards in monday as an example
-      let amountmonday = 2;
+      let amountmonday = 5;
 
       // cards in monday
       let cardmonday = document.getElementById("cardmonday").innerHTML;
@@ -532,9 +1354,7 @@
         cardmonday = document.getElementById("cardmonday").innerHTML;
       }
 
-      console.log(cardmonday);
-
-      let amounttuesday = 2;
+      let amounttuesday = 5;
 
       // cards in tuesday
       let cardtuesday = document.getElementById("cardtuesday").innerHTML;
@@ -552,7 +1372,7 @@
         cardtuesday = document.getElementById("cardtuesday").innerHTML;
       }
 
-      let amountwednesday = 2;
+      let amountwednesday = 5;
 
       // cards in wednesday
       let cardwednesday = document.getElementById("cardwednesday").innerHTML;
@@ -570,7 +1390,7 @@
         cardwednesday = document.getElementById("cardwednesday").innerHTML;
       }
 
-      let amountthursday = 2;
+      let amountthursday = 5;
 
       // cards in thursday
       let cardthursday = document.getElementById("cardthursday").innerHTML;
@@ -588,7 +1408,7 @@
         cardthursday = document.getElementById("cardthursday").innerHTML;
       }
 
-      let amountfriday = 2;
+      let amountfriday = 5;
 
       // cards in friday
       let cardfriday = document.getElementById("cardfriday").innerHTML;
@@ -627,6 +1447,16 @@
 
       // Call the updateDataAttributes function to update the attributes
       updateDataAttributes();
+    </script>
+    <script>
+      let mondaytask1 = document.getElementById("cardtitlemonday1");
+      let mondayname1 = document.getElementById("cardnamemonday1");
+
+      // task name
+      mondaytask1.innerHTML = "Abwaschen";
+
+      // person who has to do the task
+      mondayname1.innerHTML = "Ricardo";
     </script>
 
     <script
