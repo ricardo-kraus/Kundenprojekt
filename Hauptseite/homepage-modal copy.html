@@ -46,8 +46,8 @@
           <div id="cardmonday">
             <div class="card mx-auto mb-5">
               <div class="card-body">
-                <h5 class="card-title" id="cardtitle">Task</h5>
-                <div class="card-text">Name</div>
+                <h5 class="card-title" id="cardtitlemonday1">Task</h5>
+                <div class="card-text" id="cardnamemonday1">Name</div>
                 <div class="d-flex justify-content-between align-items-center">
                   <div>
                     <button
@@ -1433,6 +1433,12 @@
 
       // Call the updateDataAttributes function to update the attributes
       updateDataAttributes();
+    </script>
+    <script>
+      let mondaytask1 = document.getElementById("cardtitlemonday1");
+      let mondayname1 = document.getElementById("cardnamemonday1");
+      mondaytask1.innerHTML = "Abwaschen"
+      mondayname1.innerHTML = "Ricardo"
     </script>
 
     <script
