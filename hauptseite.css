@@ -1,21 +1,32 @@
 .navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     background-color: #D9D9D9;
     color: #000000;
     padding: 20px 0;
 }
 
-.NavbarTitle {
-    text-align: center;
-        margin: 0;
-        font-size: 30px;
-        font-weight: bold;
-        padding: 0 20px;
+.TaskPlan {
+    margin: 0 auto;
+    font-size: 30px;
+    padding: 0 20px;
+    font-weight: bold;
+}
+
+img {
+    width: 60px;
+    margin-top: 10px;
+    position: absolute;
+    top: 10px;
+    left:20px;
 }
 
 .text-box {
     padding: 10px;
     width: fit-content;
     margin-top: 10px;
+    margin-bottom: 10px;
     font-size: 20px;
     font-weight: bold;
     border-radius: 20px;
@@ -36,21 +47,6 @@
     top: 10px;
     right:20px;
     box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.5);
-}
-
-img {
-    width: 60px;
-    margin-top: 10px;
-    position: absolute;
-    top: 10px;
-    left:20px;
-}
-
-.weekdays {
-    margin-top: 30px;
-    display: flex;
-    justify-content: space-between;
-    padding: 10px;
 }
 
 .day-box {
@@ -95,8 +91,6 @@ img {
 }
 
 .box {
-    /* padding: 10px; */
-    /* margin-left: 30px; */
     border-radius: 5px;
     width: 185px;
     height: 400px;
@@ -106,19 +100,43 @@ img {
 
 .box1 {
     background-color: #D9D9D9;
-
+    margin-top: 30px;
 }
 
 .box2 {
     background-color: #D9D9D9;
+    margin-top: 30px;
 }
 
 .box3 {
     background-color: #D9D9D9;
+    margin-top: 30px;
 }
 .box4 {
     background-color: #D9D9D9;
+    margin-top: 30px;
 }
 .box5 {
     background-color: #D9D9D9;
+    margin-top: 30px;
+}
+
+.task input {
+    margin-top: 12%;
+    width: 85%;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    background-color: #6d60ff77;
+    color: white;
+    font-size: small;
+    text-align: center;
+}
+.small-box {
+    margin-top: 10px;
+    width: 20px;
+    height: 20px;
+    background-color: white;
+    border: 1px solid #000000;
+    border-radius: 30%;
 }
