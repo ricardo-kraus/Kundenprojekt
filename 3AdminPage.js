@@ -54,8 +54,8 @@ document.addEventListener("DOMContentLoaded", function () {
       thursday: assignTasksOneDay(people, tasks),
       friday: assignTasksOneDay(people, tasks),
     };
-    // todo need to fix displayAssignments
-    // displayAssignments(assignments, taskAssignment);
+    // Aktiviere die Anzeige der Zuordnungen
+    displayAssignments(assignments, taskAssignment);
 
     // Speichere die Zuordnungen im localStorage
     localStorage.setItem("assignments", JSON.stringify(assignments));
@@ -71,16 +71,14 @@ document.addEventListener("DOMContentLoaded", function () {
     const listItem = document.createElement("li");
     listItem.textContent = text;
 
-    // Hinzugefügter Code: Schließsymbol (Kreuz) und Klasse
     const closeButton = document.createElement("span");
     closeButton.textContent = "✖";
-    closeButton.className = "close-button"; // Füge die Klasse hinzu
+    closeButton.className = "close-button";
 
     listItem.appendChild(closeButton);
 
     parentElement.appendChild(listItem);
 
-    // Hinzugefügter Code: Event-Listener für das Schließsymbol
     closeButton.addEventListener("click", function () {
       if (parentElement === peopleList) {
         removePerson(text);
@@ -90,49 +88,49 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
 
-  // Hinzugefügter Code: Funktion zum Aktualisieren der Personenliste
   function refreshPeopleList() {
     peopleList.innerHTML = "";
-    people.forEach((person) => createListItemWithCloseButton(person, peopleList));
+    people.forEach((person) =>
+      createListItemWithCloseButton(person, peopleList)
+    );
   }
 
-  // Hinzugefügter Code: Funktion zum Aktualisieren der Aufgabenliste
   function refreshTasksList() {
     tasksList.innerHTML = "";
     tasks.forEach((task) => createListItemWithCloseButton(task, tasksList));
   }
 
+  // Hier kommt die Definition für assignTasksOneDay und displayAssignments, falls benötigt
   function assignTasksOneDay(people, tasks) {
+    const shuffledTasks = shuffleArray([...tasks]);
+    const shuffledPeople = shuffleArray([...people]);
     const assignments = {};
 
-    const shuffledTasks = [...tasks];
-
-    for (let i = shuffledTasks.length - 1; i > 0; i--) {
-      const j = Math.floor(Math.random() * (i + 1));
-      [shuffledTasks[i], shuffledTasks[j]] = [
-        shuffledTasks[j],
-        shuffledTasks[i],
-      ];
-    }
-
-    for (const person of people) {
+    for (const person of shuffledPeople) {
       assignments[person] = [];
     }
 
-    let taskIndex = 0;
-
     for (let i = 0; i < shuffledTasks.length; i++) {
-      const person = people[i % people.length];
+      const person = shuffledPeople[i % shuffledPeople.length];
       assignments[person].push(shuffledTasks[i]);
     }
 
-    for (const person of people) {
+    for (const person of shuffledPeople) {
       if (assignments[person].length === 0) {
         delete assignments[person];
       }
     }
 
     return assignments;
+  }
+
+  
+  function shuffleArray(array) {
+    for (let i = array.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [array[i], array[j]] = [array[j], array[i]];
+    }
+    return array;
   }
 
   function displayAssignments(assignments, targetElement) {
@@ -142,8 +140,12 @@ document.addEventListener("DOMContentLoaded", function () {
         continue;
       }
       const personTasks = assignments[person];
-      const assignmentString = `${person}: ${personTasks.join(", ")}`;
-      createListItem(assignmentString, targetElement);
+  
+      if (Array.isArray(personTasks)) {
+        const assignmentString = `${person}: ${personTasks.join(", ")}`;
+        createListItem(assignmentString, targetElement);
+      }
     }
   }
+  
 });
