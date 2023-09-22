@@ -47,8 +47,18 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   assignButton.addEventListener("click", function () {
-    assignments = assignTasks(people, tasks);
-    displayAssignments(assignments, taskAssignment);
+    assignments = {
+      monday: assignTasksOneDay(people, tasks),
+      tuesday: assignTasksOneDay(people, tasks),
+      wednesday: assignTasksOneDay(people, tasks),
+      thursday: assignTasksOneDay(people, tasks),
+      friday: assignTasksOneDay(people, tasks),
+    };
+    // todo need to fix displayAssignments
+    // displayAssignments(assignments, taskAssignment);
+
+    // Speichere die Zuordnungen im localStorage
+    localStorage.setItem("assignments", JSON.stringify(assignments));
   });
 
   function createListItem(text, parentElement) {
@@ -92,7 +102,7 @@ document.addEventListener("DOMContentLoaded", function () {
     tasks.forEach((task) => createListItemWithCloseButton(task, tasksList));
   }
 
-  function assignTasks(people, tasks) {
+  function assignTasksOneDay(people, tasks) {
     const assignments = {};
 
     const shuffledTasks = [...tasks];
@@ -118,7 +128,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     for (const person of people) {
       if (assignments[person].length === 0) {
-        assignments[person].push("No task");
+        delete assignments[person];
       }
     }
 
