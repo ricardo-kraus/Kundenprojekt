@@ -111,7 +111,7 @@
             <div class="card mx-auto mb-5">
               <div class="card-body">
                 <div class="card-title fs-5 fw-semibold">Task</div>
-                <div class="card-text">Name</div>
+                <div class="card-text" id="cardnamewednesday1">Name</div>
                 <div class="d-flex justify-content-between align-items-center">
                   <button
                     type="button"
@@ -143,7 +143,7 @@
             <div class="card mx-auto mb-5">
               <div class="card-body">
                 <div class="card-title fs-5 fw-semibold">Task</div>
-                <div class="card-text">Name</div>
+                <div class="card-text" id="cardnamethursday1">Name</div>
                 <div class="d-flex justify-content-between align-items-center">
                   <button
                     type="button"
@@ -175,7 +175,7 @@
             <div class="card mx-auto mb-5">
               <div class="card-body">
                 <div class="card-title fs-5 fw-semibold">Task</div>
-                <div class="card-text">Name</div>
+                <div class="card-text" id="cardnamefriday1">Name</div>
                 <div class="d-flex justify-content-between align-items-center">
                   <button
                     type="button"
@@ -847,7 +847,7 @@
       let assignmentsJSON = localStorage.getItem("assignments");
       let assignments = JSON.parse(assignmentsJSON);
       let name;
-      let i = 1;
+      let mo = 1;
       let cardmonday = document.getElementById("cardmonday");
       let onecard = document.getElementById("cardmonday").innerHTML;
       for (let key in assignments) {
@@ -861,12 +861,12 @@
         cardmonday = document.getElementById("cardmonday");
 
         name = key;
-        document.getElementById("cardnamemonday" + i).innerHTML = key;
-        i++;
+        document.getElementById("cardnamemonday" + mo).innerHTML = key;
+        mo++;
       }
       let cardtuesday = document.getElementById("cardtuesday");
       onecard = document.getElementById("cardtuesday").innerHTML;
-      let n = 1;
+      let tu = 1;
       for (let key in assignments.tuesday) {
         console.log(key, assignments.tuesday[key]);
         
@@ -875,8 +875,50 @@
         cardtuesday = document.getElementById("cardtuesday");
 
         name = key;
-        document.getElementById("cardnametuesday" + n).innerHTML = key;
-        n++;
+        document.getElementById("cardnametuesday" + tu).innerHTML = key;
+        tu++;
+      }
+      let cardwednesday = document.getElementById("cardwednesday");
+      onecard = document.getElementById("cardwednesday").innerHTML;
+      let we = 1;
+      for (let key in assignments.wednesday) {
+        console.log(key, assignments.wednesday[key]);
+        
+        document.getElementById("cardwednesday").innerHTML =
+          cardwednesday.innerHTML + onecard;
+        cardwednesday = document.getElementById("cardwednesday");
+
+        name = key;
+        document.getElementById("cardnamewednesday" + we).innerHTML = key;
+        we++;
+      }
+      let cardthursday = document.getElementById("cardthursday");
+      onecard = document.getElementById("cardthursday").innerHTML;
+      let th = 1;
+      for (let key in assignments.thursday) {
+        console.log(key, assignments.thursday[key]);
+        
+        document.getElementById("cardthursday").innerHTML =
+          cardthursday.innerHTML + onecard;
+        cardthursday = document.getElementById("cardthursday");
+
+        name = key;
+        document.getElementById("cardnamethursday" + th).innerHTML = key;
+        th++;
+      }
+      let cardfriday = document.getElementById("cardfriday");
+      onecard = document.getElementById("cardfriday").innerHTML;
+      let fr = 1;
+      for (let key in assignments.friday) {
+        console.log(key, assignments.friday[key]);
+        
+        document.getElementById("cardfriday").innerHTML =
+          cardfriday.innerHTML + onecard;
+        cardfriday = document.getElementById("cardfriday");
+
+        name = key;
+        document.getElementById("cardnamefriday" + fr).innerHTML = key;
+        fr++;
       }
     </script>
 
