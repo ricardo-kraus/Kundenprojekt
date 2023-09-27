@@ -19,7 +19,7 @@
         <span class="navbar-brand mb-0 h1">Task plan</span>
 
         <button id="statisticsButton">Go to Statistics</button>
-        
+
         <div class="justify-content-end">
           <button
             class="btn me-2 btn-outline-secondary"
@@ -46,7 +46,7 @@
         <div class="col bg-light-subtle rounded-start-4">
           <div class="bg-red mb-4 rounded-4">Monday</div>
           <div id="cardmonday">
-            <div class="card mx-auto mb-5">
+            <!-- <div class="card mx-auto mb-5">
               <div class="card-body">
                 <div class="card-title fs-5 fw-semibold" id="cardtitlemonday1">
                   Task
@@ -71,131 +71,31 @@
                   </label>
                 </div>
               </div>
-            </div>
+            </div> -->
           </div>
         </div>
         <!-- tuesday -->
         <div class="col bg-secondary-subtle">
           <div class="bg-red mb-4 rounded-4">Tuesday</div>
           <div id="cardtuesday">
-            <div class="card mx-auto mb-5">
-              <div class="card-body">
-                <div class="card-title fs-5 fw-semibold">Task</div>
-                <div class="card-text" id="cardnametuesday1">Name</div>
-                <div class="d-flex justify-content-between align-items-center">
-                  <button
-                    type="button"
-                    class="btn btn-outline-primary btn-sm-custom"
-                    data-bs-toggle="modal"
-                    data-bs-target="#exampleModaltuesday1"
-                    data-bs-whatever="@tuesday1"
-                  >
-                    Comment
-                  </button>
-                  <label class="check mt-3"
-                    >Done
-                    <input
-                      class="ms-1"
-                      type="checkbox"
-                      id="checkbox-tuesday1"
-                    />
-                    <span class="checkmark"></span>
-                  </label>
-                </div>
-              </div>
-            </div>
           </div>
         </div>
         <!-- wednesday -->
         <div class="col bg-light-subtle">
           <div class="bg-red mb-4 rounded-4">Wednesday</div>
           <div id="cardwednesday">
-            <div class="card mx-auto mb-5">
-              <div class="card-body">
-                <div class="card-title fs-5 fw-semibold">Task</div>
-                <div class="card-text" id="cardnamewednesday1">Name</div>
-                <div class="d-flex justify-content-between align-items-center">
-                  <button
-                    type="button"
-                    class="btn btn-outline-primary btn-sm-custom"
-                    data-bs-toggle="modal"
-                    data-bs-target="#exampleModalwednesday1"
-                    data-bs-whatever="@wednesday1"
-                  >
-                    Comment
-                  </button>
-                  <label class="check mt-3"
-                    >Done
-                    <input
-                      class="ms-1"
-                      type="checkbox"
-                      id="checkbox-wednesday1"
-                    />
-                    <span class="checkmark"></span>
-                  </label>
-                </div>
-              </div>
-            </div>
           </div>
         </div>
         <!-- thursday -->
         <div class="col bg-secondary-subtle">
           <div class="bg-red mb-4 rounded-4">Thursday</div>
           <div id="cardthursday">
-            <div class="card mx-auto mb-5">
-              <div class="card-body">
-                <div class="card-title fs-5 fw-semibold">Task</div>
-                <div class="card-text" id="cardnamethursday1">Name</div>
-                <div class="d-flex justify-content-between align-items-center">
-                  <button
-                    type="button"
-                    class="btn btn-outline-primary btn-sm-custom"
-                    data-bs-toggle="modal"
-                    data-bs-target="#exampleModalthursday1"
-                    data-bs-whatever="@thursday1"
-                  >
-                    Comment
-                  </button>
-                  <label class="check mt-3"
-                    >Done
-                    <input
-                      class="ms-1"
-                      type="checkbox"
-                      id="checkbox-thursday1"
-                    />
-                    <span class="checkmark"></span>
-                  </label>
-                </div>
-              </div>
-            </div>
           </div>
         </div>
         <!-- friday -->
         <div class="col bg-light-subtle rounded-end-4">
           <div class="bg-red mb-4 rounded-4">Friday</div>
           <div id="cardfriday">
-            <div class="card mx-auto mb-5">
-              <div class="card-body">
-                <div class="card-title fs-5 fw-semibold">Task</div>
-                <div class="card-text" id="cardnamefriday1">Name</div>
-                <div class="d-flex justify-content-between align-items-center">
-                  <button
-                    type="button"
-                    class="btn btn-outline-primary btn-sm-custom"
-                    data-bs-toggle="modal"
-                    data-bs-target="#exampleModalfriday1"
-                    data-bs-whatever="@friday1"
-                  >
-                    Comment
-                  </button>
-                  <label class="check mt-3"
-                    >Done
-                    <input class="ms-1" type="checkbox" id="checkbox-friday1" />
-                    <span class="checkmark"></span>
-                  </label>
-                </div>
-              </div>
-            </div>
           </div>
         </div>
       </div>
@@ -846,82 +746,74 @@
       updateEverything();
     </script>
     <script>
-      let assignmentsJSON = localStorage.getItem("assignments");
-      let assignments = JSON.parse(assignmentsJSON);
+      assignmentsJSON = localStorage.getItem("assignments");
+      assignments = JSON.parse(assignmentsJSON);
       let name;
-      let mo = 1;
-      let cardmonday = document.getElementById("cardmonday");
-      let onecard = document.getElementById("cardmonday").innerHTML;
-      for (let key in assignments) {
-        console.log(key, assignments[key]);
-      }
-      for (let key in assignments.monday) {
-        console.log(key, assignments.monday[key]);
-        
-        document.getElementById("cardmonday").innerHTML =
-          cardmonday.innerHTML + onecard;
-        cardmonday = document.getElementById("cardmonday");
 
-        name = key;
-        document.getElementById("cardnamemonday" + mo).innerHTML = key;
-        mo++;
-      }
-      let cardtuesday = document.getElementById("cardtuesday");
-      onecard = document.getElementById("cardtuesday").innerHTML;
-      let tu = 1;
-      for (let key in assignments.tuesday) {
-        console.log(key, assignments.tuesday[key]);
-        
-        document.getElementById("cardtuesday").innerHTML =
-          cardtuesday.innerHTML + onecard;
-        cardtuesday = document.getElementById("cardtuesday");
+      function generateCards(day) {
+        let cardContainer = document.getElementById(`card${day}`);
+        cardContainer.innerHTML = ""; // Clear the card container
 
-        name = key;
-        document.getElementById("cardnametuesday" + tu).innerHTML = key;
-        tu++;
-      }
-      let cardwednesday = document.getElementById("cardwednesday");
-      onecard = document.getElementById("cardwednesday").innerHTML;
-      let we = 1;
-      for (let key in assignments.wednesday) {
-        console.log(key, assignments.wednesday[key]);
-        
-        document.getElementById("cardwednesday").innerHTML =
-          cardwednesday.innerHTML + onecard;
-        cardwednesday = document.getElementById("cardwednesday");
+        let length = 0;
 
-        name = key;
-        document.getElementById("cardnamewednesday" + we).innerHTML = key;
-        we++;
-      }
-      let cardthursday = document.getElementById("cardthursday");
-      onecard = document.getElementById("cardthursday").innerHTML;
-      let th = 1;
-      for (let key in assignments.thursday) {
-        console.log(key, assignments.thursday[key]);
-        
-        document.getElementById("cardthursday").innerHTML =
-          cardthursday.innerHTML + onecard;
-        cardthursday = document.getElementById("cardthursday");
+        for (let key in assignments[day]) {
+          const assignmentName = key;
+          const cardId = `card${day}${length + 1}`;
+          const taskName = assignments[day][key];
 
-        name = key;
-        document.getElementById("cardnamethursday" + th).innerHTML = key;
-        th++;
-      }
-      let cardfriday = document.getElementById("cardfriday");
-      onecard = document.getElementById("cardfriday").innerHTML;
-      let fr = 1;
-      for (let key in assignments.friday) {
-        console.log(key, assignments.friday[key]);
-        
-        document.getElementById("cardfriday").innerHTML =
-          cardfriday.innerHTML + onecard;
-        cardfriday = document.getElementById("cardfriday");
+          // Create a new card element
+          const card = document.createElement("div");
+          card.className = "card mx-auto mb-5";
+          card.innerHTML = `
+      <div class="card-body">
+        <div class="card-title fs-5 fw-semibold" id="${cardId}">
+          ${taskName}
+        </div>
+        <div class="card-text" id="cardname${day}${length + 1}">
+          ${assignmentName}
+        </div>
+        <div class="d-flex justify-content-between align-items-center">
+          <div>
+            <button
+              type="button"
+              class="btn btn-outline-primary btn-sm-custom"
+              data-bs-toggle="modal"
+              data-bs-target="#exampleModal${day}${length + 1}"
+              data-bs-whatever="@${day}${length + 1}"
+            >
+              Comment
+            </button>
+          </div>
+          <label class="check mt-3">
+            Done
+            <input class="ms-1" type="checkbox" id="checkbox-${cardId}" />
+            <span class="checkmark"></span>
+          </label>
+        </div>
+      </div>
+    `;
 
-        name = key;
-        document.getElementById("cardnamefriday" + fr).innerHTML = key;
-        fr++;
+          cardContainer.appendChild(card);
+          length++;
+        }
+
+        return length;
       }
+
+      let mondayLength = generateCards("monday");
+      console.log("Monday length:", mondayLength);
+
+      let tuesdayLength = generateCards("tuesday");
+      console.log("Tuesday length:", tuesdayLength);
+
+      let wednesdayLength = generateCards("wednesday");
+      console.log("Wednesday length:", wednesdayLength);
+
+      let thursdayLength = generateCards("thursday");
+      console.log("Thurssday length:", thursdayLength);
+
+      let fridayLength = generateCards("friday");
+      console.log("Friday length:", fridayLength)
     </script>
 
     <script
