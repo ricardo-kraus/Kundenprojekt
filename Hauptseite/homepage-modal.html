@@ -307,6 +307,7 @@
               <input type="radio" class="btn-check" name="btnradio-${day}-${index}" id="btnradio2-${day}-${index}" autocomplete="off">
               <label class="btn btn-outline-danger" for="btnradio2-${day}-${index}">negative</label>
             </div>
+            <input type="hidden" id="rating-${day}-${index}" value="positive">
             <button
               type="button"
               class="btn btn-outline-primary"
@@ -322,8 +323,34 @@
         // Append the card and modal to their respective containers
         document.getElementById(`card${day}`).appendChild(card);
         document.body.appendChild(modal);
-      }
 
+        // Event listener for capturing comments and ratings when the modal is closed
+        document
+          .querySelector(
+            `#exampleModal${day}${index} .modal-footer button[type="button"]`
+          )
+          .addEventListener("click", function () {
+            const commentInput = document.querySelector(
+              `#exampleModal${day}${index} input#recipient-name`
+            );
+            const comment = commentInput.value;
+            const rating = document.querySelector(
+              `input[name="btnradio-${day}-${index}"]:checked`
+            ).value;
+
+            // Create an object to store the comment and rating
+            const commentData = { comment, rating };
+
+            // Save the comment and rating in localStorage for the specific card
+            localStorage.setItem(
+              `commentratings.${day}${index}`,
+              JSON.stringify(commentData)
+            );
+
+            // Clear the comment input
+            commentInput.value = "";
+          });
+      }
       // Loop through your data and generate cards and modals
       function generateCards(day, assignments) {
         let index = 1;
@@ -341,6 +368,16 @@
       generateCards("wednesday", assignments);
       generateCards("thursday", assignments);
       generateCards("friday", assignments);
+
+      const mondayCardData = localStorage.getItem(`commentratings.monday1`);
+
+      // Parse the JSON data if it exists
+      if (mondayCardData) {
+        const parsedData = JSON.parse(mondayCardData);
+        console.log("LocalStorage data for Monday Card 1:", parsedData);
+      } else {
+        console.log("No localStorage data found for Monday Card 1.");
+      }
     </script>
 
     <script
