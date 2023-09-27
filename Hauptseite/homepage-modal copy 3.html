@@ -718,34 +718,6 @@
     </script>
     <!-- amount of cards -->
     <script>
-      function updateEverything() {
-        const days = ["monday", "tuesday", "wednesday", "thursday", "friday"];
-
-        for (let i = 0; i < days.length; i++) {
-          const day = days[i];
-          const buttons = document.querySelectorAll(
-            `[data-bs-target^="#exampleModal${day}"]`
-          );
-          const modals = document.querySelectorAll(
-            `[id^="exampleModal${day}"]`
-          );
-
-          buttons.forEach((button, index) => {
-            button.setAttribute(
-              "data-bs-target",
-              `#exampleModal${day}${index + 1}`
-            );
-            button.setAttribute("data-bs-whatever", `@${day}${index + 1}`);
-          });
-
-          modals.forEach((modal, index) => {
-            modal.id = `exampleModal${day}${index + 1}`;
-          });
-        }
-      }
-      updateEverything();
-    </script>
-    <script>
       assignmentsJSON = localStorage.getItem("assignments");
       assignments = JSON.parse(assignmentsJSON);
       let name;
