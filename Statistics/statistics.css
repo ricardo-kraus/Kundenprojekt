@@ -1,17 +1,25 @@
 .navbar {
     background-color: #dddada;
-    color: white;
+    color: #000000;
     padding: 10px;
     display: flex;
     justify-content: space-between;
 }
 
+.container-title {
+    text-align: center;
+}
+
+.statisticsTitle {
+    text-align: center;
+}
+
 #darkmode {
     background-color: #333;
     color: white;
-    margin-right: 10px
+    margin-right: 10px;
 }
 
 .navbar-brand img {
-    margin-left: 10px;
+    margin-right: 10px;
 }
