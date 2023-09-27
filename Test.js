@@ -1,95 +1,165 @@
 document.addEventListener("DOMContentLoaded", function () {
-    const taskInput = document.getElementById("task-input");
-    const nameInput = document.getElementById("name-input");
-    const addButton = document.getElementById("add-button");
-    const daySelect = document.getElementById("day-select");
-
-    // Füge den "Assign Task"-Button hinzu
-    const assignButton = document.createElement("button");
-    assignButton.id = "assign-button";
-    assignButton.textContent = "Assign Task";
-    document.body.appendChild(assignButton);
-
-    addButton.addEventListener("click", addTask);
-
-    function addTask() {
-        const taskText = taskInput.value.trim();
-        const nameText = nameInput.value.trim();
-        const selectedDay = daySelect.value;
-
-        if (taskText !== "" && nameText !== "") {
-            const taskList = document.querySelector(`#${selectedDay}-tasks`);
-            const taskBlock = document.createElement("div");
-            taskBlock.classList.add("task-block");
-            taskBlock.style.backgroundColor = getRandomColor(); // Zufällige Hintergrundfarbe
-            taskBlock.innerHTML = `
-                <p><strong>Aufgabe:</strong> ${taskText}</p>
-                <p><strong>Name:</strong> ${nameText}</p>
-                <button class="delete-button">Löschen</button>
-                <button class="comment-button">Kommentar</button>
-                <div class="comment-container" style="display: none;">
-                    <input type="text" placeholder="Kommentar eingeben" class="comment-input">
-                    <input type="text" placeholder="Dein Name" class "commenter-input">
-                    <button class="save-comment-button">Speichern</button>
-                    <button class="close-comment-button">Schließen</button>
-                    <div class="comments"></div>
-                </div>
-            `;
-            taskList.appendChild(taskBlock);
-            taskInput.value = "";
-            nameInput.value = "";
-
-            const deleteButton = taskBlock.querySelector(".delete-button");
-            deleteButton.addEventListener("click", function () {
-                taskList.removeChild(taskBlock);
-            });
-
-            const commentButton = taskBlock.querySelector(".comment-button");
-            const commentContainer = taskBlock.querySelector(".comment-container");
-            const commentInput = taskBlock.querySelector(".comment-input");
-            const commenterInput = taskBlock.querySelector(".commenter-input");
-            const commentsContainer = taskBlock.querySelector(".comments");
-            const saveCommentButton = taskBlock.querySelector(".save-comment-button");
-            const closeCommentButton = taskBlock.querySelector(".close-comment-button");
-
-            commentButton.addEventListener("click", function () {
-                commentContainer.style.display = "block";
-            });
-
-            saveCommentButton.addEventListener("click", function () {
-                const commentText = commentInput.value.trim();
-                const commenterText = commenterInput.value.trim();
-
-                if (commentText !== "" && commenterText !== "") {
-                    const comment = document.createElement("div");
-                    comment.className = "comment";
-                    comment.innerHTML = `<strong>${commenterText}</strong> (${getCurrentTime()}): ${commentText}`;
-                    commentsContainer.appendChild(comment);
-
-                    commentInput.value = "";
-                    commenterInput.value = "";
-                }
-            });
-
-            closeCommentButton.addEventListener("click", function () {
-                commentContainer.style.display = "none";
-            });
+    const peopleList = document.getElementById("people-list");
+    const tasksList = document.getElementById("tasks-list");
+    const addPersonForm = document.getElementById("add-person-form");
+    const addTaskForm = document.getElementById("add-task-form");
+    const assignButton = document.getElementById("assign-button");
+    const taskAssignment = document.getElementById("task-assignment");
+    const assignmentResult = document.getElementById("success-message");
+  
+    let people = [];
+    let tasks = [];
+    let assignments = {};
+  
+    // Laden von gespeicherten Personen und Aufgaben aus dem Local Storage
+    const storedPeople = JSON.parse(localStorage.getItem("people")) || [];
+    const storedTasks = JSON.parse(localStorage.getItem("tasks")) || [];
+  
+    // Initialisieren der Listen mit gespeicherten Daten
+    people = storedPeople;
+    tasks = storedTasks;
+  
+    // Aktualisieren der Anzeige der Personen und Aufgaben
+    refreshPeopleList();
+    refreshTasksList();
+  
+    addPersonForm.addEventListener("submit", function (e) {
+      e.preventDefault();
+      const personNameInput = document.getElementById("person-name");
+      const personName = personNameInput.value.trim();
+      if (personName !== "") {
+        if (!people.includes(personName)) {
+          people.push(personName);
+          createListItemWithCloseButton(personName, peopleList);
+  
+          // Aktualisieren der gespeicherten Personen im Local Storage
+          localStorage.setItem("people", JSON.stringify(people));
         }
-    }
-
-    function getRandomColor() {
-        const letters = "0123456789ABCDEF";
-        let color = "#";
-        for (let i = 0; i < 6; i++) {
-            color += letters[Math.floor(Math.random() * 16)];
+        personNameInput.value = "";
+      }
+    });
+  
+    addTaskForm.addEventListener("submit", function (e) {
+      e.preventDefault();
+      const taskNameInput = document.getElementById("task-name");
+      const taskName = taskNameInput.value.trim();
+      if (taskName !== "") {
+        if (!tasks.includes(taskName)) {
+          tasks.push(taskName);
+          createListItemWithCloseButton(taskName, tasksList);
+  
+          // Aktualisieren der gespeicherten Aufgaben im Local Storage
+          localStorage.setItem("tasks", JSON.stringify(tasks));
         }
-        return color;
+        taskNameInput.value = "";
+      }
+    });
+  
+    assignButton.addEventListener("click", function () {
+      assignments = {
+        monday: assignTasksOneDay(people, tasks),
+        tuesday: assignTasksOneDay(people, tasks),
+        wednesday: assignTasksOneDay(people, tasks),
+        thursday: assignTasksOneDay(people, tasks),
+        friday: assignTasksOneDay(people, tasks),
+      };
+  
+      localStorage.setItem("assignments", JSON.stringify(assignments));
+  
+      displayAssignments(assignments, taskAssignment);
+      console.log(assignments);
+  
+      assignmentResult.textContent = "The tasks have been added";
+      assignmentResult.style.display = "block";
+    });
+  
+    function createListItemWithCloseButton(text, parentElement) {
+      const listItem = document.createElement("li");
+      listItem.textContent = text;
+  
+      const closeButton = document.createElement("span");
+      closeButton.textContent = "✖";
+      closeButton.className = "close-button";
+  
+      listItem.appendChild(closeButton);
+  
+      parentElement.appendChild(listItem);
+  
+      closeButton.addEventListener("click", function () {
+        if (parentElement === peopleList) {
+          removePerson(text);
+        } else if (parentElement === tasksList) {
+          removeTask(text);
+        }
+      });
     }
-
-    function getCurrentTime() {
-        const now = new Date();
-        const hours = now.getHours().toString().padStart(2, "0");
-        const minutes = now.getMinutes().toString().padStart(2, "0");
-        return `${hours}:${minutes}`;
+  
+    function refreshPeopleList() {
+      peopleList.innerHTML = "";
+      people.forEach((person) =>
+        createListItemWithCloseButton(person, peopleList)
+      );
     }
-});
+  
+    function refreshTasksList() {
+      tasksList.innerHTML = "";
+      tasks.forEach((task) => createListItemWithCloseButton(task, tasksList));
+    }
+  
+    function assignTasksOneDay(people, tasks) {
+      const shuffledTasks = shuffleArray([...tasks]);
+      const shuffledPeople = shuffleArray([...people]);
+      const assignments = {};
+  
+      for (const person of shuffledPeople) {
+        assignments[person] = [];
+      }
+  
+      for (let i = 0; i < shuffledTasks.length; i++) {
+        const person = shuffledPeople[i % shuffledPeople.length];
+        assignments[person].push(shuffledTasks[i]);
+      }
+  
+      for (const person of shuffledPeople) {
+        if (assignments[person].length === 0) {
+          delete assignments[person];
+        }
+      }
+  
+      return assignments;
+    }
+  
+    function shuffleArray(array) {
+      for (let i = array.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [array[i], array[j]] = [array[j], array[i]];
+      }
+      return array;
+    }
+  
+    function removePerson(personName) {
+      people = people.filter((name) => name !== personName);
+      refreshPeopleList();
+    }
+  
+    function removeTask(taskName) {
+      tasks = tasks.filter((task) => task !== taskName);
+      refreshTasksList();
+    }
+  
+    function displayAssignments(assignments, targetElement) {
+      targetElement.innerHTML = "";
+      for (const person in assignments) {
+        if (!assignments.hasOwnProperty(person)) {
+          continue;
+        }
+        const personTasks = assignments[person];
+  
+        if (Array.isArray(personTasks)) {
+          const assignmentString = `${person}: ${personTasks.join(", ")}`;
+          createListItem(assignmentString, targetElement);
+        }
+      }
+    }
+  });
+  
