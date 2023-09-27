@@ -20,9 +20,8 @@
         <span class="navbar-brand mb-0 h1">Task plan</span>
 
         <div class="button-container">
-
-        <button id="statisticsButton">Go to Statistics</button>
-      </div>
+          <button id="statisticsButton">Go to Statistics</button>
+        </div>
 
         <div class="justify-content-end">
           <button
@@ -81,26 +80,22 @@
         <!-- tuesday -->
         <div class="col bg-secondary-subtle">
           <div class="bg-red mb-4 rounded-4">Tuesday</div>
-          <div id="cardtuesday">
-          </div>
+          <div id="cardtuesday"></div>
         </div>
         <!-- wednesday -->
         <div class="col bg-light-subtle">
           <div class="bg-red mb-4 rounded-4">Wednesday</div>
-          <div id="cardwednesday">
-          </div>
+          <div id="cardwednesday"></div>
         </div>
         <!-- thursday -->
         <div class="col bg-secondary-subtle">
           <div class="bg-red mb-4 rounded-4">Thursday</div>
-          <div id="cardthursday">
-          </div>
+          <div id="cardthursday"></div>
         </div>
         <!-- friday -->
         <div class="col bg-light-subtle rounded-end-4">
           <div class="bg-red mb-4 rounded-4">Friday</div>
-          <div id="cardfriday">
-          </div>
+          <div id="cardfriday"></div>
         </div>
       </div>
     </div>
@@ -722,35 +717,7 @@
     </script>
     <!-- amount of cards -->
     <script>
-      function updateEverything() {
-        const days = ["monday", "tuesday", "wednesday", "thursday", "friday"];
-
-        for (let i = 0; i < days.length; i++) {
-          const day = days[i];
-          const buttons = document.querySelectorAll(
-            `[data-bs-target^="#exampleModal${day}"]`
-          );
-          const modals = document.querySelectorAll(
-            `[id^="exampleModal${day}"]`
-          );
-
-          buttons.forEach((button, index) => {
-            button.setAttribute(
-              "data-bs-target",
-              `#exampleModal${day}${index + 1}`
-            );
-            button.setAttribute("data-bs-whatever", `@${day}${index + 1}`);
-          });
-
-          modals.forEach((modal, index) => {
-            modal.id = `exampleModal${day}${index + 1}`;
-          });
-        }
-      }
-      updateEverything();
-    </script>
-    <script>
- assignmentsJSON = localStorage.getItem("assignments");
+      assignmentsJSON = localStorage.getItem("assignments");
       assignments = JSON.parse(assignmentsJSON);
       let name;
 
@@ -817,7 +784,7 @@
       console.log("Thurssday length:", thursdayLength);
 
       let fridayLength = generateCards("friday");
-      console.log("Friday length:", fridayLength)
+      console.log("Friday length:", fridayLength);
     </script>
 
     <script
