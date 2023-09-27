@@ -143,17 +143,13 @@
       </div> -->
     </div>
     <!-- modal for tuesday -->
-    <div id="modaltuesday">
-    </div>
+    <div id="modaltuesday"></div>
     <!-- modal for wednesday -->
-    <div id="modalwednesday">
-    </div>
+    <div id="modalwednesday"></div>
     <!-- modal for thursday -->
-    <div id="modalthursday">
-    </div>
+    <div id="modalthursday"></div>
     <!-- modal for friday -->
-    <div id="modalfriday">
-    </div>
+    <div id="modalfriday"></div>
     <script src="https://unpkg.com/@popperjs/core@2"></script>
     <!-- localstorage for checkbox -->
     <script>
@@ -305,11 +301,11 @@
           </div>
           <div class="modal-footer">
             <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
-              <input type="radio" class="btn-check" name="btnradio" id="btnradio1" autocomplete="off" checked>
-              <label class="btn btn-outline-primary" for="btnradio1">positive</label>
+              <input type="radio" class="btn-check" name="btnradio-${day}-${index}" id="btnradio1-${day}-${index}" autocomplete="off" checked>
+              <label class="btn btn-outline-success" for="btnradio1-${day}-${index}">positive</label>
 
-              <input type="radio" class="btn-check" name="btnradio" id="btnradio2" autocomplete="off">
-              <label class="btn btn-outline-primary" for="btnradio2">negative</label>
+              <input type="radio" class="btn-check" name="btnradio-${day}-${index}" id="btnradio2-${day}-${index}" autocomplete="off">
+              <label class="btn btn-outline-danger" for="btnradio2-${day}-${index}">negative</label>
             </div>
             <button
               type="button"
