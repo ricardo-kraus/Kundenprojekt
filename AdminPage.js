@@ -1,49 +1,19 @@
+// Warten, bis das DOM vollständig geladen ist
 document.addEventListener("DOMContentLoaded", function () {
   const peopleList = document.getElementById("people-list");
   const tasksList = document.getElementById("tasks-list");
-  const addPersonForm = document.getElementById("add-person-form");
-  const addTaskForm = document.getElementById("add-task-form");
   const assignButton = document.getElementById("assign-button");
   const taskAssignment = document.getElementById("task-assignment");
+  const assignmentResult = document.getElementById("success-message");
 
   let people = [];
   let tasks = [];
   let assignments = {};
 
-  addPersonForm.addEventListener("submit", function (e) {
-    e.preventDefault();
-    const personNameInput = document.getElementById("person-name");
-    const personName = personNameInput.value.trim();
-    if (personName !== "") {
-      if (!people.includes(personName)) {
-        people.push(personName);
-        createListItemWithCloseButton(personName, peopleList);
-      }
-      personNameInput.value = "";
-    }
-  });
-
-  addTaskForm.addEventListener("submit", function (e) {
-    e.preventDefault();
-    const taskNameInput = document.getElementById("task-name");
-    const taskName = taskNameInput.value.trim();
-    if (taskName !== "") {
-      if (!tasks.includes(taskName)) {
-        tasks.push(taskName);
-        createListItemWithCloseButton(taskName, tasksList);
-      }
-      taskNameInput.value = "";
-    }
-  });
-
-  function removePerson(personName) {
-    people = people.filter((name) => name !== personName);
-    refreshPeopleList();
-  }
-
-  function removeTask(taskName) {
-    tasks = tasks.filter((task) => task !== taskName);
-    refreshTasksList();
+  // Funktion zum Aktualisieren des Local Storage für Personen und Aufgaben
+  function updateLocalStorage() {
+    localStorage.setItem("people", JSON.stringify(people));
+    localStorage.setItem("tasks", JSON.stringify(tasks));
   }
 
   assignButton.addEventListener("click", function () {
@@ -54,18 +24,15 @@ document.addEventListener("DOMContentLoaded", function () {
       thursday: assignTasksOneDay(people, tasks),
       friday: assignTasksOneDay(people, tasks),
     };
-    // Aktiviere die Anzeige der Zuordnungen
-    displayAssignments(assignments, taskAssignment);
 
-    // Speichere die Zuordnungen im localStorage
     localStorage.setItem("assignments", JSON.stringify(assignments));
-  });
 
-  function createListItem(text, parentElement) {
-    const listItem = document.createElement("li");
-    listItem.textContent = text;
-    parentElement.appendChild(listItem);
-  }
+    displayAssignments(assignments, taskAssignment);
+    console.log(assignments);
+
+    assignmentResult.textContent = "Die Aufgaben wurden erfolgreich zugewiesen";
+    assignmentResult.style.display = "block";
+  });
 
   function createListItemWithCloseButton(text, parentElement) {
     const listItem = document.createElement("li");
@@ -88,6 +55,18 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
 
+  function removePerson(personName) {
+    people = people.filter((name) => name !== personName);
+    refreshPeopleList();
+    updateLocalStorage();
+  }
+
+  function removeTask(taskName) {
+    tasks = tasks.filter((task) => task !== taskName);
+    refreshTasksList();
+    updateLocalStorage();
+  }
+
   function refreshPeopleList() {
     peopleList.innerHTML = "";
     people.forEach((person) =>
@@ -100,7 +79,6 @@ document.addEventListener("DOMContentLoaded", function () {
     tasks.forEach((task) => createListItemWithCloseButton(task, tasksList));
   }
 
-  // Hier kommt die Definition für assignTasksOneDay und displayAssignments, falls benötigt
   function assignTasksOneDay(people, tasks) {
     const shuffledTasks = shuffleArray([...tasks]);
     const shuffledPeople = shuffleArray([...people]);
@@ -124,7 +102,6 @@ document.addEventListener("DOMContentLoaded", function () {
     return assignments;
   }
 
-  
   function shuffleArray(array) {
     for (let i = array.length - 1; i > 0; i--) {
       const j = Math.floor(Math.random() * (i + 1));
@@ -140,13 +117,21 @@ document.addEventListener("DOMContentLoaded", function () {
         continue;
       }
       const personTasks = assignments[person];
-  
+
       if (Array.isArray(personTasks)) {
         const assignmentString = `${person}: ${personTasks.join(", ")}`;
         createListItem(assignmentString, targetElement);
       }
     }
   }
-  
+
+  // Laden von Personen und Aufgaben aus dem Local Storage
+  people = JSON.parse(localStorage.getItem("people")) || [];
+  tasks = JSON.parse(localStorage.getItem("tasks")) || [];
+
+  // Initialanzeige der Listen
+  refreshPeopleList();
+  refreshTasksList();
 });
 
+// Rest Ihres Codes bleibt unverändert
