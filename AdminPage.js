@@ -8,7 +8,39 @@ document.addEventListener("DOMContentLoaded", function () {
 
   let people = [];
   let tasks = [];
-  let assignments = {};
+  let assignments = {
+    monday: [],
+    tuesday: [],
+    wednesday: [],
+    thursday: [],
+    friday: [],
+  };
+
+  // Funktion zum Laden von Daten aus dem Local Storage in das `assignments`-Array
+  function loadAssignmentsFromLocalStorage() {
+    const storedAssignments = JSON.parse(localStorage.getItem("assignments"));
+    if (storedAssignments) {
+      assignments = storedAssignments;
+    }
+
+    const storedPeople = JSON.parse(localStorage.getItem("people"));
+    if (storedPeople) {
+      people = storedPeople;
+    }
+  }
+
+  // Funktion zum Speichern der aktuellen Zuordnungen im Local Storage
+  function saveAssignmentsToLocalStorage() {
+    localStorage.setItem("assignments", JSON.stringify(assignments));
+  }
+
+  // Funktion zum Speichern der Personen im Local Storage
+  function savePeopleToLocalStorage() {
+    localStorage.setItem("people", JSON.stringify(people));
+  }
+
+  // Rufen Sie die Daten aus dem Local Storage beim Laden der Seite ab
+  loadAssignmentsFromLocalStorage();
 
   addPersonForm.addEventListener("submit", function (e) {
     e.preventDefault();
@@ -18,6 +50,9 @@ document.addEventListener("DOMContentLoaded", function () {
       if (!people.includes(personName)) {
         people.push(personName);
         createListItemWithCloseButton(personName, peopleList);
+        // Speichern Sie die aktualisierten Zuordnungen und Personen im Local Storage
+        saveAssignmentsToLocalStorage();
+        savePeopleToLocalStorage();
       }
       personNameInput.value = "";
     }
@@ -31,20 +66,12 @@ document.addEventListener("DOMContentLoaded", function () {
       if (!tasks.includes(taskName)) {
         tasks.push(taskName);
         createListItemWithCloseButton(taskName, tasksList);
+        // Speichern Sie die aktualisierten Zuordnungen im Local Storage
+        saveAssignmentsToLocalStorage();
       }
       taskNameInput.value = "";
     }
   });
-
-  function removePerson(personName) {
-    people = people.filter((name) => name !== personName);
-    refreshPeopleList();
-  }
-
-  function removeTask(taskName) {
-    tasks = tasks.filter((task) => task !== taskName);
-    refreshTasksList();
-  }
 
   assignButton.addEventListener("click", function () {
     assignments = {
@@ -57,9 +84,12 @@ document.addEventListener("DOMContentLoaded", function () {
     // Aktiviere die Anzeige der Zuordnungen
     displayAssignments(assignments, taskAssignment);
 
-    // Speichere die Zuordnungen im localStorage
-    localStorage.setItem("assignments", JSON.stringify(assignments));
+    // Speichern Sie die aktualisierten Zuordnungen im Local Storage
+    saveAssignmentsToLocalStorage();
   });
+
+  // Rest des Codes bleibt unverändert
+  // Rest des unveränderten Codes
 
   function createListItem(text, parentElement) {
     const listItem = document.createElement("li");
@@ -124,7 +154,6 @@ document.addEventListener("DOMContentLoaded", function () {
     return assignments;
   }
 
-  
   function shuffleArray(array) {
     for (let i = array.length - 1; i > 0; i--) {
       const j = Math.floor(Math.random() * (i + 1));
@@ -140,13 +169,11 @@ document.addEventListener("DOMContentLoaded", function () {
         continue;
       }
       const personTasks = assignments[person];
-  
+
       if (Array.isArray(personTasks)) {
         const assignmentString = `${person}: ${personTasks.join(", ")}`;
         createListItem(assignmentString, targetElement);
       }
     }
   }
-  
 });
-
