@@ -23,7 +23,7 @@ document.addEventListener('DOMContentLoaded', function() {
             y: {
                 beginAtZero: true,
                 ticks: {
-                    color: 'red' // Schriftfarbe der Zahlen auf der y-Achse ändern (z.B. 'red' für Rot)
+                    color: 'black' // Schriftfarbe der Zahlen auf der y-Achse ändern (z.B. 'red' für Rot)
                 }
             },
             x: {
