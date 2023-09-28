@@ -37,7 +37,7 @@ document.addEventListener("DOMContentLoaded", function () {
       },
       x: {
         ticks: {
-          color: "blue", // Schriftfarbe der Namen auf der x-Achse ändern (z.B. 'blue' für Blau)
+          color: "black", // Schriftfarbe der Namen auf der x-Achse ändern (z.B. 'blue' für Blau)
         },
       },
     },
