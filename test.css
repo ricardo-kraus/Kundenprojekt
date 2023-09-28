@@ -15,6 +15,7 @@ body {
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     transition: transform 0.2s;
     padding: 20px;
+    margin-top: 2%;
 }
 
 .card:hover {
@@ -34,16 +35,19 @@ body {
 }
 
 /* Dark Mode-Stile */
-#darkmode {
+.darkModeButton {
     font-size: 16px;
-    margin-left: 10px;
+    margin-left:90% ;
     background-color: transparent;
     color: #ffffff;
     border: 1px solid #ffffff;
     border-radius: 5px;
-    padding: 5px 10px;
+    
     cursor: pointer;
+
+    
 }
+
 
 /* Woche anzeigen-Stile */
 #kw {
@@ -56,7 +60,7 @@ body {
 /* Neue Stile für Blocks */
 .block {
     border: none;
-    background-color: #ffffff;
+    background-color: transparent;
     border-radius: 10px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     transition: transform 0.2s;
@@ -86,12 +90,26 @@ body {
     justify-content: space-between;
 }
 
-.col-4 {
+.col-1 {
+    flex: 0 0 calc(33.33% - 20px);
+    margin-bottom: 20px;
+}
+.col-2 {
+    flex: 0 0 calc(33.33% - 20px);
+    margin-bottom: 20px;
+}
+.col-3 {
     flex: 0 0 calc(33.33% - 20px);
     margin-bottom: 20px;
 }
 
-.col-6 {
-    flex: 0 0 calc(50% - 20px);
+.col-4 {
+    flex: 0 0 calc(33.3% - 20px);
     margin-bottom: 20px;
+    margin-left: 15%;
+}
+.col-5 {
+    flex: 0 0 calc(33.3% - 20px);
+    margin-bottom: 20px;
+    margin-right: 15%;
 }

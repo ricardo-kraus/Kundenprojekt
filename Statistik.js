@@ -8,7 +8,7 @@ document.addEventListener('DOMContentLoaded', function() {
         labels: datenArray, // Hier werden die Namen aus den gespeicherten Daten verwendet
         datasets: [{
             label: 'Umsatz',
-            data: [1000, 1200, 900, 1500, 1300], // Beispielwerte oder andere Daten
+            data: [50000, 1200, 99000, 40000, 1300], // Beispielwerte oder andere Daten
             backgroundColor: 'rgba(75, 192, 192, 0.2)',
             borderColor: 'rgba(75, 192, 192, 1)',
             borderWidth: 1
@@ -21,7 +21,15 @@ document.addEventListener('DOMContentLoaded', function() {
         maintainAspectRatio: false,
         scales: {
             y: {
-                beginAtZero: true
+                beginAtZero: true,
+                ticks: {
+                    color: 'red' // Schriftfarbe der Zahlen auf der y-Achse ändern (z.B. 'red' für Rot)
+                }
+            },
+            x: {
+                ticks: {
+                    color: 'blue' // Schriftfarbe der Namen auf der x-Achse ändern (z.B. 'blue' für Blau)
+                }
             }
         }
     };
