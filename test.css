@@ -10,17 +10,14 @@ body {
 
 .card {
     border: none;
-    background-color: #ffffff;
     border-radius: 10px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    transition: transform 0.2s;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+    background-color: rgba(255, 255, 255, 0.5); /* Rote Hintergrundfarbe mit 50% Transparenz */
     padding: 20px;
     margin-top: 2%;
 }
 
-.card:hover {
-    transform: scale(1.03);
-}
+
 
 /* Navbar-Stile */
 .navbar {
@@ -29,7 +26,7 @@ body {
 }
 
 .navbar-brand {
-    font-size: 24px;
+    font-size: 200%;
     font-weight: bold;
     text-align: center;
 }
@@ -38,7 +35,7 @@ body {
 .darkModeButton {
     font-size: 16px;
     margin-left:90% ;
-    background-color: transparent;
+    background-color: black;
     color: #ffffff;
     border: 1px solid #ffffff;
     border-radius: 5px;
@@ -60,17 +57,15 @@ body {
 /* Neue Stile für Blocks */
 .block {
     border: none;
-    background-color: transparent;
+    background-color: transparent ;
     border-radius: 10px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    transition: transform 0.2s;
+    
+  
     padding: 20px;
     margin: 10px;
 }
 
-.block:hover {
-    transform: scale(1.03);
-}
+
 
 .block-title {
     font-size: 18px;

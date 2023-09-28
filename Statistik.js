@@ -23,12 +23,12 @@ document.addEventListener('DOMContentLoaded', function() {
             y: {
                 beginAtZero: true,
                 ticks: {
-                    color: 'black' // Schriftfarbe der Zahlen auf der y-Achse ändern (z.B. 'red' für Rot)
+                    color: 'white' // Schriftfarbe der Zahlen auf der y-Achse ändern (z.B. 'red' für Rot)
                 }
             },
             x: {
                 ticks: {
-                    color: 'blue' // Schriftfarbe der Namen auf der x-Achse ändern (z.B. 'blue' für Blau)
+                    color: 'white' // Schriftfarbe der Namen auf der x-Achse ändern (z.B. 'blue' für Blau)
                 }
             }
         }
