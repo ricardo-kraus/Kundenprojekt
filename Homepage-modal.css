@@ -1,0 +1,160 @@
+.btn-outline-secondary {
+  color: #373672;
+  border-color: #373672;
+}
+
+.btn-outline-secondary:hover {
+  color: #fff;
+  box-shadow: 0 0 0 2px #373672;
+  background-color: #373672;
+  border-color: #373672;
+}
+.btn-outline-secondary:active {
+  color: #fff;
+  box-shadow: 0 0 0 2px #2e2d5f;
+  background-color: #2e2d5f !important;
+  border-color: #2e2d5f !important;
+}
+
+.btn-outline-primary {
+  color: #972320;
+  border-color: #972320;
+}
+
+.btn-outline-primary:hover {
+  color: #fff;
+  box-shadow: 0 0 0 2px #972320;
+  background-color: #972320;
+  border-color: #972320;
+}
+.btn-outline-primary:active {
+  color: #fff;
+  box-shadow: 0 0 0 2px #791d1a;
+  background-color: #791d1a !important;
+  border-color: #791d1a !important;
+}
+
+[data-bs-theme="dark"] .btn-outline-secondary,
+[data-bs-theme="dark"] .btn-outline-primary {
+  color: #b8b8b8;
+}
+
+.card {
+  width: 80%;
+}
+.btn-sm-custom {
+  font-size: 0.75rem; /* Schriftgröße anpassen */
+  padding: 0.15rem 0.325rem; /* Padding anpassen */
+}
+.check {
+  display: flex;
+  align-items: center;
+  margin-bottom: 12px;
+  cursor: pointer;
+  font-size: 80%;
+  user-select: none;
+}
+
+.check input {
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+
+.checkmark {
+  position: relative;
+  width: 12px;
+  height: 12px;
+  background-color: #eee;
+  margin-right: 10px; /* Add some spacing between checkbox and text */
+  border-radius: 25%; /* Make the checkbox rounded */
+  display: flex;
+  align-items: center;
+  justify-content: center; /* Center the checkmark horizontally and vertically */
+}
+
+.check input:hover + .checkmark {
+  background-color: #ccc;
+}
+
+.container input:checked ~ .checkmark {
+  background-color: #972320;
+}
+
+.checkmark:after {
+  content: "\2713"; /* Unicode checkmark character ✓ */
+  font-size: 12px; /* Adjust the size of the checkmark */
+  color: white; /* Checkmark color */
+  display: none;
+}
+
+.container input:checked ~ .checkmark:after {
+  display: block;
+}
+
+.bg-red {
+  background-color: #373672;
+  color: whitesmoke;
+}
+.custom-popover {
+    --bs-popover-max-width: 200px;
+    --bs-popover-border-color: #972320;
+    --bs-popover-header-bg: #972320;
+    --bs-popover-header-color: var(--bs-white);
+    --bs-popover-body-padding-x: 1rem;
+    --bs-popover-body-padding-y: .5rem;
+}
+#tooltip {
+  background: #333;
+  color: white;
+  font-weight: bold;
+  padding: 4px 8px;
+  font-size: 13px;
+  border-radius: 4px;
+  display: none;
+}
+
+#tooltip[data-show] {
+  display: block;
+}
+
+#arrow,
+#arrow::before {
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  background: inherit;
+}
+
+#arrow {
+  visibility: hidden;
+}
+
+#arrow::before {
+  visibility: visible;
+  content: "";
+  transform: rotate(45deg);
+}
+
+#tooltip[data-popper-placement^="top"] > #arrow {
+  bottom: -4px;
+}
+
+#tooltip[data-popper-placement^="bottom"] > #arrow {
+  top: -4px;
+}
+
+#tooltip[data-popper-placement^="left"] > #arrow {
+  right: -4px;
+}
+
+#tooltip[data-popper-placement^="right"] > #arrow {
+  left: -4px;
+}
+body {
+  background: linear-gradient(45deg, rgb(151,35,32), rgb(56,55,114), rgb(151,35,32));
+  background-size: cover;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+}
