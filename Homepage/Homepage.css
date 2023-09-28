@@ -1,0 +1,19 @@
+body {
+    background: linear-gradient(45deg, rgb(151,35,32), rgb(56,55,114), rgb(151,35,32));
+    background-size: cover;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+}
+
+title {
+    font-size: 55px;
+    font-weight: 550;
+    color: rgb(56, 55, 114);
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+    margin: 0;
+    text-align: center;
+    padding: 20px 0; 
+    background-color: rgba(255, 255, 255, 0.8); 
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
