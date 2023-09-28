@@ -7,6 +7,8 @@
 .navbar-title {
     margin: 0;
     font-size: 24px;
+    flex-grow: 1;
+    text-align: center;
 }
 
 .navbar-brand {
@@ -23,5 +25,8 @@ img {
 }
 
 .bg-gradient{
-    background-image: linear-gradient(to right top, rgba(56, 55, 114, 0.781), rgba(151, 36, 32, 0.781));
+    background-image: linear-gradient(
+        to right top,
+        rgba(56, 55, 114, 0.781),
+        rgba(151, 36, 32, 0.781));
 }
