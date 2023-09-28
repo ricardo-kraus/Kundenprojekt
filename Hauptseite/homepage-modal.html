@@ -19,10 +19,6 @@
       <div class="container-fluid">
         <span class="navbar-brand mb-0 h1">Task plan</span>
 
-        <div class="button-container">
-          <button type="button" id="statisticsButton">Go to Statistics</button>
-        </div>
-
         <div class="justify-content-end">
           <button
             class="btn me-2 btn-outline-secondary"
@@ -49,32 +45,6 @@
         <div class="col bg-light-subtle rounded-start-4">
           <div class="bg-red mb-4 rounded-4">Monday</div>
           <div id="cardmonday">
-            <!-- <div class="card mx-auto mb-5">
-              <div class="card-body">
-                <div class="card-title fs-5 fw-semibold" id="cardtitlemonday1">
-                  Task
-                </div>
-                <div class="card-text" id="cardnamemonday1">Name</div>
-                <div class="d-flex justify-content-between align-items-center">
-                  <div>
-                    <button
-                      type="button"
-                      class="btn btn-outline-primary btn-sm-custom"
-                      data-bs-toggle="modal"
-                      data-bs-target="#exampleModalmonday1"
-                      data-bs-whatever="@monday1"
-                    >
-                      Comment
-                    </button>
-                  </div>
-                  <label class="check mt-3"
-                    >Done
-                    <input class="ms-1" type="checkbox" id="checkbox-monday1" />
-                    <span class="checkmark"></span>
-                  </label>
-                </div>
-              </div>
-            </div> -->
           </div>
         </div>
         <!-- tuesday -->
@@ -101,59 +71,15 @@
     </div>
     <!-- modal for monday -->
     <div id="modalmonday">
-      <!-- <div
-        class="modal fade"
-        id="exampleModalmonday1"
-        tabindex="-1"
-        aria-labelledby="exampleModalLabel"
-        aria-hidden="true"
-      >
-        <div class="modal-dialog">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h1 class="modal-title fs-5" id="exampleModalLabel">Comments</h1>
-              <button
-                type="button"
-                class="btn-close"
-                data-bs-dismiss="modal"
-                aria-label="Close"
-              ></button>
-            </div>
-            <div class="modal-body">
-              <form>
-                <div class="mb-3">
-                  <label for="recipient-name" class="col-form-label"
-                    >Comments:</label
-                  >
-                  <input type="text" class="form-control" id="recipient-name" />
-                </div>
-              </form>
-            </div>
-            <div class="modal-footer">
-              <button
-                type="button"
-                class="btn btn-outline-primary"
-                data-bs-dismiss="modal"
-              >
-                Close
-              </button>
-            </div>
-          </div>
-        </div>
-      </div> -->
     </div>
     <!-- modal for tuesday -->
-    <div id="modaltuesday">
-    </div>
+    <div id="modaltuesday"></div>
     <!-- modal for wednesday -->
-    <div id="modalwednesday">
-    </div>
+    <div id="modalwednesday"></div>
     <!-- modal for thursday -->
-    <div id="modalthursday">
-    </div>
+    <div id="modalthursday"></div>
     <!-- modal for friday -->
-    <div id="modalfriday">
-    </div>
+    <div id="modalfriday"></div>
     <script src="https://unpkg.com/@popperjs/core@2"></script>
     <!-- localstorage for checkbox -->
     <script>
@@ -304,6 +230,14 @@
             </form>
           </div>
           <div class="modal-footer">
+            <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
+              <input type="radio" class="btn-check" name="btnradio-${day}-${index}" id="btnradio1-${day}-${index}" autocomplete="off" checked>
+              <label class="btn btn-outline-success" for="btnradio1-${day}-${index}">positive</label>
+
+              <input type="radio" class="btn-check" name="btnradio-${day}-${index}" id="btnradio2-${day}-${index}" autocomplete="off">
+              <label class="btn btn-outline-danger" for="btnradio2-${day}-${index}">negative</label>
+            </div>
+            <input type="hidden" id="rating-${day}-${index}" value="positive">
             <button
               type="button"
               class="btn btn-outline-primary"
@@ -319,8 +253,34 @@
         // Append the card and modal to their respective containers
         document.getElementById(`card${day}`).appendChild(card);
         document.body.appendChild(modal);
-      }
 
+        // Event listener for capturing comments and ratings when the modal is closed
+        document
+          .querySelector(
+            `#exampleModal${day}${index} .modal-footer button[type="button"]`
+          )
+          .addEventListener("click", function () {
+            const commentInput = document.querySelector(
+              `#exampleModal${day}${index} input#recipient-name`
+            );
+            const comment = commentInput.value;
+            const rating = document.querySelector(
+              `input[name="btnradio-${day}-${index}"]:checked`
+            ).value;
+
+            // Create an object to store the comment and rating
+            const commentData = { comment, rating };
+
+            // Save the comment and rating in localStorage for the specific card
+            localStorage.setItem(
+              `commentratings.${day}${index}`,
+              JSON.stringify(commentData)
+            );
+
+            // Clear the comment input
+            commentInput.value = "";
+          });
+      }
       // Loop through your data and generate cards and modals
       function generateCards(day, assignments) {
         let index = 1;
@@ -338,6 +298,16 @@
       generateCards("wednesday", assignments);
       generateCards("thursday", assignments);
       generateCards("friday", assignments);
+
+      const mondayCardData = localStorage.getItem(`commentratings.monday1`);
+
+      // Parse the JSON data if it exists
+      if (mondayCardData) {
+        const parsedData = JSON.parse(mondayCardData);
+        console.log("LocalStorage data for Monday Card 1:", parsedData);
+      } else {
+        console.log("No localStorage data found for Monday Card 1.");
+      }
     </script>
 
     <script
@@ -345,6 +315,5 @@
       integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
       crossorigin="anonymous"
     ></script>
-    <script src="../Statistics/statistics.js"></script>
   </body>
 </html>
