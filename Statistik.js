@@ -8,10 +8,17 @@ document.addEventListener("DOMContentLoaded", function () {
     labels: datenArray, // Hier werden die Namen aus den gespeicherten Daten verwendet
     datasets: [
       {
-        label: "Umsatz",
+        label: "positve",
         data: [50000, 1200, 99000, 40000, 1300], // Beispielwerte oder andere Daten
-        backgroundColor: "rgba(75, 192, 192, 0.2)",
-        borderColor: "rgba(75, 192, 192, 1)",
+        backgroundColor: "#48A860",
+        borderColor: "green",
+        borderWidth: 1,
+      },
+      {
+        label: "negative",
+        data: [50000, 1200, 99000, 40000, 1300], // Beispielwerte oder andere Daten
+        backgroundColor: "#C6011F",
+        borderColor: "#9D2933",
         borderWidth: 1,
       },
     ],
