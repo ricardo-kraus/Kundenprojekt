@@ -16,7 +16,7 @@ document.addEventListener("DOMContentLoaded", function () {
       },
       {
         label: "negative",
-        data: [1, 2, 3, 4, 5], // Beispielwerte oder andere Daten
+        data: [1, 2, 3, 4, 6], // Beispielwerte oder andere Daten
         backgroundColor: "rgba(198, 1, 31, 0.4)",
         borderColor: "#9D2933",
         borderWidth: 1,
