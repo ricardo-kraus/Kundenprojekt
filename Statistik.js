@@ -9,14 +9,14 @@ document.addEventListener("DOMContentLoaded", function () {
     datasets: [
       {
         label: "positve",
-        data: [50000, 1200, 99000, 40000, 1300], // Beispielwerte oder andere Daten
+        data: [1, 2, 3, 4, 5], // Beispielwerte oder andere Daten
         backgroundColor: "#48A860",
         borderColor: "green",
         borderWidth: 1,
       },
       {
         label: "negative",
-        data: [50000, 1200, 99000, 40000, 1300], // Beispielwerte oder andere Daten
+        data: [1, 2, 3, 4, 5], // Beispielwerte oder andere Daten
         backgroundColor: "#C6011F",
         borderColor: "#9D2933",
         borderWidth: 1,
