@@ -1,0 +1,91 @@
+body {
+    background-color: #0074D9; /* Blue background */
+    font-family: Arial, sans-serif;
+    color: rgb(255, 255, 255);
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    background-color: #0074D9; /* Blue background for header */
+}
+
+h1 {
+    font-size: 36px;
+    text-decoration: underline;
+}
+
+.mode-buttons {
+    display: flex;
+}
+
+.mode-button {
+    background-color: transparent;
+    border: none;
+    color: white;
+    cursor: pointer;
+    font-size: 20px;
+    margin-left: 10px;
+}
+
+.container {
+    display: flex;
+    justify-content: space-between; /* Ändert die Ausrichtung der Blöcke */
+    align-items: flex-start;
+    padding: 20px;
+    flex-wrap: wrap; /* Ermöglicht den Zeilenumbruch der Blöcke */
+}
+
+.blockMo {
+    background: linear-gradient(45deg, rgb(151,35,32), rgb(56,55,114), rgb(151,35,32));
+    width: 25%; /* Ändert die Breite der Blöcke */
+    min-height: 10px; /* Ändert die minimale Höhe der Blöcke */
+    margin: 10px;
+    padding: 20px;
+    border-radius: 3%;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
+}
+.blockTe {
+    background: linear-gradient(45deg, rgb(151,35,32), rgb(56,55,114), rgb(151,35,32));
+    width: 25%; /* Ändert die Breite der Blöcke */
+    min-height: 10px; /* Ändert die minimale Höhe der Blöcke */
+    margin: 10px;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
+}
+
+.blockWe {
+    background: linear-gradient(45deg, rgb(151,35,32), rgb(56,55,114), rgb(151,35,32));
+    width: 25%; /* Ändert die Breite der Blöcke */
+    min-height: 10px; /* Ändert die minimale Höhe der Blöcke */
+    margin: 10px;
+    padding: 20px;
+    border-radius: 3%;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
+}
+
+.blockTr {
+    background: linear-gradient(45deg, rgb(151,35,32), rgb(56,55,114), rgb(151,35,32));
+    width: 25%; /* Ändert die Breite der Blöcke */
+    min-height: 10px; /* Ändert die minimale Höhe der Blöcke */
+    margin-left: 18%;
+   
+    padding: 20px;
+    border-radius: 3%;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
+}
+
+.blockFr {
+    background: linear-gradient(45deg, rgb(151,35,32), rgb(56,55,114), rgb(151,35,32));
+    width: 25%; /* Ändert die Breite der Blöcke */
+    min-height: 10px; /* Ändert die minimale Höhe der Blöcke */
+    margin-right: 18% ; 
+    
+    padding: 20px;
+    border-radius: 3%;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
+}
+
