@@ -10,14 +10,14 @@ document.addEventListener("DOMContentLoaded", function () {
       {
         label: "positve",
         data: [1, 2, 3, 4, 5], // Beispielwerte oder andere Daten
-        backgroundColor: "#48A860",
+        backgroundColor: "rgba(72, 168, 96, 0.4)",
         borderColor: "green",
         borderWidth: 1,
       },
       {
         label: "negative",
         data: [1, 2, 3, 4, 5], // Beispielwerte oder andere Daten
-        backgroundColor: "#C6011F",
+        backgroundColor: "rgba(198, 1, 31, 0.4)",
         borderColor: "#9D2933",
         borderWidth: 1,
       },
