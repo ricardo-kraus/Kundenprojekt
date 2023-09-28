@@ -91,44 +91,56 @@ document.addEventListener("DOMContentLoaded", function () {
   // Rest des Codes bleibt unverändert
   // Rest des unveränderten Codes
 
-  function createListItem(text, parentElement) {
-    const listItem = document.createElement("li");
-    listItem.textContent = text;
-    parentElement.appendChild(listItem);
+ 
+function createListItemWithCloseButton(text, parentElement) {
+  const listItem = document.createElement("li");
+  listItem.textContent = text;
+
+  const closeButton = document.createElement("span");
+  closeButton.textContent = "✖";
+  closeButton.className = "close-button";
+
+  listItem.appendChild(closeButton);
+
+  parentElement.appendChild(listItem);
+
+  closeButton.addEventListener("click", function () {
+    if (parentElement === peopleList) {
+      removePerson(text);
+    } else if (parentElement === tasksList) {
+      removeTask(text);
+    }
+  });
+}
+function refreshTasksList() {
+  const tasksList = document.getElementById("tasks-list");
+  tasksList.innerHTML = "";
+  tasks.forEach((task) => createListItemWithCloseButton(task, tasksList));
+}
+function refreshPeopleList() {
+  const peopleList = document.getElementById("people-list");
+  peopleList.innerHTML = "";
+  people.forEach((person) => createListItemWithCloseButton(person, peopleList));
+}
+
+
+function removePerson(personName) {
+  const index = people.indexOf(personName);
+  if (index !== -1) {
+    people.splice(index, 1);
+    refreshPeopleList();
+    savePeopleToLocalStorage();
   }
+}
 
-  function createListItemWithCloseButton(text, parentElement) {
-    const listItem = document.createElement("li");
-    listItem.textContent = text;
-
-    const closeButton = document.createElement("span");
-    closeButton.textContent = "✖";
-    closeButton.className = "close-button";
-
-    listItem.appendChild(closeButton);
-
-    parentElement.appendChild(listItem);
-
-    closeButton.addEventListener("click", function () {
-      if (parentElement === peopleList) {
-        removePerson(text);
-      } else if (parentElement === tasksList) {
-        removeTask(text);
-      }
-    });
+function removeTask(taskName) {
+  const index = tasks.indexOf(taskName);
+  if (index !== -1) {
+    tasks.splice(index, 1);
+    refreshTasksList();
+    saveAssignmentsToLocalStorage();
   }
-
-  function refreshPeopleList() {
-    peopleList.innerHTML = "";
-    people.forEach((person) =>
-      createListItemWithCloseButton(person, peopleList)
-    );
-  }
-
-  function refreshTasksList() {
-    tasksList.innerHTML = "";
-    tasks.forEach((task) => createListItemWithCloseButton(task, tasksList));
-  }
+}
 
   // Hier kommt die Definition für assignTasksOneDay und displayAssignments, falls benötigt
   function assignTasksOneDay(people, tasks) {
