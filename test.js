@@ -37,22 +37,23 @@ function generateCard(day, assignmentName, taskName, index) {
   const card = document.createElement("div");
   card.className = "card mx-auto mb-5 ";
   card.innerHTML = `
-  <div class="card-body">
-  <div class="card-title fs-5 fw-semibold" id="${cardId}">
-      ${assignmentName} <!-- Zuerst der Name -->
-  </div>
-  <div class="card-text" id="cardname${day}${index}">
-      ${taskName} <!-- Dann die Aufgabe -->
-  </div>
-  <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
-    <input type="radio" class="btn-check" name="rating-${day}-${index}" id="positive-${day}-${index}" autocomplete="off" value="positive" checked>
-    <label class="btn btn-outline-success" for="positive-${day}-${index}">Positive</label>
+    <div class="card-body">
+      <div class="card-title fs-5 fw-semibold" id="${cardId}">
+        ${assignmentName} <!-- Zuerst der Name -->
+      </div>
+      <div class="card-text" id="cardname${day}${index}">
+        ${taskName} <!-- Dann die Aufgabe -->
+      </div>
+      <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
+        <input type="radio" class="btn-check" name="rating-${day}-${index}" id="positive-${day}-${index}" autocomplete="off" value="positive" checked>
+        <label class="btn btn-outline-success" for="positive-${day}-${index}">Positive</label>
 
-    <input type="radio" class="btn-check" name="rating-${day}-${index}" id="negative-${day}-${index}" autocomplete="off" value="negative">
-    <label class="btn btn-outline-danger" for="negative-${day}-${index}">Negative</label>
-  </div>
-</div>
-    `;
+        <input type="radio" class="btn-check" name="rating-${day}-${index}" id="negative-${day}-${index}" autocomplete="off" value="negative">
+        <label class="btn btn-outline-danger" for="negative-${day}-${index}">Negative</label>
+      </div>
+      <button class="btn btn-outline-light mt-2" data-bs-toggle="modal" data-bs-target="#commentModal-${day}-${index}">Comment</button>
+    </div>
+  `;
 
   document.getElementById(`card${day}`).appendChild(card);
 
@@ -60,18 +61,52 @@ function generateCard(day, assignmentName, taskName, index) {
   const positiveRadio = document.getElementById(`positive-${day}-${index}`);
   const negativeRadio = document.getElementById(`negative-${day}-${index}`);
 
-
   positiveRadio.addEventListener("change", function () {
     handleRadioSelection(this, "positive");
-    personName = assignmentName
+    personName = assignmentName;
   });
 
   negativeRadio.addEventListener("change", function () {
     handleRadioSelection(this, "negative");
-    // personName = assignmentName
+    personName = assignmentName;
   });
-  
+
+  // Generate the modal for comments
+  generateCommentModal(day, index, assignmentName);
 }
+function generateCommentModal(day, index, personName) {
+  const modalId = `commentModal-${day}-${index}`;
+  const modal = document.createElement("div");
+  modal.className = "modal fade";
+  modal.id = modalId;
+  modal.innerHTML = `
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Comment for ${personName}</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body">
+          <textarea id="commentText-${day}-${index}" class="form-control" rows="5" placeholder="Enter your comment here"></textarea>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary" onclick="saveComment('${day}', ${index})">Save Comment</button>
+        </div>
+      </div>
+    </div>
+  `;
+
+  document.body.appendChild(modal);
+}
+
+// Function to save the comment
+function saveComment(day, index) {
+  const commentText = document.getElementById(`commentText-${day}-${index}`).value;
+  // You can save the comment in localStorage or perform other actions here
+  // For example: localStorage.setItem(`${personName}_${day}_comment`, commentText);
+}
+
 
 function handleRadioSelection(radio, color) {
   if (radio.checked) {
