@@ -176,3 +176,8 @@ border-bottom: 5px white;
 .bg-red{
     background-color: rgba(255, 8, 0, 0.5);
 }
+::selection {
+    background-color: rgb(16, 14, 109); /* Change this to the background color you want */
+    color: #fff; /* Change this to the text color you want */
+  }
+  

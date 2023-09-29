@@ -65,11 +65,17 @@ function generateCard(day, assignmentName, taskName, index) {
   positiveRadio.addEventListener("change", function () {
     handleRadioSelection(this, "positive");
     personName = assignmentName;
+    document.addEventListener("DOMContentLoaded", function (personName) {
+      loadComments(personName);
+    });
   });
 
   negativeRadio.addEventListener("change", function () {
     handleRadioSelection(this, "negative");
     personName = assignmentName;
+    document.addEventListener("DOMContentLoaded", function (personName) {
+      loadComments(personName);
+    });
   });
 
   // Generate the modal for comments
@@ -102,12 +108,35 @@ function generateCommentModal(day, index, personName) {
 }
 
 // Function to save the comment
+// ...
+
+// Function to save the comment
 function saveComment(day, index) {
-  const commentText = document.getElementById(`commentText-${day}-${index}`).value;
-  // You can save the comment in localStorage or perform other actions here
-  // For example: localStorage.setItem(`${personName}_${day}_comment`, commentText);
+  const commentText = document.getElementById(
+    `commentText-${day}-${index}`
+  ).value;
+  const commentKey = `${personName}_${day}_${index}_comment`;
+
+  // Save the comment in localStorage
+  localStorage.setItem(commentKey, commentText);
 }
 
+// Function to load saved comments when the page loads
+function loadComments(personName) {
+  const days = ["monday", "tuesday", "wednesday", "thursday", "friday"];
+  for (const day of days) {
+    for (let index = 1; index <= assignments[day].length; index++) {
+      const commentKey = `${personName}_${day}_${index}_comment`;
+      const commentText = localStorage.getItem(commentKey);
+      if (commentText !== null) {
+        document.getElementById(`commentText-${day}-${index}`).value =
+          commentText;
+      }
+    }
+  }
+}
+
+// Call the loadComments function when the page loads
 
 function handleRadioSelection(radio, color) {
   if (radio.checked) {
@@ -144,7 +173,9 @@ function calculateAndStoreTotalCounts(personName, color) {
 
   // Loop through each day and add up the counts
   for (const day of days) {
-    const count = parseInt(localStorage.getItem(`${personName}_${day}_${color}_count`) || 0);
+    const count = parseInt(
+      localStorage.getItem(`${personName}_${day}_${color}_count`) || 0
+    );
     totalCount += count;
   }
 
