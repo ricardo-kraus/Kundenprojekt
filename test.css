@@ -34,7 +34,7 @@ body {
 /* Navbar-Stile */
 .navbar {
     /* background-color: transparent; */
-    background-color: #919191;
+    background-color: rgb(188, 179, 164);
     color: #ffffff;
     padding: 10px 0;
     display: flex;
