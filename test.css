@@ -20,7 +20,9 @@ body {
     margin-top: 2%;
     
 }
-
+[data-bs-theme="dark"] .card{
+    background-color: #474747;
+  }
 
 
 /* Navbar-Stile */
