@@ -1,7 +1,7 @@
 /* Allgemeine Stile */
 body {
     font-family: Arial, sans-serif;
-    background: linear-gradient(45deg, rgb(247, 71, 65), rgb(79, 102, 202), rgb(247, 71, 65));
+    background: linear-gradient(45deg, rgb(228, 49, 42), rgb(89, 161, 255), rgb(228, 49, 42));
     background-size: cover;
     background-repeat: no-repeat;
     background-attachment: fixed;
@@ -172,5 +172,9 @@ border-bottom: 5px white;
     background-color: #202020 !important;
   }
 .bg-red{
-    background-color: rgba(255, 8, 0, 0.5);
+    background-color: rgba(255, 8, 0, 0.3);
 }
+::selection {
+    background-color: rgba(190, 66, 66, 0.6); /* Change this to the background color you want */
+    color: #fff; /* Change this to the text color you want */
+  }
