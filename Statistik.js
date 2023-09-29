@@ -72,5 +72,12 @@ document.addEventListener("DOMContentLoaded", function () {
   
     // Initial die Chart-Daten aktualisieren
     updateChartData();
-  });
-  
+});
+
+const adminpageButton = document.getElementById("adminpage-button");
+
+adminpageButton.addEventListener("click", function () {
+    const adminpageUrl = "./AdminPage.html";
+
+    window.location.href = adminpageUrl;
+});

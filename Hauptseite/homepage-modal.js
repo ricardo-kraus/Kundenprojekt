@@ -131,7 +131,7 @@ function generateCardAndModal(day, assignmentName, taskName, index) {
               class="btn btn-outline-primary"
               data-bs-dismiss="modal"
             >
-              Save
+              Close
             </button>
           </div>
         </div>
@@ -143,7 +143,7 @@ function generateCardAndModal(day, assignmentName, taskName, index) {
   document.body.appendChild(modal);
 }
 
-// Loop through your data and generate cards and modals
+// Loop through your data and generate cards and modalss
 function generateCards(day, assignments) {
   let index = 1;
 
@@ -160,3 +160,4 @@ generateCards("tuesday", assignments);
 generateCards("wednesday", assignments);
 generateCards("thursday", assignments);
 generateCards("friday", assignments);
+   
