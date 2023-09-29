@@ -67,6 +67,7 @@ document.addEventListener("DOMContentLoaded", function () {
         tasks.push(taskName);
         createListItemWithCloseButton(taskName, tasksList);
         // Speichern Sie die aktualisierten Zuordnungen im Local Storage
+         // Speichern Sie die aktualisierten Zuordnungen im Local Storage
         saveAssignmentsToLocalStorage();
       }
       taskNameInput.value = "";

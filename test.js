@@ -27,6 +27,7 @@ if (savedMode === "dark") {
 document.getElementById("darkmode").addEventListener("click", toggleDarkMode);
 
 // Weitere JavaScript-Funktionen hier einfügen
+// Weitere JavaScript-Funktionen hier einfügen
 
 // Beispiel: Die Funktionen für das Generieren von Karten
 assignmentsJSON = localStorage.getItem("assignments");
