@@ -72,15 +72,24 @@ function generateCard(day, assignmentName, taskName, index) {
 function handleRadioSelection(radio, color) {
   if (radio.checked) {
     const assignmentName = radio.getAttribute("name").split("-")[1];
-    const storageKey = `${assignmentName}_${color}_count`;
-    let count = parseInt(localStorage.getItem(storageKey) || 0);
-    count = 1;
-    localStorage.setItem(storageKey, count);
+    const positiveStorageKey = `${assignmentName}_positive_count`;
+    const negativeStorageKey = `${assignmentName}_negative_count`;
 
-    // Update the card's data attribute to store the current selection
+    // Check if the selected option is "positive" or "negative"
+    if (color === "positive") {
+      localStorage.setItem(positiveStorageKey, "1");
+      localStorage.setItem(negativeStorageKey, "0"); // Reset the negative count
+    } else if (color === "negative") {
+      localStorage.setItem(negativeStorageKey, "1");
+      localStorage.setItem(positiveStorageKey, "0"); // Reset the positive count
+    }
+
+    // Update the card's data attributes to store the current selection
     const cardId = `card${assignmentName}`;
     const card = document.getElementById(cardId);
-    card.setAttribute(`data-${color}-count`, count);
+    card.setAttribute(`data-${color}-count`, "1");
+    const oppositeColor = color === "positive" ? "negative" : "positive";
+    card.setAttribute(`data-${oppositeColor}-count`, "0");
   }
 }
 

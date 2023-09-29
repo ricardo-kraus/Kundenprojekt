@@ -81,3 +81,4 @@ adminpageButton.addEventListener("click", function () {
 
     window.location.href = adminpageUrl;
 });
+console.log(parseInt(localStorage.getItem("monday" + "_positive_count")))
