@@ -20,7 +20,9 @@ body {
     margin-top: 2%;
     
 }
-
+[data-bs-theme="dark"] .card{
+    background-color: #474747;
+  }
 
 
 /* Navbar-Stile */
@@ -134,3 +136,12 @@ body {
 color: aliceblue;
 border-bottom: 5px white;
 }
+.bg-light{
+    background-color:white !important;
+}
+[data-bs-theme="dark"] .bg-light{
+    background-color: #333333 !important;
+  }
+[data-bs-theme="dark"] .bg-secondary{
+    background-color: #202020 !important;
+  }
