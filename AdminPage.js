@@ -190,16 +190,10 @@ function removeTask(taskName) {
   }
 });
 
-document.addEventListener("DOMContentLoaded", function () {
-  // ... Existing code ...
+const statisticsButton = document.getElementById("statisticsButton");
 
-  // Add event listener for the "Statistics" link
-  const statisticsLink = document.getElementById("statistics-link");
-  statisticsLink.addEventListener("click", function (e) {
-    e.preventDefault(); // Prevent the default link behavior
-    // Navigate to the statistics page
-    window.location.href = "statistics.html";
-  });
+statisticsButton.addEventListener("click", function () {
+    const statistikUrl = "./Statistik.html";
 
-  // ... Existing code ...
+    window.location.href = statistikUrl;
 });
