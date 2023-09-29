@@ -174,7 +174,8 @@ border-bottom: 5px white;
 .bg-red{
     background-color: rgba(255, 8, 0, 0.3);
 }
-::selection {
-    background-color: rgba(190, 66, 66, 0.6); /* Change this to the background color you want */
-    color: #fff; /* Change this to the text color you want */
-  }
+/* ::selection {
+    background-color: rgb(89, 161, 255); /* Change this to the background color you want */
+    /* color: #fff; Change this to the text color you want */
+  /* }
+[data-bs-theme="dark"]  */
