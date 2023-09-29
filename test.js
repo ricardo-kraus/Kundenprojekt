@@ -37,41 +37,51 @@ function generateCard(day, assignmentName, taskName, index) {
   const card = document.createElement("div");
   card.className = "card mx-auto mb-5 ";
   card.innerHTML = `
-        <div class="card-body">
-            <div class="card-title fs-5 fw-semibold" id="${cardId}">
-                ${assignmentName} <!-- Zuerst der Name -->
-            </div>
-            <div class="card-text" id="cardname${day}${index}">
-                ${taskName} <!-- Dann die Aufgabe -->
-            </div>
-            <div>
-                <button class="btn btn-success" id="greenButton${day}${index}" data-name="${assignmentName}">positive</button>
-                <button class="btn btn-danger" id="redButton${day}${index}" data-name="${assignmentName}">negative</button>
-            </div>
-        </div>
+  <div class="card-body">
+  <div class="card-title fs-5 fw-semibold" id="${cardId}">
+      ${assignmentName} <!-- Zuerst der Name -->
+  </div>
+  <div class="card-text" id="cardname${day}${index}">
+      ${taskName} <!-- Dann die Aufgabe -->
+  </div>
+  <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
+    <input type="radio" class="btn-check" name="rating-${day}-${index}" id="positive-${day}-${index}" autocomplete="off" value="positive" checked>
+    <label class="btn btn-outline-success" for="positive-${day}-${index}">Positive</label>
+
+    <input type="radio" class="btn-check" name="rating-${day}-${index}" id="negative-${day}-${index}" autocomplete="off" value="negative">
+    <label class="btn btn-outline-danger" for="negative-${day}-${index}">Negative</label>
+  </div>
+</div>
     `;
 
   document.getElementById(`card${day}`).appendChild(card);
 
   // Add event listeners for the green and red buttons
-  const greenButton = document.getElementById(`greenButton${day}${index}`);
-  const redButton = document.getElementById(`redButton${day}${index}`);
+  const positiveRadio = document.getElementById(`positive-${day}-${index}`);
+  const negativeRadio = document.getElementById(`negative-${day}-${index}`);
 
-  greenButton.addEventListener("click", function () {
-    handleButtonSelection(this, "green");
+  positiveRadio.addEventListener("change", function () {
+    handleRadioSelection(this, "positive");
   });
 
-  redButton.addEventListener("click", function () {
-    handleButtonSelection(this, "red");
+  negativeRadio.addEventListener("change", function () {
+    handleRadioSelection(this, "negative");
   });
 }
 
-function handleButtonSelection(button, color) {
-  const assignmentName = button.getAttribute("data-name");
-  const storageKey = `${assignmentName}_${color}_count`;
-  let count = parseInt(localStorage.getItem(storageKey) || 0);
-  count++;
-  localStorage.setItem(storageKey, count);
+function handleRadioSelection(radio, color) {
+  if (radio.checked) {
+    const assignmentName = radio.getAttribute("name").split("-")[1];
+    const storageKey = `${assignmentName}_${color}_count`;
+    let count = parseInt(localStorage.getItem(storageKey) || 0);
+    count = 1;
+    localStorage.setItem(storageKey, count);
+
+    // Update the card's data attribute to store the current selection
+    const cardId = `card${assignmentName}`;
+    const card = document.getElementById(cardId);
+    card.setAttribute(`data-${color}-count`, count);
+  }
 }
 
 function generateCards(day, assignments) {

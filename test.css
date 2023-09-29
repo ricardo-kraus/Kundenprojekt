@@ -21,13 +21,13 @@ body {
     border: none;
     border-radius: 10px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
-    background-color: rgba(255, 255, 255, 0.5); /* Rote Hintergrundfarbe mit 50% Transparenz */
+    background-color: rgba(188, 179, 164, 0.6); /* Rote Hintergrundfarbe mit 50% Transparenz */
     padding: 20px;
     margin-top: 2%;
 
 }
 [data-bs-theme="dark"] .card{
-    background-color: rgba(53, 53, 53, 0.6);
+    background-color: rgba(44, 44, 44, 0.6);
   }
 
 
@@ -42,7 +42,15 @@ body {
     align-items: center;
     position: relative;
 }
-
+[data-bs-theme="dark"] .navbar{
+    background-color: #363636;
+    color: #ffffff;
+    padding: 10px 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+}
 
 .header-content {
     display: flex;
