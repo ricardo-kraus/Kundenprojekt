@@ -24,28 +24,40 @@ body {
 
 /* Navbar-Stile */
 .navbar {
-    background-color: transparent;
+    /* background-color: transparent; */
+    background-color: #919191;
     color: #ffffff;
+    padding: 10px 0;
+    position: relative;
 }
 
-.navbar-brand {
-    font-size: 200%;
+
+.header-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0 20px;
+}
+
+.header-title {
+    font-size: 32px;
     font-weight: bold;
-    text-align: center;
+    color: white;
 }
 
 /* Dark Mode-Stile */
 .darkModeButton {
     font-size: 16px;
     margin-left:90% ;
-    background-color: black;
+    background-color: #333;
     color: #ffffff;
     border: 1px solid #ffffff;
     border-radius: 5px;
-    
     cursor: pointer;
-
-    
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%); /* Move the button up by half of its own height */
+    right: 20px;
 }
 
 
