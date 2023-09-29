@@ -29,7 +29,7 @@ document.addEventListener("DOMContentLoaded", function () {
         labels: datenArray,
         datasets: [
             {
-                label: "positiv",
+                label: "positive",
                 data: [], // Leer initialisieren
                 backgroundColor: "rgba(72, 168, 96, 0.4)",
                 borderColor: "green",
@@ -52,12 +52,12 @@ document.addEventListener("DOMContentLoaded", function () {
             y: {
                 beginAtZero: true,
                 ticks: {
-                    color: "black",
+                    color: "white",
                 },
             },
             x: {
                 ticks: {
-                    color: "black",
+                    color: "white",
                 },
             },
         },
