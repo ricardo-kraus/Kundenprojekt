@@ -97,7 +97,7 @@ document.addEventListener("DOMContentLoaded", function () {
     updateChartData();
 });
 
-const adminpageButton = document.getElementById("adminpageButton");
+const adminpageButton = document.getElementById("adminpage-button");
 
 adminpageButton.addEventListener("click", function () {
     const adminpageUrl = "./AdminPage.html";

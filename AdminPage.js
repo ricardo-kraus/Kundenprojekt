@@ -190,7 +190,7 @@ function removeTask(taskName) {
   }
 });
 
-const statisticsButton = document.getElementById("statisticsButton");
+const statisticsButton = document.getElementById("statistics-button");
 
 statisticsButton.addEventListener("click", function () {
     const statistikUrl = "./Statistik.html";
