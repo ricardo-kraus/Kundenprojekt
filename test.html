@@ -1,75 +1,95 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
+  <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Task Plan</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
+      crossorigin="anonymous"
+    />
     <link rel="stylesheet" href="test.css" />
-</head>
-<body>
+  </head>
+  <body>
     <!-- Navbar -->
     <nav class="navbar">
-        <div class="container-fluid">
-            <div class="header-content">
-                <div class="header-title">Task Plan</div>
-                <div class="justify-content-end">
-                <button class="btn darkModeButton me-2" type="button" id="darkmode">Darkmode</button>
-                </div>
+        <div class="container-fluid row">
+            <div class=" col fs-3 ms-3 nav-item" id="kw">kw</div>
+            <div class="col header-content align-items-center">
+                <div class="text-center fs-3 header-title nav-item ">Task Plan</div>
             </div>
+            <form class="col container-fluid justify-content-start">
+                <button class="btn darkModeButton me-2" type="button" id="darkmode">Darkmode</button>
+            </form>
         </div>
     </nav>
     <div class="fs-3 ms-3" id="kw"></div>
     <div class="container text-center mx-auto">
-        <div class="row">
-           
-            <div class="col-1">
-                <div class="block">
-                    <div class="bg-red text-white mb-4 rounded-4 block-title">Monday</div>
-                    <div id="cardmonday">
-                        <!-- Automatically generated cards will be placed here -->
-                    </div>
-                </div>
+      <div class="row">
+        <!-- Monday-Wednesday Blocks -->
+        <div class="col-1">
+          <div class="block">
+            <div class="bg-red text-white mb-4 rounded-4 block-title">
+              Monday
             </div>
-            <div class="col-2">
-                <div class="block">
-                    <div class="bg-red text-white mb-4 rounded-4 block-title">Tuesday</div>
-                    <div id="cardtuesday">
-                        <!-- Automatically generated cards will be placed here -->
-                    </div>
-                </div>
+            <div id="cardmonday">
+              <!-- Automatically generated cards will be placed here -->
             </div>
-            <div class="col-3">
-                <div class="block">
-                    <div class="bg-red text-white mb-4 rounded-4 block-title">Wednesday</div>
-                    <div id="cardwednesday">
-                        <!-- Automatically generated cards will be placed here -->
-                    </div>
-                </div>
-            </div>
-            <!-- Thursday-Friday Blocks -->
-            <div class="col-4">
-                <div class="block">
-                    <div class="bg-red text-white mb-4 rounded-4 block-title">Thursday</div>
-                    <div id="cardthursday">
-                        <!-- Automatically generated cards will be placed here -->
-                    </div>
-                </div>
-            </div>
-            <div class="col-5">
-                <div class="block">
-                    <div class="bg-red text-white mb-4 rounded-4 block-title">Friday</div>
-                    <div id="cardfriday">
-                        <!-- Automatically generated cards will be placed here -->
-                    </div>
-                </div>
-            </div>
+          </div>
         </div>
+        <div class="col-2">
+          <div class="block">
+            <div class="bg-red text-white mb-4 rounded-4 block-title">
+              Tuesday
+            </div>
+            <div id="cardtuesday">
+              <!-- Automatically generated cards will be placed here -->
+            </div>
+          </div>
+        </div>
+        <div class="col-3">
+          <div class="block">
+            <div class="bg-red text-white mb-4 rounded-4 block-title">
+              Wednesday
+            </div>
+            <div id="cardwednesday">
+              <!-- Automatically generated cards will be placed here -->
+            </div>
+          </div>
+        </div>
+        <!-- Thursday-Friday Blocks -->
+        <div class="col-4">
+          <div class="block">
+            <div class="bg-red text-white mb-4 rounded-4 block-title">
+              Thursday
+            </div>
+            <div id="cardthursday">
+              <!-- Automatically generated cards will be placed here -->
+            </div>
+          </div>
+        </div>
+        <div class="col-5">
+          <div class="block">
+            <div class="bg-red text-white mb-4 rounded-4 block-title">
+              Friday
+            </div>
+            <div id="cardfriday">
+              <!-- Automatically generated cards will be placed here -->
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
     <script src="test.js"></script>
     <script src="https://unpkg.com/@popperjs/core@2"></script>
     <!-- localstorage for checkbox -->
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
-</body>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+      crossorigin="anonymous"
+    ></script>
+  </body>
 </html>

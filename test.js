@@ -168,3 +168,17 @@ generateCards("tuesday", assignments);
 generateCards("wednesday", assignments);
 generateCards("thursday", assignments);
 generateCards("friday", assignments);
+
+let date = new Date();
+function getWeekNumber(date) {
+  date = new Date(date);
+  date.setHours(0, 0, 0, 0);
+  date.setDate(date.getDate() + 4 - (date.getDay() || 7));
+  let yearStart = new Date(date.getFullYear(), 0, 1);
+  let weekNumber = Math.ceil(((date - yearStart) / 86400000 + 1) / 7);
+  return weekNumber;
+}
+
+let currentWeek = getWeekNumber(date);
+let currentWeekString = currentWeek.toString();
+document.getElementById("kw").innerHTML = "KW " + currentWeekString;
