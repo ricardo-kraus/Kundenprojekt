@@ -94,6 +94,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     // Initial die Chart-Daten aktualisieren
+    // Hier werden die Namen aus den gespeicherten Daten verwendet
     updateChartData();
 });
 
