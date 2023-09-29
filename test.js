@@ -64,10 +64,34 @@ function generateCard(day, assignmentName, taskName, index) {
             <div class="card-text" id="cardname${day}${index}">
                 ${taskName} <!-- Dann die Aufgabe -->
             </div>
+            <div>
+                <button class="btn btn-success" id="greenButton${day}${index}" data-name="${assignmentName}">Green</button>
+                <button class="btn btn-danger" id="redButton${day}${index}" data-name="${assignmentName}">Red</button>
+            </div>
         </div>
     `;
 
     document.getElementById(`card${day}`).appendChild(card);
+
+    // Add event listeners for the green and red buttons
+    const greenButton = document.getElementById(`greenButton${day}${index}`);
+    const redButton = document.getElementById(`redButton${day}${index}`);
+    
+    greenButton.addEventListener("click", function () {
+        handleButtonSelection(this, "green");
+    });
+    
+    redButton.addEventListener("click", function () {
+        handleButtonSelection(this, "red");
+    });
+}
+
+function handleButtonSelection(button, color) {
+    const assignmentName = button.getAttribute("data-name");
+    const storageKey = `${assignmentName}_${color}_count`;
+    let count = parseInt(localStorage.getItem(storageKey) || 0);
+    count++;
+    localStorage.setItem(storageKey, count);
 }
 
 function generateCards(day, assignments) {
@@ -79,9 +103,3 @@ function generateCards(day, assignments) {
         index++;
     }
 }
-
-generateCards("monday", assignments);
-generateCards("tuesday", assignments);
-generateCards("wednesday", assignments);
-generateCards("thursday", assignments);
-generateCards("friday", assignments);

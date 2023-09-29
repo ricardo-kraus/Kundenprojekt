@@ -67,5 +67,17 @@
     <script src="test.js"></script>
     <script src="https://unpkg.com/@popperjs/core@2"></script>
     <!-- localstorage for checkbox -->
+
+    <script>
+        // Call the initial generation function AFTER it's defined
+        generateCards("monday", assignments);
+        generateCards("tuesday", assignments);
+        generateCards("wednesday", assignments);
+        generateCards("thursday", assignments);
+        generateCards("friday", assignments);
+
+        // Initialize total count
+        updateTotalCount();
+    </script>
 </body>
 </html>
