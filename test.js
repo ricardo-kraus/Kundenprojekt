@@ -45,8 +45,8 @@ function generateCard(day, assignmentName, taskName, index) {
                 ${taskName} <!-- Dann die Aufgabe -->
             </div>
             <div>
-                <button class="btn btn-success" id="greenButton${day}${index}" data-name="${assignmentName}">Green</button>
-                <button class="btn btn-danger" id="redButton${day}${index}" data-name="${assignmentName}">Red</button>
+                <button class="btn btn-success" id="greenButton${day}${index}" data-name="${assignmentName}">positive</button>
+                <button class="btn btn-danger" id="redButton${day}${index}" data-name="${assignmentName}">negative</button>
             </div>
         </div>
     `;
