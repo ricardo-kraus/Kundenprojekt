@@ -21,7 +21,7 @@ body {
 
 }
 [data-bs-theme="dark"] .card{
-    background-color: #474747;
+    background-color: rgba(53, 53, 53, 0.6);
   }
 
 
@@ -157,3 +157,6 @@ border-bottom: 5px white;
 [data-bs-theme="dark"] .bg-secondary{
     background-color: #202020 !important;
   }
+.bg-red{
+    background-color: rgba(255, 8, 0, 0.5);
+}
