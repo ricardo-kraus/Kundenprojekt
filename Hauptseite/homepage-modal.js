@@ -131,7 +131,7 @@ function generateCardAndModal(day, assignmentName, taskName, index) {
               class="btn btn-outline-primary"
               data-bs-dismiss="modal"
             >
-              Close
+              Save
             </button>
           </div>
         </div>
