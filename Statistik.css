@@ -35,3 +35,15 @@ img {
         rgba(56, 55, 114, 0.781),
         rgba(151, 36, 32, 0.781));
 }
+
+#adminpage-button {
+    margin-top: 10px;
+    padding: 12px 24px;
+    background-color: rgb(56, 55, 114);
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-size: 17px;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}

@@ -96,3 +96,17 @@ document.addEventListener("DOMContentLoaded", function () {
     // Initial die Chart-Daten aktualisieren
     updateChartData();
 });
+
+document.addEventListener("DOMContentLoaded", function () {
+    // ... Existing code ...
+  
+    // Add event listener for the "Admin" link
+    const adminLink = document.getElementById("admin-link");
+    adminLink.addEventListener("click", function (e) {
+      e.preventDefault(); // Prevent the default link behavior
+      // Navigate back to the admin page
+      window.location.href = "admin.html";
+    });
+  
+    // ... Existing code ...
+  });
