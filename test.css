@@ -1,14 +1,14 @@
 /* Allgemeine Stile */
 body {
     font-family: Arial, sans-serif;
-    background: linear-gradient(45deg, rgb(179, 41, 37), rgb(56,55,114), rgb(179, 41, 37));
+    background: linear-gradient(45deg, rgb(228, 49, 42), rgb(89, 161, 255), rgb(228, 49, 42));
     background-size: cover;
     background-repeat: no-repeat;
     background-attachment: fixed;
 }
 [data-bs-theme="dark"] body{
     font-family: Arial, sans-serif;
-    background: linear-gradient(45deg, rgb(77, 3, 1), rgb(16, 14, 109), rgb(77, 3, 1));
+    background: linear-gradient(45deg, rgb(100, 3, 0), rgb(16, 14, 109), rgb(100, 3, 0));
     background-size: cover;
     background-repeat: no-repeat;
     background-attachment: fixed;
@@ -172,5 +172,9 @@ border-bottom: 5px white;
     background-color: #202020 !important;
   }
 .bg-red{
-    background-color: rgba(255, 8, 0, 0.5);
+    background-color: rgba(255, 8, 0, 0.3);
 }
+::selection {
+    background-color: rgba(190, 66, 66, 0.6); /* Change this to the background color you want */
+    color: #fff; /* Change this to the text color you want */
+  }

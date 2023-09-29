@@ -74,6 +74,12 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 
   assignButton.addEventListener("click", function () {
+
+    if (people.length === 0 || tasks.length === 0) {
+      alert("Please enter people and tasks before assigning.");
+      return;
+    }
+
     assignments = {
       monday: assignTasksOneDay(people, tasks),
       tuesday: assignTasksOneDay(people, tasks),
