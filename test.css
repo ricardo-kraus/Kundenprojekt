@@ -67,7 +67,19 @@ body {
     transform: translateY(-50%); /* Move the button up by half of its own height */
     right: 20px;
 }
-
+.darkModeButton:hover {
+    font-size: 16px;
+    margin-left:90% ;
+    background-color: #727272;
+    color: #ffffff;
+    border: 1px solid #ffffff;
+    border-radius: 5px;
+    cursor: pointer;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%); /* Move the button up by half of its own height */
+    right: 20px;
+}
 
 /* Woche anzeigen-Stile */
 #kw {
