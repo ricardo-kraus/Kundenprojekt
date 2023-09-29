@@ -1,7 +1,28 @@
 document.addEventListener("DOMContentLoaded", function () {
-    // Daten aus dem Local Storage abrufen
-    var gespeicherteDaten = localStorage.getItem("people");
-    var datenArray = JSON.parse(gespeicherteDaten);
+  // Daten aus dem Local Storage abrufen
+  var gespeicherteDaten = localStorage.getItem("people");
+  var datenArray = JSON.parse(gespeicherteDaten);
+  Chart.defaults.color = 'black';
+  // Verwende die abgerufenen Daten als Labels
+  var data = {
+    labels: datenArray, // Hier werden die Namen aus den gespeicherten Daten verwendet
+    datasets: [
+      {
+        label: "positive",
+        data: [1, 2, 3, 4, 5], // Beispielwerte oder andere Daten
+        backgroundColor: "rgba(72, 168, 96, 0.4)",
+        borderColor: "green",
+        borderWidth: 1,
+      },
+      {
+        label: "negative",
+        data: [1, 2, 3, 5, 6], // Beispielwerte oder andere Daten
+        backgroundColor: "rgba(198, 1, 31, 0.4)",
+        borderColor: "#9D2933",
+        borderWidth: 1,
+      },
+    ],
+  };
 
     // Initialisieren Sie die Chart.js-Daten und Optionen
     var chartData = {
@@ -75,3 +96,17 @@ document.addEventListener("DOMContentLoaded", function () {
     // Initial die Chart-Daten aktualisieren
     updateChartData();
 });
+
+document.addEventListener("DOMContentLoaded", function () {
+    // ... Existing code ...
+  
+    // Add event listener for the "Admin" link
+    const adminLink = document.getElementById("admin-link");
+    adminLink.addEventListener("click", function (e) {
+      e.preventDefault(); // Prevent the default link behavior
+      // Navigate back to the admin page
+      window.location.href = "admin.html";
+    });
+  
+    // ... Existing code ...
+  });
