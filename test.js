@@ -63,12 +63,14 @@ function generateCard(day, assignmentName, taskName, index) {
 
   positiveRadio.addEventListener("change", function () {
     handleRadioSelection(this, "positive");
+    personName = assignmentName
   });
 
   negativeRadio.addEventListener("change", function () {
     handleRadioSelection(this, "negative");
+    // personName = assignmentName
   });
-  personName = assignmentName
+  
 }
 
 function handleRadioSelection(radio, color) {
