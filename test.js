@@ -1,5 +1,5 @@
 // JavaScript-Funktionen
-
+let personName;
 function toggleDarkMode() {
   const htmlTag = document.documentElement;
   const darkmodeButton = document.getElementById("darkmode");
@@ -60,6 +60,7 @@ function generateCard(day, assignmentName, taskName, index) {
   const positiveRadio = document.getElementById(`positive-${day}-${index}`);
   const negativeRadio = document.getElementById(`negative-${day}-${index}`);
 
+
   positiveRadio.addEventListener("change", function () {
     handleRadioSelection(this, "positive");
   });
@@ -67,13 +68,15 @@ function generateCard(day, assignmentName, taskName, index) {
   negativeRadio.addEventListener("change", function () {
     handleRadioSelection(this, "negative");
   });
+  personName = assignmentName
 }
 
 function handleRadioSelection(radio, color) {
   if (radio.checked) {
     const assignmentName = radio.getAttribute("name").split("-")[1];
-    const positiveStorageKey = `${assignmentName}_positive_count`;
-    const negativeStorageKey = `${assignmentName}_negative_count`;
+
+    const positiveStorageKey = `${personName}_positive_count`;
+    const negativeStorageKey = `${personName}_negative_count`;
 
     // Check if the selected option is "positive" or "negative"
     if (color === "positive") {
@@ -99,6 +102,7 @@ function generateCards(day, assignments) {
   for (const assignmentName in assignments[day]) {
     const taskName = assignments[day][assignmentName];
     generateCard(day, assignmentName, taskName, index);
+    console.log(assignmentName);
     index++;
   }
 }

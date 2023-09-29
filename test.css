@@ -34,7 +34,7 @@ body {
 /* Navbar-Stile */
 .navbar {
     /* background-color: transparent; */
-    background-color: #919191;
+    background-color:  rgba(188, 179, 164, 0.6);
     color: #ffffff;
     padding: 10px 0;
     display: flex;
@@ -43,7 +43,7 @@ body {
     position: relative;
 }
 [data-bs-theme="dark"] .navbar{
-    background-color: #363636;
+    background-color: rgba(44, 44, 44, 0.6);
     color: #ffffff;
     padding: 10px 0;
     display: flex;
