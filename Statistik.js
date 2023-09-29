@@ -80,8 +80,8 @@ document.addEventListener("DOMContentLoaded", function () {
         };
 
         datenArray.forEach(function (name) {
-            var positiveCount = parseInt(localStorage.getItem(name + "_green_count")) || 0;
-            var negativeCount = parseInt(localStorage.getItem(name + "_red_count")) || 0;
+            var positiveCount = parseInt(localStorage.getItem(name + "_positive_count")) || 0;
+            var negativeCount = parseInt(localStorage.getItem(name + "_negative_count")) || 0;
 
             updatedData.positive.push(positiveCount);
             updatedData.negative.push(negativeCount);

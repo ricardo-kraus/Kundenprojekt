@@ -77,8 +77,8 @@ function handleRadioSelection(radio, color) {
   if (radio.checked) {
     const assignmentName = radio.getAttribute("name").split("-")[1];
 
-    const positiveStorageKey = `${personName}_positive_count`;
-    const negativeStorageKey = `${personName}_negative_count`;
+    const positiveStorageKey = `${personName}_${assignmentName}_positive_count`;
+    const negativeStorageKey = `${personName}_${assignmentName}_negative_count`;
 
     // Check if the selected option is "positive" or "negative"
     if (color === "positive") {
@@ -95,7 +95,25 @@ function handleRadioSelection(radio, color) {
     card.setAttribute(`data-${color}-count`, "1");
     const oppositeColor = color === "positive" ? "negative" : "positive";
     card.setAttribute(`data-${oppositeColor}-count`, "0");
+
+    // Calculate and store the total counts for the person
+    calculateAndStoreTotalCounts(personName, color);
   }
+}
+
+// Function to calculate and store total counts for a person
+function calculateAndStoreTotalCounts(personName, color) {
+  const days = ["monday", "tuesday", "wednesday", "thursday", "friday"];
+  let totalCount = 0;
+
+  // Loop through each day and add up the counts
+  for (const day of days) {
+    const count = parseInt(localStorage.getItem(`${personName}_${day}_${color}_count`) || 0);
+    totalCount += count;
+  }
+
+  // Store the total count for the person
+  localStorage.setItem(`${personName}_${color}_count`, totalCount.toString());
 }
 
 function generateCards(day, assignments) {
