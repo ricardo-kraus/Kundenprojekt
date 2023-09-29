@@ -1,5 +1,5 @@
 // JavaScript-Funktionen
-let personName;
+
 function toggleDarkMode() {
   const htmlTag = document.documentElement;
   const darkmodeButton = document.getElementById("darkmode");
@@ -37,83 +37,41 @@ function generateCard(day, assignmentName, taskName, index) {
   const card = document.createElement("div");
   card.className = "card mx-auto mb-5 ";
   card.innerHTML = `
-  <div class="card-body">
-  <div class="card-title fs-5 fw-semibold" id="${cardId}">
-      ${assignmentName} <!-- Zuerst der Name -->
-  </div>
-  <div class="card-text" id="cardname${day}${index}">
-      ${taskName} <!-- Dann die Aufgabe -->
-  </div>
-  <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
-    <input type="radio" class="btn-check" name="rating-${day}-${index}" id="positive-${day}-${index}" autocomplete="off" value="positive" checked>
-    <label class="btn btn-outline-success" for="positive-${day}-${index}">Positive</label>
-
-    <input type="radio" class="btn-check" name="rating-${day}-${index}" id="negative-${day}-${index}" autocomplete="off" value="negative">
-    <label class="btn btn-outline-danger" for="negative-${day}-${index}">Negative</label>
-  </div>
-</div>
+        <div class="card-body">
+            <div class="card-title fs-5 fw-semibold" id="${cardId}">
+                ${assignmentName} <!-- Zuerst der Name -->
+            </div>
+            <div class="card-text" id="cardname${day}${index}">
+                ${taskName} <!-- Dann die Aufgabe -->
+            </div>
+            <div>
+                <button class="btn btn-success" id="greenButton${day}${index}" data-name="${assignmentName}">positive</button>
+                <button class="btn btn-danger" id="redButton${day}${index}" data-name="${assignmentName}">negative</button>
+            </div>
+        </div>
     `;
 
   document.getElementById(`card${day}`).appendChild(card);
 
   // Add event listeners for the green and red buttons
-  const positiveRadio = document.getElementById(`positive-${day}-${index}`);
-  const negativeRadio = document.getElementById(`negative-${day}-${index}`);
+  const greenButton = document.getElementById(`greenButton${day}${index}`);
+  const redButton = document.getElementById(`redButton${day}${index}`);
 
-
-  positiveRadio.addEventListener("change", function () {
-    handleRadioSelection(this, "positive");
-    personName = assignmentName
+  greenButton.addEventListener("click", function () {
+    handleButtonSelection(this, "green");
   });
 
-  negativeRadio.addEventListener("change", function () {
-    handleRadioSelection(this, "negative");
-    // personName = assignmentName
+  redButton.addEventListener("click", function () {
+    handleButtonSelection(this, "red");
   });
-  
 }
 
-function handleRadioSelection(radio, color) {
-  if (radio.checked) {
-    const assignmentName = radio.getAttribute("name").split("-")[1];
-
-    const positiveStorageKey = `${personName}_${assignmentName}_positive_count`;
-    const negativeStorageKey = `${personName}_${assignmentName}_negative_count`;
-
-    // Check if the selected option is "positive" or "negative"
-    if (color === "positive") {
-      localStorage.setItem(positiveStorageKey, "1");
-      localStorage.setItem(negativeStorageKey, "0"); // Reset the negative count
-    } else if (color === "negative") {
-      localStorage.setItem(negativeStorageKey, "1");
-      localStorage.setItem(positiveStorageKey, "0"); // Reset the positive count
-    }
-
-    // Update the card's data attributes to store the current selection
-    const cardId = `card${assignmentName}`;
-    const card = document.getElementById(cardId);
-    card.setAttribute(`data-${color}-count`, "1");
-    const oppositeColor = color === "positive" ? "negative" : "positive";
-    card.setAttribute(`data-${oppositeColor}-count`, "0");
-
-    // Calculate and store the total counts for the person
-    calculateAndStoreTotalCounts(personName, color);
-  }
-}
-
-// Function to calculate and store total counts for a person
-function calculateAndStoreTotalCounts(personName, color) {
-  const days = ["monday", "tuesday", "wednesday", "thursday", "friday"];
-  let totalCount = 0;
-
-  // Loop through each day and add up the counts
-  for (const day of days) {
-    const count = parseInt(localStorage.getItem(`${personName}_${day}_${color}_count`) || 0);
-    totalCount += count;
-  }
-
-  // Store the total count for the person
-  localStorage.setItem(`${personName}_${color}_count`, totalCount.toString());
+function handleButtonSelection(button, color) {
+  const assignmentName = button.getAttribute("data-name");
+  const storageKey = `${assignmentName}_${color}_count`;
+  let count = parseInt(localStorage.getItem(storageKey) || 0);
+  count++;
+  localStorage.setItem(storageKey, count);
 }
 
 function generateCards(day, assignments) {
@@ -122,7 +80,6 @@ function generateCards(day, assignments) {
   for (const assignmentName in assignments[day]) {
     const taskName = assignments[day][assignmentName];
     generateCard(day, assignmentName, taskName, index);
-    console.log(assignmentName);
     index++;
   }
 }
