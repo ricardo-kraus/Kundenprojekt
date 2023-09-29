@@ -86,8 +86,13 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Speichern Sie die aktualisierten Zuordnungen im Local Storage
     saveAssignmentsToLocalStorage();
-  });
 
+     // Füge eine Erfolgsmeldung hinzu
+  const successMessage = document.createElement("p");
+  successMessage.textContent = "Successful!";
+  taskAssignment.appendChild(successMessage);
+});
+ 
   // Rest des Codes bleibt unverändert
   // Rest des unveränderten Codes
 
