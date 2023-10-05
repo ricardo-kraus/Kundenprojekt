@@ -1,4 +1,4 @@
-// JavaScript-Funktionen
+
 let personName;
 function toggleDarkMode() {
   const htmlTag = document.documentElement;
@@ -26,10 +26,7 @@ if (savedMode === "dark") {
 
 document.getElementById("darkmode").addEventListener("click", toggleDarkMode);
 
-// Weitere JavaScript-Funktionen hier einfügen
-// Weitere JavaScript-Funktionen hier einfügen
 
-// Beispiel: Die Funktionen für das Generieren von Karten
 assignmentsJSON = localStorage.getItem("assignments");
 assignments = JSON.parse(assignmentsJSON);
 
@@ -58,7 +55,7 @@ function generateCard(day, assignmentName, taskName, index) {
 
   document.getElementById(`card${day}`).appendChild(card);
 
-  // Add event listeners for the green and red buttons
+ 
   const positiveRadio = document.getElementById(`positive-${day}-${index}`);
   const negativeRadio = document.getElementById(`negative-${day}-${index}`);
 
@@ -78,7 +75,7 @@ function generateCard(day, assignmentName, taskName, index) {
     });
   });
 
-  // Generate the modal for comments
+  
   generateCommentModal(day, index, assignmentName);
 }
 function generateCommentModal(day, index, personName) {
@@ -107,21 +104,18 @@ function generateCommentModal(day, index, personName) {
   document.body.appendChild(modal);
 }
 
-// Function to save the comment
-// ...
 
-// Function to save the comment
+
 function saveComment(day, index) {
   const commentText = document.getElementById(
     `commentText-${day}-${index}`
   ).value;
   const commentKey = `${personName}_${day}_${index}_comment`;
 
-  // Save the comment in localStorage
+  
   localStorage.setItem(commentKey, commentText);
 }
 
-// Function to load saved comments when the page loads
 function loadComments(personName) {
   const days = ["monday", "tuesday", "wednesday", "thursday", "friday"];
   for (const day of days) {
@@ -136,7 +130,6 @@ function loadComments(personName) {
   }
 }
 
-// Call the loadComments function when the page loads
 
 function handleRadioSelection(radio, color) {
   if (radio.checked) {
@@ -159,7 +152,7 @@ function handleRadioSelection(radio, color) {
       localStorage.setItem(positiveStorageKey, parseInt(positiveCount) - 1); // Reset the positive count
     }
 
-    // Update the card's data attributes to store the current selection
+   
     const cardId = `card${assignmentName}`;
     const card = document.getElementById(cardId);
     card.setAttribute(`data-${color}-count`, 1);
@@ -172,12 +165,12 @@ function handleRadioSelection(radio, color) {
   }
 }
 
-// Function to calculate and store total counts for a person
+
 function calculateAndStoreTotalCounts(personName, color) {
   const days = ["monday", "tuesday", "wednesday", "thursday", "friday"];
   let totalCount = 0;
 
-  // Loop through each day and add up the counts
+
   for (const day of days) {
     const count = parseInt(
       localStorage.getItem(`${personName}_${day}_${color}_count`) || 0
@@ -185,7 +178,7 @@ function calculateAndStoreTotalCounts(personName, color) {
     totalCount += count;
   }
 
-  // Store the total count for the person
+
   localStorage.setItem(`${personName}_${color}_count`, totalCount.toString());
 }
 
@@ -199,7 +192,7 @@ function generateCards(day, assignments) {
     index++;
   }
 }
-// Call the initial generation function AFTER it's defined
+
 generateCards("monday", assignments);
 generateCards("tuesday", assignments);
 generateCards("wednesday", assignments);

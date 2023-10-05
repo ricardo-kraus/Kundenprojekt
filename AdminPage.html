@@ -5,6 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin View</title>
     <link rel="stylesheet" href="AdminPage.css">
+    <!-- In den Head-Bereich deines HTML-Dokuments einfügen -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+
 </head>
 <body>
     <header>
@@ -18,7 +21,7 @@
         <div class="column">
             <div class="blockTitle">Person</div>
             <ul id="people-list"></ul>
-            <!-- Formular zum Hinzufügen von Personenn -->
+        
             <form id="add-person-form">
                 <input type="text" id="person-name" placeholder="Enter person name">
                 <button type="submit">Add Person</button>
@@ -27,7 +30,7 @@
         <div class="column">
            <div class="blockTitle">Tasks</div>
             <ul id="tasks-list"></ul>
-            <!-- Formular zum Hinzufügen von Aufgaben -->
+         
             <form id="add-task-form">
                 <input type="text" id="task-name" placeholder="Enter task name">
                 <button type="submit">Add Task</button>
@@ -35,7 +38,7 @@
         </div>
         <div class="column">
             <div class="blockTitle">Task Assignments</div>
-            <!-- Button zum Zuweisen von Aufgaben -->
+         
             <button id="assign-button">Assign Tasks</button>
             <ul id="task-assignment"></ul>
             <div id="success-message" style="display: none;"></div>
@@ -44,4 +47,3 @@
     <script src="AdminPage.js"></script>
 </body>
 </html>
- <!-- Formular zum Hinzufügen von Personenn -->
