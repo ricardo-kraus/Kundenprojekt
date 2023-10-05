@@ -94,7 +94,7 @@ function generateCommentModal(day, index, personName) {
           <textarea id="commentText-${day}-${index}" class="form-control" rows="5" placeholder="Enter your comment here"></textarea>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          
           <button type="button" class="btn btn-primary" onclick="saveComment('${day}', ${index})">Save Comment</button>
         </div>
       </div>
