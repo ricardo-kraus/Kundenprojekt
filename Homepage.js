@@ -131,7 +131,7 @@ function generateCommentModal(day, index, personName) {
     redirectToHomepage();
   });
 
- // Add a click event listener to the custom save button
+  // Add a click event listener to the custom save button
   const saveButton = document.getElementById(`saveButton-${day}-${index}`);
   saveButton.addEventListener("click", saveCommentAndDisplay);
 
@@ -142,8 +142,23 @@ function generateCommentModal(day, index, personName) {
 
     if (commentText !== "") {
       saveComment(day, index, commentText);
-      
-      commentDisplay.innerHTML += `<p>${commentText}</p>`;
+
+      const deleteButton = document.createElement("button");
+      deleteButton.innerText = "X";
+      deleteButton.className = "btn btn-danger delete-comment";
+      deleteButton.addEventListener("click", function () {
+        // When the delete button is clicked, remove the comment and clear it from local storage
+        commentDisplay.remove();
+        localStorage.removeItem(`comment-${day}-${index}`);
+      });
+
+      // Create a container for the comment and the delete button
+      const commentContainer = document.createElement("div");
+      commentContainer.className = "comment-container";
+      commentContainer.innerHTML = `<p>${commentText}</p>`;
+      commentContainer.appendChild(deleteButton);
+
+      commentDisplay.appendChild(commentContainer);
 
       commentTextarea.value = "";
 
@@ -160,6 +175,7 @@ function generateCommentModal(day, index, personName) {
     window.location.href = "Homepage.html";
   }
 }
+
 
 // Function to load saved comments when the page loads
 function loadComments(personName) {
