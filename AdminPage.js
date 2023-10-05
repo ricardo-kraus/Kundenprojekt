@@ -16,7 +16,7 @@ document.addEventListener("DOMContentLoaded", function () {
     friday: [],
   };
 
-  // Funktion zum Laden von Daten aus dem Local Storage in das `assignments`-Array
+  
   function loadAssignmentsFromLocalStorage() {
     const storedAssignments = JSON.parse(localStorage.getItem("assignments"));
     if (storedAssignments) {
@@ -29,17 +29,17 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   }
 
-  // Funktion zum Speichern der aktuellen Zuordnungen im Local Storage
+
   function saveAssignmentsToLocalStorage() {
     localStorage.setItem("assignments", JSON.stringify(assignments));
   }
 
-  // Funktion zum Speichern der Personen im Local Storage
+ 
   function savePeopleToLocalStorage() {
     localStorage.setItem("people", JSON.stringify(people));
   }
 
-  // Rufen Sie die Daten aus dem Local Storage beim Laden der Seite ab
+ 
   loadAssignmentsFromLocalStorage();
 
   addPersonForm.addEventListener("submit", function (e) {
@@ -50,7 +50,7 @@ document.addEventListener("DOMContentLoaded", function () {
       if (!people.includes(personName)) {
         people.push(personName);
         createListItemWithCloseButton(personName, peopleList);
-        // Speichern Sie die aktualisierten Zuordnungen und Personen im Local Storage
+    
         saveAssignmentsToLocalStorage();
         savePeopleToLocalStorage();
       }
@@ -66,8 +66,7 @@ document.addEventListener("DOMContentLoaded", function () {
       if (!tasks.includes(taskName)) {
         tasks.push(taskName);
         createListItemWithCloseButton(taskName, tasksList);
-        // Speichern Sie die aktualisierten Zuordnungen im Local Storage
-         // Speichern Sie die aktualisierten Zuordnungen im Local Storage
+        
         saveAssignmentsToLocalStorage();
       }
       taskNameInput.value = "";
@@ -88,20 +87,19 @@ document.addEventListener("DOMContentLoaded", function () {
       thursday: assignTasksOneDay(people, tasks),
       friday: assignTasksOneDay(people, tasks),
     };
-    // Aktiviere die Anzeige der Zuordnungen
+
     displayAssignments(assignments, taskAssignment);
 
-    // Speichern Sie die aktualisierten Zuordnungen im Local Storage
+
     saveAssignmentsToLocalStorage();
 
-     // Füge eine Erfolgsmeldung hinzu
+
   const successMessage = document.createElement("p");
   successMessage.textContent = "Successful!";
   taskAssignment.appendChild(successMessage);
 });
  
-  // Rest des Codes bleibt unverändert
-  // Rest des unveränderten Codes
+
 
  
 function createListItemWithCloseButton(text, parentElement) {
@@ -154,7 +152,7 @@ function removeTask(taskName) {
   }
 }
 
-  // Hier kommt die Definition für assignTasksOneDay und displayAssignments, falls benötigt
+
   function assignTasksOneDay(people, tasks) {
     const shuffledTasks = shuffleArray([...tasks]);
     const shuffledPeople = shuffleArray([...people]);
