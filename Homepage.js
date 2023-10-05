@@ -144,25 +144,31 @@ function handleRadioSelection(radio, color) {
 
     const positiveStorageKey = `${personName}_${assignmentName}_positive_count`;
     const negativeStorageKey = `${personName}_${assignmentName}_negative_count`;
-
+    let positiveCount = localStorage.getItem(positiveStorageKey)
+    let negativeCount = localStorage.getItem(negativeStorageKey)
+    if (positiveCount === NaN || negativeCount === NaN) {
+      positiveCount = 0;
+      negativeCount = 0;
+    }
     // Check if the selected option is "positive" or "negative"
     if (color === "positive") {
-      localStorage.setItem(positiveStorageKey, "1");
-      localStorage.setItem(negativeStorageKey, "0"); // Reset the negative count
+      localStorage.setItem(positiveStorageKey, parseInt(positiveCount) + 1);
+      localStorage.setItem(negativeStorageKey, parseInt(negativeCount) - 1); // Reset the negative count
     } else if (color === "negative") {
-      localStorage.setItem(negativeStorageKey, "1");
-      localStorage.setItem(positiveStorageKey, "0"); // Reset the positive count
+      localStorage.setItem(negativeStorageKey, parseInt(negativeCount) + 1);
+      localStorage.setItem(positiveStorageKey, parseInt(positiveCount) - 1); // Reset the positive count
     }
 
     // Update the card's data attributes to store the current selection
     const cardId = `card${assignmentName}`;
     const card = document.getElementById(cardId);
-    card.setAttribute(`data-${color}-count`, "1");
+    card.setAttribute(`data-${color}-count`, 1);
     const oppositeColor = color === "positive" ? "negative" : "positive";
-    card.setAttribute(`data-${oppositeColor}-count`, "0");
+    card.setAttribute(`data-${oppositeColor}-count`, 0);
 
     // Calculate and store the total counts for the person
-    calculateAndStoreTotalCounts(personName, color);
+    calculateAndStoreTotalCounts(personName, "positive");
+    calculateAndStoreTotalCounts(personName, "negative");
   }
 }
 
