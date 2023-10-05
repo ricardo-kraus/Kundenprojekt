@@ -25,7 +25,7 @@ header {
     position: relative; 
     background: transparent;
     padding: 0.3% 0;
-    text-align: center; /* Änderung: Text links ausrichten */
+    text-align: center; 
 }
 
 .header-image {
@@ -58,7 +58,7 @@ h1 {
 .statistics-button-container {
     position: absolute;
     top: 45%;
-    left: 20px; /* Änderung: Position des Statistics Buttons links */
+    left: 20px; 
     transform: translateY(-50%);
 }
 
