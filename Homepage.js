@@ -157,14 +157,17 @@ function handleRadioSelection(radio, color) {
 
     const StorageKey = `${personName}_${assignmentName}_positive_count`;
     const finalPositiveRatingCountStorage = `${personName}_positive_count`;
-    let finalPositiveRatingCount = localStorage.getItem(finalPositiveRatingCountStorage) || 1;
-    let positiveCount = localStorage.getItem(StorageKey) || 1;
+    let finalPositiveRatingCount = localStorage.getItem(finalPositiveRatingCountStorage) || 0;
+    let positiveCount = localStorage.getItem(StorageKey) || 0;
     // Check if the selected option is "positive" or "negative"
     if (color === "positive") {
-      localStorage.setItem(StorageKey, parseInt(positiveCount) + 1);
-      localStorage.setItem(finalPositiveRatingCountStorage, parseInt(finalPositiveRatingCount) + 1);
+      positiveCount = parseInt(positiveCount) + 1;
+      localStorage.setItem(StorageKey, positiveCount);
+      finalPositiveRatingCount = parseInt(finalPositiveRatingCount) + 1;
+      localStorage.setItem(finalPositiveRatingCountStorage, finalPositiveRatingCount);
     } else if (color === "negative") {
-      localStorage.setItem(StorageKey, parseInt(positiveCount) - 1); // Reset the positive count
+      positiveCount = 0;
+      localStorage.setItem(StorageKey, positiveCount);
       // localStorage.setItem(finalPositiveRatingCountStorage, parseInt(finalPositiveRatingCount) - 1);
     }
 
@@ -200,7 +203,6 @@ function generateCards(day, assignments) {
   for (const assignmentName in assignments[day]) {
     const taskName = assignments[day][assignmentName];
     generateCard(day, assignmentName, taskName, index);
-    console.log(assignmentName);
     index++;
   }
 }
