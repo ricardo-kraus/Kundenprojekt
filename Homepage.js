@@ -47,13 +47,13 @@ function generateCard(day, assignmentName, taskName, index) {
       </div>
       <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
         <input type="radio" class="btn-check" name="rating-${day}-${index}" id="positive-${day}-${index}" autocomplete="off" value="positive">
-        <label class="btn btn-outline-success" for="positive-${day}-${index}">Positive</label>
+        <label class="btn btn-outline-success" for="positive-${day}-${index}">👍</label>
 
         <input type="radio" class="btn-check" name="rating-${day}-${index}" id="neutral-${day}-${index}" autocomplete="off" value="neutral" checked>
         <label class="btn btn-outline-warning" for="positive-${day}-${index}">-</label>
 
         <input type="radio" class="btn-check" name="rating-${day}-${index}" id="negative-${day}-${index}" autocomplete="off" value="negative">
-        <label class="btn btn-outline-danger" for="negative-${day}-${index}">Negative</label>
+        <label class="btn btn-outline-danger" for="negative-${day}-${index}">👎</label>
       </div>
       <button class="btn btn-outline-light mt-2" data-bs-toggle="modal" data-bs-target="#commentModal-${day}-${index}">Comment</button>
     </div>
