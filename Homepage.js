@@ -1,4 +1,4 @@
-
+// JavaScript-Funktionen
 let personName;
 function toggleDarkMode() {
   const htmlTag = document.documentElement;
@@ -26,7 +26,10 @@ if (savedMode === "dark") {
 
 document.getElementById("darkmode").addEventListener("click", toggleDarkMode);
 
+// Weitere JavaScript-Funktionen hier einfügen
+// Weitere JavaScript-Funktionen hier einfügen
 
+// Beispiel: Die Funktionen für das Generieren von Karten
 assignmentsJSON = localStorage.getItem("assignments");
 assignments = JSON.parse(assignmentsJSON);
 
@@ -43,8 +46,11 @@ function generateCard(day, assignmentName, taskName, index) {
         ${taskName} <!-- Dann die Aufgabe -->
       </div>
       <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
-        <input type="radio" class="btn-check" name="rating-${day}-${index}" id="positive-${day}-${index}" autocomplete="off" value="positive" checked>
+        <input type="radio" class="btn-check" name="rating-${day}-${index}" id="positive-${day}-${index}" autocomplete="off" value="positive">
         <label class="btn btn-outline-success" for="positive-${day}-${index}">Positive</label>
+
+        <input type="radio" class="btn-check" name="rating-${day}-${index}" id="neutral-${day}-${index}" autocomplete="off" value="neutral" checked>
+        <label class="btn btn-outline-warning" for="positive-${day}-${index}">-</label>
 
         <input type="radio" class="btn-check" name="rating-${day}-${index}" id="negative-${day}-${index}" autocomplete="off" value="negative">
         <label class="btn btn-outline-danger" for="negative-${day}-${index}">Negative</label>
@@ -55,27 +61,27 @@ function generateCard(day, assignmentName, taskName, index) {
 
   document.getElementById(`card${day}`).appendChild(card);
 
- 
+  // Add event listeners for the green and red buttons
   const positiveRadio = document.getElementById(`positive-${day}-${index}`);
   const negativeRadio = document.getElementById(`negative-${day}-${index}`);
 
   positiveRadio.addEventListener("change", function () {
-    handleRadioSelection(this, "positive");
     personName = assignmentName;
+    handleRadioSelection(this, "positive");
     document.addEventListener("DOMContentLoaded", function (personName) {
       loadComments(personName);
     });
   });
 
   negativeRadio.addEventListener("change", function () {
-    handleRadioSelection(this, "negative");
     personName = assignmentName;
+    handleRadioSelection(this, "negative");
     document.addEventListener("DOMContentLoaded", function (personName) {
       loadComments(personName);
     });
   });
 
-  
+  // Generate the modal for comments
   generateCommentModal(day, index, assignmentName);
 }
 function generateCommentModal(day, index, personName) {
@@ -104,18 +110,21 @@ function generateCommentModal(day, index, personName) {
   document.body.appendChild(modal);
 }
 
+// Function to save the comment
+// ...
 
-
+// Function to save the comment
 function saveComment(day, index) {
   const commentText = document.getElementById(
     `commentText-${day}-${index}`
   ).value;
   const commentKey = `${personName}_${day}_${index}_comment`;
 
-  
+  // Save the comment in localStorage
   localStorage.setItem(commentKey, commentText);
 }
 
+// Function to load saved comments when the page loads
 function loadComments(personName) {
   const days = ["monday", "tuesday", "wednesday", "thursday", "friday"];
   for (const day of days) {
@@ -130,34 +139,33 @@ function loadComments(personName) {
   }
 }
 
+// Call the loadComments function when the page loads
 
 function handleRadioSelection(radio, color) {
   if (radio.checked) {
     const assignmentName = radio.getAttribute("name").split("-")[1];
 
-    const positiveStorageKey = `${personName}_${assignmentName}_positive_count`;
-    const negativeStorageKey = `${personName}_${assignmentName}_negative_count`;
-    let positiveCount = localStorage.getItem(positiveStorageKey)
-    let negativeCount = localStorage.getItem(negativeStorageKey)
-    if (positiveCount === NaN || negativeCount === NaN) {
-      positiveCount = 0;
-      negativeCount = 0;
-    }
-    // Check if the selected option is "positive" or "negative"
-    if (color === "positive") {
-      localStorage.setItem(positiveStorageKey, parseInt(positiveCount) + 1);
-      localStorage.setItem(negativeStorageKey, parseInt(negativeCount) - 1); // Reset the negative count
-    } else if (color === "negative") {
-      localStorage.setItem(negativeStorageKey, parseInt(negativeCount) + 1);
-      localStorage.setItem(positiveStorageKey, parseInt(positiveCount) - 1); // Reset the positive count
-    }
-
-   
     const cardId = `card${assignmentName}`;
     const card = document.getElementById(cardId);
     card.setAttribute(`data-${color}-count`, 1);
     const oppositeColor = color === "positive" ? "negative" : "positive";
     card.setAttribute(`data-${oppositeColor}-count`, 0);
+
+    const StorageKey = `${personName}_${assignmentName}_positive_count`;
+    const finalPositiveRatingCountStorage = `${personName}_positive_count`;
+    let finalPositiveRatingCount = localStorage.getItem(finalPositiveRatingCountStorage) || 1;
+    let positiveCount = localStorage.getItem(StorageKey) || 1;
+    // Check if the selected option is "positive" or "negative"
+    if (color === "positive") {
+      localStorage.setItem(StorageKey, parseInt(positiveCount) + 1);
+      localStorage.setItem(finalPositiveRatingCountStorage, parseInt(finalPositiveRatingCount) + 1);
+    } else if (color === "negative") {
+      localStorage.setItem(StorageKey, parseInt(positiveCount) - 1); // Reset the positive count
+      // localStorage.setItem(finalPositiveRatingCountStorage, parseInt(finalPositiveRatingCount) - 1);
+    }
+
+    // Update the card's data attributes to store the current selection
+    
 
     // Calculate and store the total counts for the person
     calculateAndStoreTotalCounts(personName, "positive");
@@ -165,21 +173,21 @@ function handleRadioSelection(radio, color) {
   }
 }
 
-
+// Function to calculate and store total counts for a person
 function calculateAndStoreTotalCounts(personName, color) {
-  const days = ["monday", "tuesday", "wednesday", "thursday", "friday"];
-  let totalCount = 0;
+  // const days = ["monday", "tuesday", "wednesday", "thursday", "friday"];
+  // let totalCount = 0;
 
+  // // Loop through each day and add up the counts
+  // for (const day of days) {
+  //   const count = parseInt(
+  //     localStorage.getItem(`${personName}_${day}_${color}_count`) || 0
+  //   );
+  //   totalCount += count;
+  // }
 
-  for (const day of days) {
-    const count = parseInt(
-      localStorage.getItem(`${personName}_${day}_${color}_count`) || 0
-    );
-    totalCount += count;
-  }
-
-
-  localStorage.setItem(`${personName}_${color}_count`, totalCount.toString());
+  // // Store the total count for the person
+  // localStorage.setItem(`${personName}_${color}_count`, totalCount.toString());
 }
 
 function generateCards(day, assignments) {
@@ -192,7 +200,7 @@ function generateCards(day, assignments) {
     index++;
   }
 }
-
+// Call the initial generation function AFTER it's defined
 generateCards("monday", assignments);
 generateCards("tuesday", assignments);
 generateCards("wednesday", assignments);
