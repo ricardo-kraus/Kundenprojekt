@@ -88,6 +88,7 @@ function generateCard(day, assignmentName, taskName, index) {
   // Generate the modal for comments
   generateCommentModal(day, index, assignmentName);
 }
+
 function generateCommentModal(day, index, personName) {
   const modalId = `commentModal-${day}-${index}`;
   const modal = document.createElement("div");
@@ -98,35 +99,83 @@ function generateCommentModal(day, index, personName) {
       <div class="modal-content">
         <div class="modal-header">
           <h5 class="modal-title">Comment for ${personName}</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+          <button type="button" class="btn-close" id="closeButton-${day}-${index}"></button>
         </div>
         <div class="modal-body">
           <textarea id="commentText-${day}-${index}" class="form-control" rows="5" placeholder="Enter your comment here"></textarea>
+          <div id="commentDisplay-${day}-${index}"></div> <!-- Display the comment here -->
         </div>
         <div class="modal-footer">
-          
-          <button type="button" class="btn btn-primary" onclick="saveComment('${day}', ${index})">Save Comment</button>
+          <button type="button" class="btn btn-primary" id="saveButton-${day}-${index}">Save</button>
         </div>
       </div>
     </div>
   `;
 
   document.body.appendChild(modal);
+
+  let saveButtonClicked = false;
+
+  // Add a click event listener to the custom close button (X button)
+  const closeButton = document.getElementById(`closeButton-${day}-${index}`);
+  closeButton.addEventListener("click", function () {
+    // Check if the textarea contains text
+    const commentTextarea = document.getElementById(`commentText-${day}-${index}`);
+    const commentText = commentTextarea.value.trim();
+    if (!saveButtonClicked && commentText !== "") {
+      const confirmation = window.confirm("Do you want to close without saving?");
+      if (!confirmation) {
+        return;
+      }
+    }
+    redirectToHomepage();
+  });
+
+  // Add a click event listener to the custom save button
+  const saveButton = document.getElementById(`saveButton-${day}-${index}`);
+  saveButton.addEventListener("click", saveCommentAndDisplay);
+
+  function saveCommentAndDisplay() {
+    const commentTextarea = document.getElementById(`commentText-${day}-${index}`);
+    const commentDisplay = document.getElementById(`commentDisplay-${day}-${index}`);
+    const commentText = commentTextarea.value.trim();
+
+    if (commentText !== "") {
+      saveComment(day, index, commentText);
+
+      const deleteButton = document.createElement("button");
+      deleteButton.innerText = "X";
+      deleteButton.className = "btn btn-danger delete-comment";
+      deleteButton.addEventListener("click", function () {
+        // When the delete button is clicked, remove the comment and clear it from local storage
+        commentDisplay.remove();
+        localStorage.removeItem(`comment-${day}-${index}`);
+      });
+
+      // Create a container for the comment and the delete button
+      const commentContainer = document.createElement("div");
+      commentContainer.className = "comment-container";
+      commentContainer.innerHTML = `<p>${commentText}</p>`;
+      commentContainer.appendChild(deleteButton);
+
+      commentDisplay.appendChild(commentContainer);
+
+      commentTextarea.value = "";
+
+      saveButtonClicked = true;
+    }
+  }
+
+  function saveComment(day, index, commentText) {
+    const commentKey = `comment-${day}-${index}`;
+    localStorage.setItem(commentKey, commentText);
+  }
+
+  function redirectToHomepage() {
+    window.location.href = "Homepage.html";
+  }
 }
 
-// Function to save the comment
-// ...
-
-// Function to save the comment
-function saveComment(day, index) {
-  const commentText = document.getElementById(
-    `commentText-${day}-${index}`
-  ).value;
-  const commentKey = `${personName}_${day}_${index}_comment`;
-
-  // Save the comment in localStorage
-  localStorage.setItem(commentKey, commentText);
-}
 
 // Function to load saved comments when the page loads
 function loadComments(personName) {
