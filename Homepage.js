@@ -78,6 +78,7 @@ function generateCard(day, assignmentName, taskName, index) {
   
   generateCommentModal(day, index, assignmentName);
 }
+
 function generateCommentModal(day, index, personName) {
   const modalId = `commentModal-${day}-${index}`;
   const modal = document.createElement("div");
@@ -88,32 +89,66 @@ function generateCommentModal(day, index, personName) {
       <div class="modal-content">
         <div class="modal-header">
           <h5 class="modal-title">Comment for ${personName}</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+          <button type="button" class="btn-close" id="closeButton-${day}-${index}"></button>
         </div>
         <div class="modal-body">
           <textarea id="commentText-${day}-${index}" class="form-control" rows="5" placeholder="Enter your comment here"></textarea>
+          <div id="commentDisplay-${day}-${index}"></div> <!-- Display the comment here -->
         </div>
         <div class="modal-footer">
-          
-          <button type="button" class="btn btn-primary" onclick="saveComment('${day}', ${index})">Save Comment</button>
+          <button type="button" class="btn btn-primary" id="saveButton-${day}-${index}">Save</button>
         </div>
       </div>
     </div>
   `;
 
   document.body.appendChild(modal);
-}
 
+  let saveButtonClicked = false;
 
+  // Add a click event listener to the custom close button (X button)
+  const closeButton = document.getElementById(`closeButton-${day}-${index}`);
+  closeButton.addEventListener("click", function () {
+    // Check if the textarea contains text
+    const commentTextarea = document.getElementById(`commentText-${day}-${index}`);
+    const commentText = commentTextarea.value.trim();
+    if (!saveButtonClicked && commentText !== "") {
+      const confirmation = window.confirm("Do you want to close without saving?");
+      if (!confirmation) {
+        return;
+      }
+    }
+    redirectToHomepage();
+  });
 
-function saveComment(day, index) {
-  const commentText = document.getElementById(
-    `commentText-${day}-${index}`
-  ).value;
-  const commentKey = `${personName}_${day}_${index}_comment`;
+ // Add a click event listener to the custom save button
+  const saveButton = document.getElementById(`saveButton-${day}-${index}`);
+  saveButton.addEventListener("click", saveCommentAndDisplay);
 
-  
-  localStorage.setItem(commentKey, commentText);
+  function saveCommentAndDisplay() {
+    const commentTextarea = document.getElementById(`commentText-${day}-${index}`);
+    const commentDisplay = document.getElementById(`commentDisplay-${day}-${index}`);
+    const commentText = commentTextarea.value.trim();
+
+    if (commentText !== "") {
+      saveComment(day, index, commentText);
+      
+      commentDisplay.innerHTML += `<p>${commentText}</p>`;
+
+      commentTextarea.value = "";
+
+      saveButtonClicked = true;
+    }
+  }
+
+  function saveComment(day, index, commentText) {
+    const commentKey = `comment-${day}-${index}`;
+    localStorage.setItem(commentKey, commentText);
+  }
+
+  function redirectToHomepage() {
+    window.location.href = "Homepage.html";
+  }
 }
 
 function loadComments(personName) {
@@ -130,7 +165,6 @@ function loadComments(personName) {
   }
 }
 
-
 function handleRadioSelection(radio, color) {
   if (radio.checked) {
     const assignmentName = radio.getAttribute("name").split("-")[1];
@@ -145,7 +179,6 @@ function handleRadioSelection(radio, color) {
       localStorage.setItem(negativeStorageKey, "1");
       localStorage.setItem(positiveStorageKey, "0"); 
     }
-
    
     const cardId = `card${assignmentName}`;
     const card = document.getElementById(cardId);
@@ -157,7 +190,6 @@ function handleRadioSelection(radio, color) {
     calculateAndStoreTotalCounts(personName, color);
   }
 }
-
 
 function calculateAndStoreTotalCounts(personName, color) {
   const days = ["monday", "tuesday", "wednesday", "thursday", "friday"];
@@ -171,7 +203,6 @@ function calculateAndStoreTotalCounts(personName, color) {
     totalCount += count;
   }
 
-
   localStorage.setItem(`${personName}_${color}_count`, totalCount.toString());
 }
 
@@ -181,7 +212,6 @@ function generateCards(day, assignments) {
   for (const assignmentName in assignments[day]) {
     const taskName = assignments[day][assignmentName];
     generateCard(day, assignmentName, taskName, index);
-    console.log(assignmentName);
     index++;
   }
 }
