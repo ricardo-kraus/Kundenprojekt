@@ -33,14 +33,14 @@ document.getElementById("darkmode").addEventListener("click", toggleDarkMode);
 assignmentsJSON = localStorage.getItem("assignments");
 assignments = JSON.parse(assignmentsJSON);
 
-function generateCard(day, assignmentName, taskName, index) {
+function generateCard(day, personName, taskName, index) {
   const cardId = `card${day}${index}`;
   const card = document.createElement("div");
   card.className = "card mx-auto mb-5 ";
   card.innerHTML = `
     <div class="card-body">
       <div class="card-title fs-5 fw-semibold" id="${cardId}">
-        ${assignmentName} <!-- Zuerst der Name -->
+        ${personName} <!-- Zuerst der Name -->
       </div>
       <div class="card-text" id="cardname${day}${index}">
         ${taskName} <!-- Dann die Aufgabe -->
@@ -68,9 +68,9 @@ function generateCard(day, assignmentName, taskName, index) {
   // Add event listeners for the green and red buttons
   const positiveRadio = document.getElementById(`positive-${day}-${index}`);
   const negativeRadio = document.getElementById(`negative-${day}-${index}`);
+  const neutralRadio = document.getElementById(`neutral-${day}-${index}`);
 
   positiveRadio.addEventListener("change", function () {
-    personName = assignmentName;
     handleRadioSelection(this, "positive");
     document.addEventListener("DOMContentLoaded", function (personName) {
       loadComments(personName);
@@ -78,7 +78,6 @@ function generateCard(day, assignmentName, taskName, index) {
   });
 
   negativeRadio.addEventListener("change", function () {
-    personName = assignmentName;
     handleRadioSelection(this, "negative");
     document.addEventListener("DOMContentLoaded", function (personName) {
       loadComments(personName);
@@ -86,7 +85,7 @@ function generateCard(day, assignmentName, taskName, index) {
   });
 
   // Generate the modal for comments
-  generateCommentModal(day, index, assignmentName);
+  generateCommentModal(day, index, personName);
 }
 function generateCommentModal(day, index, personName) {
   const modalId = `commentModal-${day}-${index}`;
@@ -147,44 +146,64 @@ function loadComments(personName) {
 
 function handleRadioSelection(radio, color) {
   if (radio.checked) {
-    const assignmentName = radio.getAttribute("name").split("-")[1];
+    const day = radio.getAttribute("name").split("-")[1];
+    
+    // const task =
+    // const cardId = `card${day}`;
+    // const card = document.getElementById(cardId);
+    // card.setAttribute(`data-${color}-count`, 1);
+    // const oppositeColor = color === "positive" ? "negative" : "positive";
+    // card.setAttribute(`data-${oppositeColor}-count`, 0);
 
-    const cardId = `card${assignmentName}`;
-    const card = document.getElementById(cardId);
-    card.setAttribute(`data-${color}-count`, 1);
-    const oppositeColor = color === "positive" ? "negative" : "positive";
-    card.setAttribute(`data-${oppositeColor}-count`, 0);
-
-    const StorageKey = `${personName}_${assignmentName}_positive_count`;
-    const finalPositiveRatingCountStorage = `${personName}_positive_count`;
-    const finalNegativeRatingCountStorage = `${personName}_negative_count`;
-    let finalPositiveRatingCount = localStorage.getItem(finalPositiveRatingCountStorage) || 0;
-    let finalNegativeRatingCount = localStorage.getItem(finalNegativeRatingCountStorage) || 0;
-    let positiveCount = localStorage.getItem(StorageKey) || 0;
-    // Check if the selected option is "positive" or "negative"
-    if (color === "positive") {
-      positiveCount = parseInt(positiveCount) + 1;
-      localStorage.setItem(StorageKey, positiveCount);
-      finalPositiveRatingCount = parseInt(finalPositiveRatingCount) + 1;
-      localStorage.setItem(finalPositiveRatingCountStorage, finalPositiveRatingCount);
-    } else if (color === "negative") {
-      positiveCount = 0;
-      localStorage.setItem(StorageKey, positiveCount);
-      finalNegativeRatingCount = parseInt(finalNegativeRatingCount) + 1;
-      localStorage.setItem(finalNegativeRatingCountStorage, finalNegativeRatingCount);
-    }
+    // const StorageKey = `${personName}_${day}_positive_count`;
+    // const finalPositiveRatingCountStorage = `${personName}_positive_count`;
+    // const finalNegativeRatingCountStorage = `${personName}_negative_count`;
+    // let finalPositiveRatingCount = localStorage.getItem(finalPositiveRatingCountStorage) || 0;
+    // let finalNegativeRatingCount = localStorage.getItem(finalNegativeRatingCountStorage) || 0;
+    // let positiveCount = localStorage.getItem(StorageKey) || 0;
+    // const allStoredRatingsForAPerson = localStorage.getItem(`${personName}_${day}_positive_count`) || 0
+    // // Check if the selected option is "positive" or "negative"
+    // if (color === "positive") {
+    //   // for (let key in allStoredRatingsForAPerson) {
+    //     if (allStoredRatingsForAPerson == 0 || allStoredRatingsForAPerson == NaN) { // Check the value associated with StorageKey
+    //       console.log("test1")
+    //       finalPositiveRatingCount = parseInt(finalPositiveRatingCount) + 1;
+    //       localStorage.setItem(finalPositiveRatingCountStorage, finalPositiveRatingCount);
+    //       finalNegativeRatingCount = parseInt(finalNegativeRatingCount) - 1;
+    //       localStorage.setItem(finalNegativeRatingCountStorage, finalNegativeRatingCount);
+    //     }
+    //   // }
+    //   positiveCount = parseInt(positiveCount) + 1;
+    //   localStorage.setItem(StorageKey, positiveCount);
+    //   // finalPositiveRatingCount = parseInt(finalPositiveRatingCount) + 1;
+    //   // localStorage.setItem(finalPositiveRatingCountStorage, finalPositiveRatingCount);
+      
+      
+    // } else if (color === "negative") {
+    //   // for (let key in allStoredRatingsForAPerson) {
+    //     if (allStoredRatingsForAPerson == 1 || allStoredRatingsForAPerson == NaN) {
+    //       console.log("test2")
+    //       finalPositiveRatingCount = parseInt(finalPositiveRatingCount) - 1;
+    //       localStorage.setItem(finalPositiveRatingCountStorage, finalPositiveRatingCount);
+    //       finalNegativeRatingCount = parseInt(finalNegativeRatingCount) + 1;
+    //       localStorage.setItem(finalNegativeRatingCountStorage, finalNegativeRatingCount);
+    //     }
+    //   // }
+    //   positiveCount = 0;
+    //   localStorage.setItem(StorageKey, positiveCount)
+    // }
 
     // Update the card's data attributes to store the current selection
     
 
     // Calculate and store the total counts for the person
-    calculateAndStoreTotalCounts(personName, "positive");
-    calculateAndStoreTotalCounts(personName, "negative");
+    // calculateAndStoreTotalCounts(personName, "positive");
+    // calculateAndStoreTotalCounts(personName, "negative");
   }
 }
-
+// 
 // Function to calculate and store total counts for a person
-function calculateAndStoreTotalCounts(personName, color) {
+// function calculateAndStoreTotalCounts(personName, color) {
   // const days = ["monday", "tuesday", "wednesday", "thursday", "friday"];
   // let totalCount = 0;
 
@@ -198,14 +217,14 @@ function calculateAndStoreTotalCounts(personName, color) {
 
   // // Store the total count for the person
   // localStorage.setItem(`${personName}_${color}_count`, totalCount.toString());
-}
+// }
 
 function generateCards(day, assignments) {
   let index = 1;
 
-  for (const assignmentName in assignments[day]) {
-    const taskName = assignments[day][assignmentName];
-    generateCard(day, assignmentName, taskName, index);
+  for (const personName in assignments[day]) {
+    const taskName = assignments[day][personName];
+    generateCard(day, personName, taskName, index);
     index++;
   }
 }
