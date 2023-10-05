@@ -162,3 +162,10 @@ body {
     color: #fff;
     /* Change this to the text color you want */
 }
+.img-thumbs-up{
+    width: 1rem;
+}
+.img-thumbs-down{
+    width: 1rem;
+    transform: rotate(180deg);
+}
