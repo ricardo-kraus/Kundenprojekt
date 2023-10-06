@@ -1,5 +1,8 @@
 // JavaScript-Funktionen
-let personName;
+let personNameStorage;
+let ratingstorage;
+let cardName
+let dayStorage;
 function toggleDarkMode() {
   const htmlTag = document.documentElement;
   const darkmodeButton = document.getElementById("darkmode");
@@ -39,7 +42,7 @@ function generateCard(day, personName, taskName, index) {
   card.className = "card mx-auto mb-5 ";
   card.innerHTML = `
     <div class="card-body">
-      <div class="card-title fs-5 fw-semibold" id="${cardId}">
+      <div class="card-title fs-5 fw-semibold" id="${cardId}" personName="${personName}">
         ${personName} <!-- Zuerst der Name -->
       </div>
       <div class="card-text" id="cardname${day}${index}">
@@ -69,6 +72,9 @@ function generateCard(day, personName, taskName, index) {
   const positiveRadio = document.getElementById(`positive-${day}-${index}`);
   const negativeRadio = document.getElementById(`negative-${day}-${index}`);
   const neutralRadio = document.getElementById(`neutral-${day}-${index}`);
+  const cardElement = document.getElementById(cardId);
+  personNameStorage = cardElement.getAttribute("data-personName");
+  dayStorage = cardElement.getElementsByClassName("card-text")
 
   positiveRadio.addEventListener("change", function () {
     handleRadioSelection(this, "positive");
@@ -147,7 +153,16 @@ function loadComments(personName) {
 function handleRadioSelection(radio, color) {
   if (radio.checked) {
     const day = radio.getAttribute("name").split("-")[1];
-    
+    const cardNameElement = document.getElementById(personNameStorage);
+    // Check if the cardNameElement exists before accessing its innerHTML
+    if (cardNameElement) {
+      personName = cardNameElement.innerHTML;
+      console.log(personName);
+    }
+    const oldValue = ratingstorage;
+    const ratingValue = color;
+    ratingstorage = ratingValue
+    console.log(dayStorage)
     // const task =
     // const cardId = `card${day}`;
     // const card = document.getElementById(cardId);
@@ -225,6 +240,7 @@ function generateCards(day, assignments) {
   for (const personName in assignments[day]) {
     const taskName = assignments[day][personName];
     generateCard(day, personName, taskName, index);
+    nameStorage = personName;
     index++;
   }
 }
