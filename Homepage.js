@@ -78,6 +78,7 @@ function generateCard(day, assignmentName, taskName, index) {
   });
   generateCommentModal(day, index, assignmentName);
 }
+
 function generateCommentModal(day, index, personName) {
   const modalId = `commentModal-${day}-${index}`;
   const modal = document.createElement("div");
@@ -156,7 +157,7 @@ function generateCommentModal(day, index, personName) {
       commentContainer.style.display = "flex";
       commentContainer.style.alignItems = "center"; 
       commentContainer.id = `comment-${day}-${index}`;
-      
+
       commentTextarea.value = "";
       saveButtonClicked = true;
     }
