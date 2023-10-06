@@ -23,6 +23,7 @@ function toggleDarkMode() {
   }
 }
 document.getElementById("darkmode").addEventListener("click", toggleDarkMode);
+
 assignmentsJSON = localStorage.getItem("assignments");
 assignments = JSON.parse(assignmentsJSON);
 
@@ -189,7 +190,12 @@ function handleRadioSelection(radio, color, personName, taskName) {
       // Decrease the negative count only if it was previously negative
       ratings[personName][day][task]["negativeCount"] -= 1;
     }
-
+    else if (oldValue == ratingValue && ratingValue == "positive" && ratings[personName][day][task]["negativeCount"] > 0) {
+      ratings[personName][day][task]["negativeCount"] -= 1;
+    }
+    else if (oldValue == ratingValue && ratingValue == "negative" && ratings[personName][day][task]["positiveCount"] > 0) {
+      ratings[personName][day][task]["positiveCount"] -= 1;
+    }
     // Store the updated ratings object back to localStorage
     localStorage.setItem("ratings", JSON.stringify(ratings));
 
@@ -232,7 +238,7 @@ function generateCards(day, assignments) {
     index++;
   }
 }
-// Call the initial generation function AFTER it's defined
+
 generateCards("monday", assignments);
 generateCards("tuesday", assignments);
 generateCards("wednesday", assignments);
