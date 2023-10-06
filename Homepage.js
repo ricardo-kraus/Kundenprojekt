@@ -1,4 +1,3 @@
-// JavaScript-Funktionen
 let personName;
 function toggleDarkMode() {
   const htmlTag = document.documentElement;
@@ -26,10 +25,6 @@ if (savedMode === "dark") {
 
 document.getElementById("darkmode").addEventListener("click", toggleDarkMode);
 
-// Weitere JavaScript-Funktionen hier einfügen
-// Weitere JavaScript-Funktionen hier einfügen
-
-// Beispiel: Die Funktionen für das Generieren von Karten
 assignmentsJSON = localStorage.getItem("assignments");
 assignments = JSON.parse(assignmentsJSON);
 
@@ -65,10 +60,8 @@ function generateCard(day, assignmentName, taskName, index) {
 
   document.getElementById(`card${day}`).appendChild(card);
 
-  // Add event listeners for the green and red buttons
   const positiveRadio = document.getElementById(`positive-${day}-${index}`);
   const negativeRadio = document.getElementById(`negative-${day}-${index}`);
-
   positiveRadio.addEventListener("change", function () {
     personName = assignmentName;
     handleRadioSelection(this, "positive");
@@ -76,7 +69,6 @@ function generateCard(day, assignmentName, taskName, index) {
       loadComments(personName);
     });
   });
-
   negativeRadio.addEventListener("change", function () {
     personName = assignmentName;
     handleRadioSelection(this, "negative");
@@ -84,11 +76,8 @@ function generateCard(day, assignmentName, taskName, index) {
       loadComments(personName);
     });
   });
-
-  // Generate the modal for comments
   generateCommentModal(day, index, assignmentName);
 }
-
 function generateCommentModal(day, index, personName) {
   const modalId = `commentModal-${day}-${index}`;
   const modal = document.createElement("div");
@@ -113,13 +102,9 @@ function generateCommentModal(day, index, personName) {
   `;
 
   document.body.appendChild(modal);
-
   let saveButtonClicked = false;
-
-  // Add a click event listener to the custom close button (X button)
   const closeButton = document.getElementById(`closeButton-${day}-${index}`);
   closeButton.addEventListener("click", function () {
-    // Check if the textarea contains text
     const commentTextarea = document.getElementById(`commentText-${day}-${index}`);
     const commentText = commentTextarea.value.trim();
     if (!saveButtonClicked && commentText !== "") {
@@ -130,10 +115,10 @@ function generateCommentModal(day, index, personName) {
     }
     redirectToHomepage();
   });
-
-  // Add a click event listener to the custom save button
   const saveButton = document.getElementById(`saveButton-${day}-${index}`);
   saveButton.addEventListener("click", saveCommentAndDisplay);
+<<<<<<< HEAD
+=======
 
   // Load and display the saved comment if available
   const savedCommentKey = `comment-${day}-${index}`;
@@ -144,14 +129,13 @@ function generateCommentModal(day, index, personName) {
     saveCommentAndDisplay(); // Display the comment immediately
   }
 
+>>>>>>> e3abee888009c4f6ea4ad6376552c38e283f53ed
   function saveCommentAndDisplay() {
     const commentTextarea = document.getElementById(`commentText-${day}-${index}`);
     const commentDisplay = document.getElementById(`commentDisplay-${day}-${index}`);
     const commentText = commentTextarea.value.trim();
-
     if (commentText !== "") {
       saveComment(day, index, commentText);
-
       const deleteButton = document.createElement("button");
       deleteButton.innerText = "X";
       deleteButton.style.color = "red"
@@ -163,20 +147,13 @@ function generateCommentModal(day, index, personName) {
         commentContainer.remove();
         localStorage.removeItem(`comment-${day}-${index}`);
       });
-
-      // Create a container for the comment and the delete button
       const commentContainer = document.createElement("div");
       commentContainer.className = "comment-container";
       commentContainer.innerHTML = `<p>${commentText}</p>`;
       commentContainer.appendChild(deleteButton);
-
       commentDisplay.appendChild(commentContainer);
-      commentContainer.style.display = "flex";
-      commentContainer.style.alignItems = "center"; 
-      commentContainer.id = `comment-${day}-${index}`;
 
       commentTextarea.value = "";
-
       saveButtonClicked = true;
     }
   }
@@ -190,8 +167,11 @@ function generateCommentModal(day, index, personName) {
     window.location.href = "Homepage.html";
   }
 }
+<<<<<<< HEAD
+=======
 
 // Function to load saved comments when the page loads
+>>>>>>> e3abee888009c4f6ea4ad6376552c38e283f53ed
 function loadComments(personName) {
   const days = ["monday", "tuesday", "wednesday", "thursday", "friday"];
   for (const day of days) {
@@ -205,26 +185,15 @@ function loadComments(personName) {
     }
   }
 }
-
-// Call the loadComments function when the page loads
-
 function handleRadioSelection(radio, color) {
   if (radio.checked) {
     const assignmentName = radio.getAttribute("name").split("-")[1];
-
-    const cardId = `card${assignmentName}`;
-    const card = document.getElementById(cardId);
-    card.setAttribute(`data-${color}-count`, 1);
-    const oppositeColor = color === "positive" ? "negative" : "positive";
-    card.setAttribute(`data-${oppositeColor}-count`, 0);
-
     const StorageKey = `${personName}_${assignmentName}_positive_count`;
     const finalPositiveRatingCountStorage = `${personName}_positive_count`;
     const finalNegativeRatingCountStorage = `${personName}_negative_count`;
     let finalPositiveRatingCount = localStorage.getItem(finalPositiveRatingCountStorage) || 0;
     let finalNegativeRatingCount = localStorage.getItem(finalNegativeRatingCountStorage) || 0;
     let positiveCount = localStorage.getItem(StorageKey) || 0;
-    // Check if the selected option is "positive" or "negative"
     if (color === "positive") {
       positiveCount = parseInt(positiveCount) + 1;
       localStorage.setItem(StorageKey, positiveCount);
@@ -236,31 +205,7 @@ function handleRadioSelection(radio, color) {
       finalNegativeRatingCount = parseInt(finalNegativeRatingCount) + 1;
       localStorage.setItem(finalNegativeRatingCountStorage, finalNegativeRatingCount);
     }
-
-    // Update the card's data attributes to store the current selection
-    
-
-    // Calculate and store the total counts for the person
-    calculateAndStoreTotalCounts(personName, "positive");
-    calculateAndStoreTotalCounts(personName, "negative");
   }
-}
-
-// Function to calculate and store total counts for a person
-function calculateAndStoreTotalCounts(personName, color) {
-  // const days = ["monday", "tuesday", "wednesday", "thursday", "friday"];
-  // let totalCount = 0;
-
-  // // Loop through each day and add up the counts
-  // for (const day of days) {
-  //   const count = parseInt(
-  //     localStorage.getItem(`${personName}_${day}_${color}_count`) || 0
-  //   );
-  //   totalCount += count;
-  // }
-
-  // // Store the total count for the person
-  // localStorage.setItem(`${personName}_${color}_count`, totalCount.toString());
 }
 
 function generateCards(day, assignments) {
