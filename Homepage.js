@@ -102,7 +102,9 @@ function generateCommentModal(day, index, personName) {
   `;
 
   document.body.appendChild(modal);
-  let saveButtonClicked = false;
+
+  const comments = []
+
   const closeButton = document.getElementById(`closeButton-${day}-${index}`);
   closeButton.addEventListener("click", function () {
     const commentTextarea = document.getElementById(`commentText-${day}-${index}`);
@@ -115,9 +117,9 @@ function generateCommentModal(day, index, personName) {
     }
     redirectToHomepage();
   });
+  
   const saveButton = document.getElementById(`saveButton-${day}-${index}`);
   saveButton.addEventListener("click", saveCommentAndDisplay);
-
   // Load and display the saved comment if available
   const savedCommentKey = `comment-${day}-${index}`;
   const savedCommentText = localStorage.getItem(savedCommentKey);
@@ -126,15 +128,12 @@ function generateCommentModal(day, index, personName) {
     commentTextarea.value = savedCommentText;
     saveCommentAndDisplay(); // Display the comment immediately
   }
-
   function saveCommentAndDisplay() {
     const commentTextarea = document.getElementById(`commentText-${day}-${index}`);
     const commentDisplay = document.getElementById(`commentDisplay-${day}-${index}`);
     const commentText = commentTextarea.value.trim();
-
     if (commentText !== "") {
       saveComment(day, index, commentText);
-
       const deleteButton = document.createElement("button");
       deleteButton.innerText = "X";
       deleteButton.style.color = "red"
@@ -146,31 +145,27 @@ function generateCommentModal(day, index, personName) {
         commentContainer.remove();
         localStorage.removeItem(`comment-${day}-${index}`);
       });
-
       const commentContainer = document.createElement("div");
       commentContainer.className = "comment-container";
       commentContainer.innerHTML = `<p>${commentText}</p>`;
       commentContainer.appendChild(deleteButton);
-
       commentDisplay.appendChild(commentContainer);
       commentContainer.style.display = "flex";
-      commentContainer.style.alignItems = "center"; 
+      commentContainer.style.alignItems = "center";
       commentContainer.id = `comment-${day}-${index}`;
-
       commentTextarea.value = "";
       saveButtonClicked = true;
     }
   }
-
   function saveComment(day, index, commentText) {
     const commentKey = `comment-${day}-${index}`;
     localStorage.setItem(commentKey, commentText);
   }
-
   function redirectToHomepage() {
     window.location.href = "Homepage.html";
   }
 }
+
 
 // Function to load saved comments when the page loads
 function loadComments(personName) {
