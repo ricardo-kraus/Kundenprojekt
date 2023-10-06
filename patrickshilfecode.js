@@ -1,8 +1,8 @@
 // JavaScript-Funktionen
 let personNameStorage;
 let ratingstorage;
-let cardName
-let dayStorage;
+let cardName;
+let taskStorage;
 function toggleDarkMode() {
   const htmlTag = document.documentElement;
   const darkmodeButton = document.getElementById("darkmode");
@@ -45,7 +45,7 @@ function generateCard(day, personName, taskName, index) {
       <div class="card-title fs-5 fw-semibold" id="${cardId}" personName="${personName}">
         ${personName} <!-- Zuerst der Name -->
       </div>
-      <div class="card-text" id="cardname${day}${index}">
+      <div class="card-text" id="cardname${day}${index}" taskName="${taskName}">
         ${taskName} <!-- Dann die Aufgabe -->
       </div>
       <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
@@ -73,8 +73,9 @@ function generateCard(day, personName, taskName, index) {
   const negativeRadio = document.getElementById(`negative-${day}-${index}`);
   const neutralRadio = document.getElementById(`neutral-${day}-${index}`);
   const cardElement = document.getElementById(cardId);
-  personNameStorage = cardElement.getAttribute("data-personName");
-  dayStorage = cardElement.getElementsByClassName("card-text")
+  personNameStorage = personName;
+  console.log(personNameStorage);
+  taskStorage = cardElement.getAttribute("data-taskName");
 
   positiveRadio.addEventListener("change", function () {
     handleRadioSelection(this, "positive");
@@ -116,7 +117,6 @@ function generateCommentModal(day, index, personName) {
       </div>
     </div>
   `;
-
   document.body.appendChild(modal);
 }
 
@@ -163,7 +163,7 @@ function handleRadioSelection(radio, color) {
     const oldValue = ratingstorage;
     const ratingValue = color;
     ratingstorage = ratingValue
-    console.log(dayStorage)
+    console.log(taskStorage)
     // const task =
     // const cardId = `card${day}`;
     // const card = document.getElementById(cardId);
