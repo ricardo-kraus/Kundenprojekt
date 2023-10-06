@@ -185,8 +185,6 @@ function generateCommentModal(day, index, personName) {
   }
 }
 
-
-
 // Function to load saved comments when the page loads
 function loadComments(personName) {
   const days = ["monday", "tuesday", "wednesday", "thursday", "friday"];
