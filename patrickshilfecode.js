@@ -93,6 +93,7 @@ function generateCard(day, personName, taskName, index) {
   // Generate the modal for comments
   generateCommentModal(day, index, personName);
 }
+
 function generateCommentModal(day, index, personName) {
   const modalId = `commentModal-${day}-${index}`;
   const modal = document.createElement("div");
