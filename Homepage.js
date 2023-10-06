@@ -96,8 +96,6 @@ function generateCommentModal(day, index, personName) {
 
   document.body.appendChild(modal);
 
-  const comments = []
-
   const closeButton = document.getElementById(`closeButton-${day}-${index}`);
   closeButton.addEventListener("click", function () {
     const commentTextarea = document.getElementById(`commentText-${day}-${index}`);
@@ -113,13 +111,12 @@ function generateCommentModal(day, index, personName) {
   
   const saveButton = document.getElementById(`saveButton-${day}-${index}`);
   saveButton.addEventListener("click", saveCommentAndDisplay);
-  // Load and display the saved comment if available
   const savedCommentKey = `comment-${day}-${index}`;
   const savedCommentText = localStorage.getItem(savedCommentKey);
   if (savedCommentText) {
     const commentTextarea = document.getElementById(`commentText-${day}-${index}`);
     commentTextarea.value = savedCommentText;
-    saveCommentAndDisplay(); // Display the comment immediately
+    saveCommentAndDisplay();
   }
   function saveCommentAndDisplay() {
     const commentTextarea = document.getElementById(`commentText-${day}-${index}`);
