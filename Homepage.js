@@ -23,7 +23,6 @@ function toggleDarkMode() {
   }
 }
 document.getElementById("darkmode").addEventListener("click", toggleDarkMode);
-
 assignmentsJSON = localStorage.getItem("assignments");
 assignments = JSON.parse(assignmentsJSON);
 
@@ -240,16 +239,14 @@ generateCards("wednesday", assignments);
 generateCards("thursday", assignments);
 generateCards("friday", assignments);
 
-let date = new Date();
-function getWeekNumber(date) {
-  date = new Date(date);
-  date.setHours(0, 0, 0, 0);
-  date.setDate(date.getDate() + 4 - (date.getDay() || 7));
-  let yearStart = new Date(date.getFullYear(), 0, 1);
-  let weekNumber = Math.ceil(((date - yearStart) / 86400000 + 1) / 7);
+function getCurrentWeekNumber() {
+  const currentDate = new Date();
+  currentDate.setHours(0, 0, 0, 0);
+  currentDate.setDate(currentDate.getDate() + 4 - (currentDate.getDay() || 7));
+  const yearStart = new Date(currentDate.getFullYear(), 0, 1);
+  const weekNumber = Math.ceil(((currentDate - yearStart) / 86400000 + 1) / 7);
   return weekNumber;
 }
+const currentWeek = getCurrentWeekNumber();
+document.getElementById("kw").textContent = `KW ${currentWeek}`;
 
-let currentWeek = getWeekNumber(date);
-let currentWeekString = currentWeek.toString();
-document.getElementById("kw").innerHTML = "KW " + currentWeekString;
