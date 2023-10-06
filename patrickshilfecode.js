@@ -25,10 +25,6 @@ if (savedMode === "dark") {
 
 document.getElementById("darkmode").addEventListener("click", toggleDarkMode);
 
-// Weitere JavaScript-Funktionen hier einfügen
-// Weitere JavaScript-Funktionen hier einfügen
-
-// Beispiel: Die Funktionen für das Generieren von Karten
 assignmentsJSON = localStorage.getItem("assignments");
 assignments = JSON.parse(assignmentsJSON);
 
@@ -136,9 +132,6 @@ function loadComments(personName) {
     }
   }
 }
-
-// Call the loadComments function when the page loads
-
 function handleRadioSelection(radio, color, personName, taskName) {
   if (radio.checked) {
     const day = radio.getAttribute("name").split("-")[1];
