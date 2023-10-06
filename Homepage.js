@@ -108,7 +108,7 @@ function generateCommentModal(day, index, personName) {
     }
     redirectToHomepage();
   });
-  
+
   const saveButton = document.getElementById(`saveButton-${day}-${index}`);
   saveButton.addEventListener("click", saveCommentAndDisplay);
   const savedCommentKey = `comment-${day}-${index}`;
@@ -116,37 +116,40 @@ function generateCommentModal(day, index, personName) {
   if (savedCommentText) {
     const commentTextarea = document.getElementById(`commentText-${day}-${index}`);
     commentTextarea.value = savedCommentText;
-    saveCommentAndDisplay();
+    saveButtonClicked = true;
+    saveCommentAndDisplay(day, index, savedCommentText);
   }
-  function saveCommentAndDisplay() {
-    const commentTextarea = document.getElementById(`commentText-${day}-${index}`);
-    const commentDisplay = document.getElementById(`commentDisplay-${day}-${index}`);
-    const commentText = commentTextarea.value.trim();
-    if (commentText !== "") {
-      saveComment(day, index, commentText);
-      const deleteButton = document.createElement("button");
-      deleteButton.innerText = "X";
-      deleteButton.style.color = "red"
-      deleteButton.backgroundColor = "transparent";
-      deleteButton.className = "btn delete-comment";
-      deleteButton.addEventListener("click", function () {
-        // When the delete button is clicked, remove the comment and clear it from local storage
-        const commentContainer = deleteButton.parentNode;
-        commentContainer.remove();
-        localStorage.removeItem(`comment-${day}-${index}`);
-      });
-      const commentContainer = document.createElement("div");
-      commentContainer.className = "comment-container";
-      commentContainer.innerHTML = `<p>${commentText}</p>`;
-      commentContainer.appendChild(deleteButton);
-      commentDisplay.appendChild(commentContainer);
-      commentContainer.style.display = "flex";
-      commentContainer.style.alignItems = "center";
-      commentContainer.id = `comment-${day}-${index}`;
-      commentTextarea.value = "";
-      saveButtonClicked = true;
-    }
+
+function saveCommentAndDisplay() {
+  const commentTextarea = document.getElementById(`commentText-${day}-${index}`);
+  const commentDisplay = document.getElementById(`commentDisplay-${day}-${index}`);
+  const commentText = commentTextarea.value.trim();
+  if (commentText !== "") {
+    saveComment(day, index, commentText);
+    const deleteButton = document.createElement("button");
+    deleteButton.innerText = "X";
+    deleteButton.style.color = "red"
+    deleteButton.backgroundColor = "transparent";
+    deleteButton.className = "btn delete-comment";
+    deleteButton.addEventListener("click", function () {
+      // When the delete button is clicked, remove the comment and clear it from local storage
+      const commentContainer = deleteButton.parentNode;
+      commentContainer.remove();
+      localStorage.removeItem(`comment-${day}-${index}`);
+    });
+    const commentContainer = document.createElement("div");
+    commentContainer.className = "comment-container";
+    commentContainer.innerHTML = `<p>${commentText}</p>`;
+    commentContainer.appendChild(deleteButton);
+    commentDisplay.appendChild(commentContainer);
+    commentContainer.style.display = "flex";
+    commentContainer.style.alignItems = "center";
+    commentContainer.id = `comment-${day}-${index}`;
+    commentTextarea.value = "";
+    // saveButtonClicked = true;
   }
+}
+
   function saveComment(day, index, commentText) {
     const commentKey = `comment-${day}-${index}`;
     localStorage.setItem(commentKey, commentText);
@@ -252,4 +255,3 @@ function getCurrentWeekNumber() {
 }
 const currentWeek = getCurrentWeekNumber();
 document.getElementById("kw").textContent = `KW ${currentWeek}`;
-
