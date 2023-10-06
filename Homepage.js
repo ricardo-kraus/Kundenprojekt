@@ -135,6 +135,15 @@ function generateCommentModal(day, index, personName) {
   const saveButton = document.getElementById(`saveButton-${day}-${index}`);
   saveButton.addEventListener("click", saveCommentAndDisplay);
 
+  // Load and display the saved comment if available
+  const savedCommentKey = `comment-${day}-${index}`;
+  const savedCommentText = localStorage.getItem(savedCommentKey);
+  if (savedCommentText) {
+    const commentTextarea = document.getElementById(`commentText-${day}-${index}`);
+    commentTextarea.value = savedCommentText;
+    saveCommentAndDisplay(); // Display the comment immediately
+  }
+
   function saveCommentAndDisplay() {
     const commentTextarea = document.getElementById(`commentText-${day}-${index}`);
     const commentDisplay = document.getElementById(`commentDisplay-${day}-${index}`);
@@ -175,6 +184,7 @@ function generateCommentModal(day, index, personName) {
     window.location.href = "Homepage.html";
   }
 }
+
 
 
 // Function to load saved comments when the page loads
