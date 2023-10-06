@@ -1,8 +1,4 @@
-// JavaScript-Funktionen
-let personNameStorage;
 let ratingstorage;
-let cardName
-let dayStorage;
 function toggleDarkMode() {
   const htmlTag = document.documentElement;
   const darkmodeButton = document.getElementById("darkmode");
@@ -29,10 +25,6 @@ if (savedMode === "dark") {
 
 document.getElementById("darkmode").addEventListener("click", toggleDarkMode);
 
-// Weitere JavaScript-Funktionen hier einfügen
-// Weitere JavaScript-Funktionen hier einfügen
-
-// Beispiel: Die Funktionen für das Generieren von Karten
 assignmentsJSON = localStorage.getItem("assignments");
 assignments = JSON.parse(assignmentsJSON);
 
@@ -45,7 +37,7 @@ function generateCard(day, personName, taskName, index) {
       <div class="card-title fs-5 fw-semibold" id="${cardId}" personName="${personName}">
         ${personName} <!-- Zuerst der Name -->
       </div>
-      <div class="card-text" id="cardname${day}${index}">
+      <div class="card-text" id="cardname${day}${index}" taskName="${taskName}">
         ${taskName} <!-- Dann die Aufgabe -->
       </div>
       <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
@@ -73,18 +65,16 @@ function generateCard(day, personName, taskName, index) {
   const negativeRadio = document.getElementById(`negative-${day}-${index}`);
   const neutralRadio = document.getElementById(`neutral-${day}-${index}`);
   const cardElement = document.getElementById(cardId);
-  personNameStorage = cardElement.getAttribute("data-personName");
-  dayStorage = cardElement.getElementsByClassName("card-text")
 
   positiveRadio.addEventListener("change", function () {
-    handleRadioSelection(this, "positive");
+    handleRadioSelection(this, "positive", personName, taskName);
     document.addEventListener("DOMContentLoaded", function (personName) {
       loadComments(personName);
     });
   });
 
   negativeRadio.addEventListener("change", function () {
-    handleRadioSelection(this, "negative");
+    handleRadioSelection(this, "negative", personName, taskName);
     document.addEventListener("DOMContentLoaded", function (personName) {
       loadComments(personName);
     });
@@ -116,14 +106,8 @@ function generateCommentModal(day, index, personName) {
       </div>
     </div>
   `;
-
   document.body.appendChild(modal);
 }
-
-// Function to save the comment
-// ...
-
-// Function to save the comment
 function saveComment(day, index) {
   const commentText = document.getElementById(
     `commentText-${day}-${index}`
@@ -148,93 +132,72 @@ function loadComments(personName) {
     }
   }
 }
-
-// Call the loadComments function when the page loads
-
-function handleRadioSelection(radio, color) {
+function handleRadioSelection(radio, color, personName, taskName) {
   if (radio.checked) {
     const day = radio.getAttribute("name").split("-")[1];
-    const cardNameElement = document.getElementById(personNameStorage);
-    // Check if the cardNameElement exists before accessing its innerHTML
-    if (cardNameElement) {
-      personName = cardNameElement.innerHTML;
-      console.log(personName);
-    }
     const oldValue = ratingstorage;
     const ratingValue = color;
-    ratingstorage = ratingValue
-    console.log(dayStorage)
-    // const task =
-    // const cardId = `card${day}`;
-    // const card = document.getElementById(cardId);
-    // card.setAttribute(`data-${color}-count`, 1);
-    // const oppositeColor = color === "positive" ? "negative" : "positive";
-    // card.setAttribute(`data-${oppositeColor}-count`, 0);
+    ratingstorage = ratingValue;
+    console.log(taskName);
+    console.log(personName);
+    let task = taskName;
+    let ratings = JSON.parse(localStorage.getItem("ratings")) || {};
+    if (!ratings[personName]) {
+      ratings[personName] = {};
+    }
+    if (!ratings[personName][day]) {
+      ratings[personName][day] = {};
+    }
+    if (!ratings[personName][day][task]) {
+      ratings[personName][day][task] = {
+        negativeCount: 0,
+        positiveCount: 0,
+      };
+    }
+    ratings[personName][day][task][ratingValue + "Count"] += 1;
 
-    // const StorageKey = `${personName}_${day}_positive_count`;
-    // const finalPositiveRatingCountStorage = `${personName}_positive_count`;
-    // const finalNegativeRatingCountStorage = `${personName}_negative_count`;
-    // let finalPositiveRatingCount = localStorage.getItem(finalPositiveRatingCountStorage) || 0;
-    // let finalNegativeRatingCount = localStorage.getItem(finalNegativeRatingCountStorage) || 0;
-    // let positiveCount = localStorage.getItem(StorageKey) || 0;
-    // const allStoredRatingsForAPerson = localStorage.getItem(`${personName}_${day}_positive_count`) || 0
-    // // Check if the selected option is "positive" or "negative"
-    // if (color === "positive") {
-    //   // for (let key in allStoredRatingsForAPerson) {
-    //     if (allStoredRatingsForAPerson == 0 || allStoredRatingsForAPerson == NaN) { // Check the value associated with StorageKey
-    //       console.log("test1")
-    //       finalPositiveRatingCount = parseInt(finalPositiveRatingCount) + 1;
-    //       localStorage.setItem(finalPositiveRatingCountStorage, finalPositiveRatingCount);
-    //       finalNegativeRatingCount = parseInt(finalNegativeRatingCount) - 1;
-    //       localStorage.setItem(finalNegativeRatingCountStorage, finalNegativeRatingCount);
-    //     }
-    //   // }
-    //   positiveCount = parseInt(positiveCount) + 1;
-    //   localStorage.setItem(StorageKey, positiveCount);
-    //   // finalPositiveRatingCount = parseInt(finalPositiveRatingCount) + 1;
-    //   // localStorage.setItem(finalPositiveRatingCountStorage, finalPositiveRatingCount);
-      
-      
-    // } else if (color === "negative") {
-    //   // for (let key in allStoredRatingsForAPerson) {
-    //     if (allStoredRatingsForAPerson == 1 || allStoredRatingsForAPerson == NaN) {
-    //       console.log("test2")
-    //       finalPositiveRatingCount = parseInt(finalPositiveRatingCount) - 1;
-    //       localStorage.setItem(finalPositiveRatingCountStorage, finalPositiveRatingCount);
-    //       finalNegativeRatingCount = parseInt(finalNegativeRatingCount) + 1;
-    //       localStorage.setItem(finalNegativeRatingCountStorage, finalNegativeRatingCount);
-    //     }
-    //   // }
-    //   positiveCount = 0;
-    //   localStorage.setItem(StorageKey, positiveCount)
-    // }
+    if (oldValue == "positive" && ratingValue == "negative") {
+      // Decrease the positive count only if it was previously positive
+      ratings[personName][day][task]["positiveCount"] -= 1;
+    } else if (oldValue == "negative" && ratingValue == "positive") {
+      // Decrease the negative count only if it was previously negative
+      ratings[personName][day][task]["negativeCount"] -= 1;
+    }
 
-    // Update the card's data attributes to store the current selection
-    
+    // Store the updated ratings object back to localStorage
+    localStorage.setItem("ratings", JSON.stringify(ratings));
 
-    // Calculate and store the total counts for the person
-    // calculateAndStoreTotalCounts(personName, "positive");
-    // calculateAndStoreTotalCounts(personName, "negative");
+    // Calculate and store total counts for the person
+    calculateAndStoreTotalCounts(personName);
   }
 }
-// 
-// Function to calculate and store total counts for a person
-// function calculateAndStoreTotalCounts(personName, color) {
-  // const days = ["monday", "tuesday", "wednesday", "thursday", "friday"];
-  // let totalCount = 0;
 
-  // // Loop through each day and add up the counts
-  // for (const day of days) {
-  //   const count = parseInt(
-  //     localStorage.getItem(`${personName}_${day}_${color}_count`) || 0
-  //   );
-  //   totalCount += count;
-  // }
+function calculateAndStoreTotalCounts(personName) {
+  const days = ["monday", "tuesday", "wednesday", "thursday", "friday"];
+  let totalPositiveCount = 0;
+  let totalNegativeCount = 0;
+  let ratings = JSON.parse(localStorage.getItem("ratings")) || {};
 
-  // // Store the total count for the person
-  // localStorage.setItem(`${personName}_${color}_count`, totalCount.toString());
-// }
+  for (const day of days) {
+    if (ratings[personName]) {
+      for (const task in ratings[personName][day]) {
+        const taskData = ratings[personName][day][task];
+        totalPositiveCount += taskData.positiveCount || 0;
+        totalNegativeCount += taskData.negativeCount || 0;
+      }
+    }
+  }
 
+  // Store the total counts for the person
+  localStorage.setItem(
+    `${personName}_positive_count`,
+    totalPositiveCount.toString()
+  );
+  localStorage.setItem(
+    `${personName}_negative_count`,
+    totalNegativeCount.toString()
+  );
+}
 function generateCards(day, assignments) {
   let index = 1;
 
