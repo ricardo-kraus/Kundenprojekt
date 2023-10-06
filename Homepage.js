@@ -131,20 +131,32 @@ function generateCommentModal(day, index, personName) {
     const commentTextarea = document.getElementById(`commentText-${day}-${index}`);
     const commentDisplay = document.getElementById(`commentDisplay-${day}-${index}`);
     const commentText = commentTextarea.value.trim();
+
     if (commentText !== "") {
       saveComment(day, index, commentText);
+
       const deleteButton = document.createElement("button");
       deleteButton.innerText = "X";
-      deleteButton.className = "btn btn-danger delete-comment";
+      deleteButton.style.color = "red"
+      deleteButton.backgroundColor = "transparent";
+      deleteButton.className = "btn delete-comment";
       deleteButton.addEventListener("click", function () {
-        commentDisplay.remove();
+        // When the delete button is clicked, remove the comment and clear it from local storage
+        const commentContainer = deleteButton.parentNode;
+        commentContainer.remove();
         localStorage.removeItem(`comment-${day}-${index}`);
       });
+
       const commentContainer = document.createElement("div");
       commentContainer.className = "comment-container";
       commentContainer.innerHTML = `<p>${commentText}</p>`;
       commentContainer.appendChild(deleteButton);
+
       commentDisplay.appendChild(commentContainer);
+      commentContainer.style.display = "flex";
+      commentContainer.style.alignItems = "center"; 
+      commentContainer.id = `comment-${day}-${index}`;
+      
       commentTextarea.value = "";
       saveButtonClicked = true;
     }
@@ -159,6 +171,8 @@ function generateCommentModal(day, index, personName) {
     window.location.href = "Homepage.html";
   }
 }
+
+// Function to load saved comments when the page loads
 function loadComments(personName) {
   const days = ["monday", "tuesday", "wednesday", "thursday", "friday"];
   for (const day of days) {
