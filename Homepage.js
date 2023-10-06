@@ -154,10 +154,13 @@ function generateCommentModal(day, index, personName) {
 
       const deleteButton = document.createElement("button");
       deleteButton.innerText = "X";
-      deleteButton.className = "btn btn-danger delete-comment";
+      deleteButton.style.color = "red"
+      deleteButton.backgroundColor = "transparent";
+      deleteButton.className = "btn delete-comment";
       deleteButton.addEventListener("click", function () {
         // When the delete button is clicked, remove the comment and clear it from local storage
-        commentDisplay.remove();
+        const commentContainer = deleteButton.parentNode;
+        commentContainer.remove();
         localStorage.removeItem(`comment-${day}-${index}`);
       });
 
@@ -168,6 +171,9 @@ function generateCommentModal(day, index, personName) {
       commentContainer.appendChild(deleteButton);
 
       commentDisplay.appendChild(commentContainer);
+      commentContainer.style.display = "flex";
+      commentContainer.style.alignItems = "center"; 
+      commentContainer.id = `comment-${day}-${index}`;
 
       commentTextarea.value = "";
 
