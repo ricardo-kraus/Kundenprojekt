@@ -131,8 +131,10 @@ function generateCommentModal(day, index, personName) {
     const commentTextarea = document.getElementById(`commentText-${day}-${index}`);
     const commentDisplay = document.getElementById(`commentDisplay-${day}-${index}`);
     const commentText = commentTextarea.value.trim();
+
     if (commentText !== "") {
       saveComment(day, index, commentText);
+
       const deleteButton = document.createElement("button");
       deleteButton.innerText = "X";
       deleteButton.style.color = "red"
@@ -144,12 +146,17 @@ function generateCommentModal(day, index, personName) {
         commentContainer.remove();
         localStorage.removeItem(`comment-${day}-${index}`);
       });
+
       const commentContainer = document.createElement("div");
       commentContainer.className = "comment-container";
       commentContainer.innerHTML = `<p>${commentText}</p>`;
       commentContainer.appendChild(deleteButton);
-      commentDisplay.appendChild(commentContainer);
 
+      commentDisplay.appendChild(commentContainer);
+      commentContainer.style.display = "flex";
+      commentContainer.style.alignItems = "center"; 
+      commentContainer.id = `comment-${day}-${index}`;
+      
       commentTextarea.value = "";
       saveButtonClicked = true;
     }
