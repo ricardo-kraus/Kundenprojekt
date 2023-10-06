@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Statistics</title>
+    <link rel="stylesheet" href="test.css" />
+    <script src="https://cdn.jsdelivr.net/npm/d3@7"></script>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container-fluid">
+            <div class="navbar-content">
+                <span class="navbar-title">Statistics</span>
+                <a class="navbar-brand">
+                    <img src="https://tie-international.com/wp-content/uploads/2022/08/cropped-cropped-cropped-tie_international_v3.0_transparent.png"
+                        alt="Header-Bild"
+                        class="header-image"
+                        width="60"
+                        height="48">
+                </a>
+                <button id="adminpage-button">Admin Page</button>
+            </div>
+        </div>
+    </nav>
+
+    <div class="bg-gradient">
+        <!-- Auswahl für die Sortierreihenfolge -->
+        <label for="sortOrder">Sort Order:</label>
+        <select id="sortOrder" onchange="updateChart()">
+            <option value="alphabetical">Alphabetical</option>
+            <option value="ascending">Ascending</option>
+            <option value="descending">Descending</option>
+        </select>
+
+        <!-- D3.js Diagramm -->
+        <div id="d3Chart"></div>
+    </div>
+
+    <script src="d3Chart.js"></script>
+    <script src="test.js"></script>
+</body>
+</html>
