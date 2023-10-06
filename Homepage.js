@@ -1,15 +1,15 @@
 let personName;
 let ratingstorage;
+const htmlTag = document.documentElement;
 const savedMode = localStorage.getItem("mode");
 if (savedMode === "dark") {
-  document.documentElement.setAttribute("data-bs-theme", "dark");
+  htmlTag.setAttribute("data-bs-theme", "dark");
   document.getElementById("darkmode").innerText = "Lightmode";
 } else {
-  document.documentElement.setAttribute("data-bs-theme", "light");
+  htmlTag.setAttribute("data-bs-theme", "light");
   document.getElementById("darkmode").innerText = "Darkmode";
 }
 function toggleDarkMode() {
-  const htmlTag = document.documentElement;
   const darkmodeButton = document.getElementById("darkmode");
 
   if (htmlTag.getAttribute("data-bs-theme") === "dark") {
@@ -57,23 +57,16 @@ function generateCard(day, personName, taskName, index) {
     </div>
   `;
 
-  document.getElementById(`card${day}`).appendChild(card);
+  document.getElementById(`cards${day}`).appendChild(card);
 
   const positiveRadio = document.getElementById(`positive-${day}-${index}`);
   const negativeRadio = document.getElementById(`negative-${day}-${index}`);
+  const neutralRadio = document.getElementById(`neutral-${day}-${index}`);
   positiveRadio.addEventListener("change", function () {
-    personName = personName;
     handleRadioSelection(this, "positive", personName, taskName);
-    document.addEventListener("DOMContentLoaded", function (personName) {
-      loadComments(personName);
-    });
   });
   negativeRadio.addEventListener("change", function () {
-    personName = personName;
     handleRadioSelection(this, "negative", personName, taskName);
-    document.addEventListener("DOMContentLoaded", function (personName) {
-      loadComments(personName);
-    });
   });
   generateCommentModal(day, index, personName);
 }
@@ -166,21 +159,6 @@ function generateCommentModal(day, index, personName) {
   }
 }
 
-
-// Function to load saved comments when the page loads
-function loadComments(personName) {
-  const days = ["monday", "tuesday", "wednesday", "thursday", "friday"];
-  for (const day of days) {
-    for (let index = 1; index <= assignments[day].length; index++) {
-      const commentKey = `${personName}_${day}_${index}_comment`;
-      const commentText = localStorage.getItem(commentKey);
-      if (commentText !== null) {
-        document.getElementById(`commentText-${day}-${index}`).value =
-          commentText;
-      }
-    }
-  }
-}
 function handleRadioSelection(radio, color, personName, taskName) {
   if (radio.checked) {
     const day = radio.getAttribute("name").split("-")[1];
