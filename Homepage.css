@@ -169,3 +169,12 @@ body {
     width: 1rem;
     transform: rotate(180deg);
 }
+[data-bs-theme="dark"] .img-thumbs-up {
+    width: 1rem;
+    filter: invert(100%);
+}
+[data-bs-theme="dark"] .img-thumbs-down {
+    width: 1rem;
+    filter: invert(100%);
+    transform: rotate(180deg);
+}
