@@ -1,20 +1,5 @@
 let personName;
 let ratingstorage;
-function toggleDarkMode() {
-  const htmlTag = document.documentElement;
-  const darkmodeButton = document.getElementById("darkmode");
-
-  if (htmlTag.getAttribute("data-bs-theme") === "dark") {
-    htmlTag.setAttribute("data-bs-theme", "light");
-    darkmodeButton.innerText = "Lightmode";
-    localStorage.setItem("mode", "light");
-  } else {
-    htmlTag.setAttribute("data-bs-theme", "dark");
-    darkmodeButton.innerText = "Darkmode";
-    localStorage.setItem("mode", "dark");
-  }
-}
-
 const savedMode = localStorage.getItem("mode");
 if (savedMode === "dark") {
   document.documentElement.setAttribute("data-bs-theme", "dark");
@@ -23,7 +8,20 @@ if (savedMode === "dark") {
   document.documentElement.setAttribute("data-bs-theme", "light");
   document.getElementById("darkmode").innerText = "Darkmode";
 }
+function toggleDarkMode() {
+  const htmlTag = document.documentElement;
+  const darkmodeButton = document.getElementById("darkmode");
 
+  if (htmlTag.getAttribute("data-bs-theme") === "dark") {
+    htmlTag.setAttribute("data-bs-theme", "light");
+    darkmodeButton.innerText = "Darkmode";
+    localStorage.setItem("mode", "light");
+  } else {
+    htmlTag.setAttribute("data-bs-theme", "dark");
+    darkmodeButton.innerText = "Lightmode";
+    localStorage.setItem("mode", "dark");
+  }
+}
 document.getElementById("darkmode").addEventListener("click", toggleDarkMode);
 
 assignmentsJSON = localStorage.getItem("assignments");
