@@ -62,6 +62,7 @@ function generateCard(day, assignmentName, taskName, index) {
 
   const positiveRadio = document.getElementById(`positive-${day}-${index}`);
   const negativeRadio = document.getElementById(`negative-${day}-${index}`);
+
   positiveRadio.addEventListener("change", function () {
     personName = assignmentName;
     handleRadioSelection(this, "positive");
@@ -69,6 +70,7 @@ function generateCard(day, assignmentName, taskName, index) {
       loadComments(personName);
     });
   });
+
   negativeRadio.addEventListener("change", function () {
     personName = assignmentName;
     handleRadioSelection(this, "negative");
@@ -76,6 +78,7 @@ function generateCard(day, assignmentName, taskName, index) {
       loadComments(personName);
     });
   });
+
   generateCommentModal(day, index, assignmentName);
 }
 function generateCommentModal(day, index, personName) {
@@ -104,6 +107,7 @@ function generateCommentModal(day, index, personName) {
   document.body.appendChild(modal);
   let saveButtonClicked = false;
   const closeButton = document.getElementById(`closeButton-${day}-${index}`);
+
   closeButton.addEventListener("click", function () {
     const commentTextarea = document.getElementById(`commentText-${day}-${index}`);
     const commentText = commentTextarea.value.trim();
@@ -113,11 +117,12 @@ function generateCommentModal(day, index, personName) {
         return;
       }
     }
+
     redirectToHomepage();
   });
+
   const saveButton = document.getElementById(`saveButton-${day}-${index}`);
   saveButton.addEventListener("click", saveCommentAndDisplay);
-
 
   // Load and display the saved comment if available
   const savedCommentKey = `comment-${day}-${index}`;
@@ -128,20 +133,22 @@ function generateCommentModal(day, index, personName) {
     saveCommentAndDisplay(); // Display the comment immediately
   }
 
-
   function saveCommentAndDisplay() {
     const commentTextarea = document.getElementById(`commentText-${day}-${index}`);
     const commentDisplay = document.getElementById(`commentDisplay-${day}-${index}`);
     const commentText = commentTextarea.value.trim();
+
     if (commentText !== "") {
       saveComment(day, index, commentText);
       const deleteButton = document.createElement("button");
       deleteButton.innerText = "X";
       deleteButton.className = "btn btn-danger delete-comment";
+
       deleteButton.addEventListener("click", function () {
         commentDisplay.remove();
         localStorage.removeItem(`comment-${day}-${index}`);
       });
+
       const commentContainer = document.createElement("div");
       commentContainer.className = "comment-container";
       commentContainer.innerHTML = `<p>${commentText}</p>`;
@@ -161,7 +168,6 @@ function generateCommentModal(day, index, personName) {
     window.location.href = "Homepage.html";
   }
 }
-
 
 function loadComments(personName) {
   const days = ["monday", "tuesday", "wednesday", "thursday", "friday"];
