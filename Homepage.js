@@ -117,8 +117,7 @@ function generateCommentModal(day, index, personName) {
   });
   const saveButton = document.getElementById(`saveButton-${day}-${index}`);
   saveButton.addEventListener("click", saveCommentAndDisplay);
-<<<<<<< HEAD
-=======
+
 
   // Load and display the saved comment if available
   const savedCommentKey = `comment-${day}-${index}`;
@@ -129,7 +128,7 @@ function generateCommentModal(day, index, personName) {
     saveCommentAndDisplay(); // Display the comment immediately
   }
 
->>>>>>> e3abee888009c4f6ea4ad6376552c38e283f53ed
+
   function saveCommentAndDisplay() {
     const commentTextarea = document.getElementById(`commentText-${day}-${index}`);
     const commentDisplay = document.getElementById(`commentDisplay-${day}-${index}`);
@@ -162,11 +161,8 @@ function generateCommentModal(day, index, personName) {
     window.location.href = "Homepage.html";
   }
 }
-<<<<<<< HEAD
-=======
 
-// Function to load saved comments when the page loads
->>>>>>> e3abee888009c4f6ea4ad6376552c38e283f53ed
+
 function loadComments(personName) {
   const days = ["monday", "tuesday", "wednesday", "thursday", "friday"];
   for (const day of days) {

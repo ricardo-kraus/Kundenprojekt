@@ -32,11 +32,8 @@ img {
 }
 
 .bg-gradient{
-    background-image: linear-gradient(
-        to right top,
-        rgba(151, 36, 32, 0.9),
-        rgba(56, 55, 114, 0.9),
-        rgba(151, 36, 32, 0.9));
+
+    background-color: #f9f9f9;
 }
 
 #adminpage-button {
@@ -56,6 +53,10 @@ img {
 }
 
 body {
-    background-color: #353535;
+    background-image: linear-gradient(
+        to right top,
+        rgba(151, 36, 32, 0.9),
+        rgba(56, 55, 114, 0.9),
+        rgba(151, 36, 32, 0.9));
 }
 
