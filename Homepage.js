@@ -11,7 +11,6 @@ if (savedMode === "dark") {
 }
 function toggleDarkMode() {
   const darkmodeButton = document.getElementById("darkmode");
-
   if (htmlTag.getAttribute("data-bs-theme") === "dark") {
     htmlTag.setAttribute("data-bs-theme", "light");
     darkmodeButton.innerText = "Darkmode";
@@ -23,10 +22,8 @@ function toggleDarkMode() {
   }
 }
 document.getElementById("darkmode").addEventListener("click", toggleDarkMode);
-
 assignmentsJSON = localStorage.getItem("assignments");
 assignments = JSON.parse(assignmentsJSON);
-
 function generateCard(day, personName, taskName, index) {
   const cardId = `card${day}${index}`;
   const card = document.createElement("div");
@@ -44,10 +41,8 @@ function generateCard(day, personName, taskName, index) {
         <label class="btn btn-outline-success" for="positive-${day}-${index}">
         <img class="img-thumbs-up"  src="https://icon-library.com/images/icon-thumbs-up/icon-thumbs-up-11.jpg" alt="thumbs up" />
         </label>
-
         <input type="radio" class="btn-check" name="rating-${day}-${index}" id="neutral-${day}-${index}" autocomplete="off" value="neutral" checked>
         <label class="btn btn-outline-warning" for="positive-${day}-${index}">    </label>
-
         <input type="radio" class="btn-check" name="rating-${day}-${index}" id="negative-${day}-${index}" autocomplete="off" value="negative">
         <label class="btn btn-outline-danger" for="negative-${day}-${index}">
         <img class="img-thumbs-down"  src="https://icon-library.com/images/icon-thumbs-up/icon-thumbs-up-11.jpg" alt="thumbs up" />
@@ -56,9 +51,7 @@ function generateCard(day, personName, taskName, index) {
       <button class="btn btn-outline-light mt-2" data-bs-toggle="modal" data-bs-target="#commentModal-${day}-${index}">Comment</button>
     </div>
   `;
-
   document.getElementById(`cards${day}`).appendChild(card);
-
   const positiveRadio = document.getElementById(`positive-${day}-${index}`);
   const negativeRadio = document.getElementById(`negative-${day}-${index}`);
   const neutralRadio = document.getElementById(`neutral-${day}-${index}`);
@@ -70,7 +63,6 @@ function generateCard(day, personName, taskName, index) {
   });
   generateCommentModal(day, index, personName);
 }
-
 function generateCommentModal(day, index, personName) {
   const modalId = `commentModal-${day}-${index}`;
   const modal = document.createElement("div");
@@ -93,9 +85,7 @@ function generateCommentModal(day, index, personName) {
       </div>
     </div>
   `;
-
   document.body.appendChild(modal);
-
   const closeButton = document.getElementById(`closeButton-${day}-${index}`);
   closeButton.addEventListener("click", function () {
     const commentTextarea = document.getElementById(`commentText-${day}-${index}`);
@@ -158,7 +148,6 @@ function saveCommentAndDisplay() {
     window.location.href = "Homepage.html";
   }
 }
-
 function handleRadioSelection(radio, color, personName, taskName) {
   if (radio.checked) {
     const day = radio.getAttribute("name").split("-")[1];
@@ -182,7 +171,6 @@ function handleRadioSelection(radio, color, personName, taskName) {
       };
     }
     ratings[personName][day][task][ratingValue + "Count"] += 1;
-
     if (oldValue == "positive" && ratingValue == "negative") {
       // Decrease the positive count only if it was previously positive
       ratings[personName][day][task]["positiveCount"] -= 1;
@@ -198,7 +186,6 @@ function handleRadioSelection(radio, color, personName, taskName) {
     }
     // Store the updated ratings object back to localStorage
     localStorage.setItem("ratings", JSON.stringify(ratings));
-
     // Calculate and store total counts for the person
     calculateAndStoreTotalCounts(personName);
   }
@@ -208,7 +195,6 @@ function calculateAndStoreTotalCounts(personName) {
   let totalPositiveCount = 0;
   let totalNegativeCount = 0;
   let ratings = JSON.parse(localStorage.getItem("ratings")) || {};
-
   for (const day of days) {
     if (ratings[personName]) {
       for (const task in ratings[personName][day]) {
@@ -218,7 +204,6 @@ function calculateAndStoreTotalCounts(personName) {
       }
     }
   }
-
   // Store the total counts for the person
   localStorage.setItem(
     `${personName}_positive_count`,
@@ -231,20 +216,17 @@ function calculateAndStoreTotalCounts(personName) {
 }
 function generateCards(day, assignments) {
   let index = 1;
-
   for (const personName in assignments[day]) {
     const taskName = assignments[day][personName];
     generateCard(day, personName, taskName, index);
     index++;
   }
 }
-
 generateCards("monday", assignments);
 generateCards("tuesday", assignments);
 generateCards("wednesday", assignments);
 generateCards("thursday", assignments);
 generateCards("friday", assignments);
-
 function getCurrentWeekNumber() {
   const currentDate = new Date();
   currentDate.setHours(0, 0, 0, 0);
@@ -255,3 +237,4 @@ function getCurrentWeekNumber() {
 }
 const currentWeek = getCurrentWeekNumber();
 document.getElementById("kw").textContent = `KW ${currentWeek}`;
+

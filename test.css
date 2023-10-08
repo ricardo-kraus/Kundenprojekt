@@ -6,7 +6,7 @@
     height: 70px;
     border-radius: 10px;
     margin-bottom: 10px;
-  }
+}
 
 .navbar-title {
     font-weight: bold;
@@ -31,8 +31,7 @@ img {
     margin-right: 10px;
 }
 
-.bg-gradient{
-
+.bg-gradient {
     background-color: #f9f9f9;
 }
 
@@ -59,4 +58,3 @@ body {
         rgba(56, 55, 114, 0.9),
         rgba(151, 36, 32, 0.9));
 }
-
