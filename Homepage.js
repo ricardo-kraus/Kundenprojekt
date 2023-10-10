@@ -61,7 +61,6 @@ function generateCard(day, personName, taskName, index) {
 
   const positiveRadio = document.getElementById(`positive-${day}-${index}`);
   const negativeRadio = document.getElementById(`negative-${day}-${index}`);
-  const neutralRadio = document.getElementById(`neutral-${day}-${index}`);
   positiveRadio.addEventListener("change", function () {
     handleRadioSelection(this, "positive", personName, taskName);
   });
