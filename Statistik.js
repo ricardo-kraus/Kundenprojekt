@@ -52,12 +52,12 @@ document.addEventListener("DOMContentLoaded", function () {
               y: {
                   beginAtZero: true,
                   ticks: {
-                      color: "white",
+                      color: "black",
                   },
               },
               x: {
                   ticks: {
-                      color: "white",
+                      color: "black",
                   },
               },
           },

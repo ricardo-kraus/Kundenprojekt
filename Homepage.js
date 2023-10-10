@@ -11,7 +11,6 @@ if (savedMode === "dark") {
 }
 function toggleDarkMode() {
   const darkmodeButton = document.getElementById("darkmode");
-
   if (htmlTag.getAttribute("data-bs-theme") === "dark") {
     htmlTag.setAttribute("data-bs-theme", "light");
     darkmodeButton.innerText = "Darkmode";
@@ -23,10 +22,8 @@ function toggleDarkMode() {
   }
 }
 document.getElementById("darkmode").addEventListener("click", toggleDarkMode);
-
 assignmentsJSON = localStorage.getItem("assignments");
 assignments = JSON.parse(assignmentsJSON);
-
 function generateCard(day, personName, taskName, index) {
   const cardId = `card${day}${index}`;
   const card = document.createElement("div");
@@ -44,10 +41,8 @@ function generateCard(day, personName, taskName, index) {
         <label class="btn btn-outline-success" for="positive-${day}-${index}">
         <img class="img-thumbs-up"  src="https://icon-library.com/images/icon-thumbs-up/icon-thumbs-up-11.jpg" alt="thumbs up" />
         </label>
-
         <input type="radio" class="btn-check" name="rating-${day}-${index}" id="neutral-${day}-${index}" autocomplete="off" value="neutral" checked>
         <label class="btn btn-outline-warning" for="positive-${day}-${index}">    </label>
-
         <input type="radio" class="btn-check" name="rating-${day}-${index}" id="negative-${day}-${index}" autocomplete="off" value="negative">
         <label class="btn btn-outline-danger" for="negative-${day}-${index}">
         <img class="img-thumbs-down"  src="https://icon-library.com/images/icon-thumbs-up/icon-thumbs-up-11.jpg" alt="thumbs up" />
@@ -56,9 +51,7 @@ function generateCard(day, personName, taskName, index) {
       <button class="btn btn-outline-light mt-2" data-bs-toggle="modal" data-bs-target="#commentModal-${day}-${index}">Comment</button>
     </div>
   `;
-
   document.getElementById(`cards${day}`).appendChild(card);
-
   const positiveRadio = document.getElementById(`positive-${day}-${index}`);
   const negativeRadio = document.getElementById(`negative-${day}-${index}`);
   positiveRadio.addEventListener("change", function () {
@@ -69,7 +62,6 @@ function generateCard(day, personName, taskName, index) {
   });
   generateCommentModal(day, index, personName);
 }
-
 function generateCommentModal(day, index, personName) {
   const modalId = `commentModal-${day}-${index}`;
   const modal = document.createElement("div");
@@ -92,11 +84,7 @@ function generateCommentModal(day, index, personName) {
       </div>
     </div>
   `;
-
   document.body.appendChild(modal);
-
-  const comments = []
-
   const closeButton = document.getElementById(`closeButton-${day}-${index}`);
   closeButton.addEventListener("click", function () {
     const commentTextarea = document.getElementById(`commentText-${day}-${index}`);
@@ -109,46 +97,48 @@ function generateCommentModal(day, index, personName) {
     }
     redirectToHomepage();
   });
-  
+
   const saveButton = document.getElementById(`saveButton-${day}-${index}`);
   saveButton.addEventListener("click", saveCommentAndDisplay);
-  // Load and display the saved comment if available
   const savedCommentKey = `comment-${day}-${index}`;
   const savedCommentText = localStorage.getItem(savedCommentKey);
   if (savedCommentText) {
     const commentTextarea = document.getElementById(`commentText-${day}-${index}`);
     commentTextarea.value = savedCommentText;
-    saveCommentAndDisplay(); // Display the comment immediately
+    saveButtonClicked = true;
+    saveCommentAndDisplay(day, index, savedCommentText);
   }
-  function saveCommentAndDisplay() {
-    const commentTextarea = document.getElementById(`commentText-${day}-${index}`);
-    const commentDisplay = document.getElementById(`commentDisplay-${day}-${index}`);
-    const commentText = commentTextarea.value.trim();
-    if (commentText !== "") {
-      saveComment(day, index, commentText);
-      const deleteButton = document.createElement("button");
-      deleteButton.innerText = "X";
-      deleteButton.style.color = "red"
-      deleteButton.backgroundColor = "transparent";
-      deleteButton.className = "btn delete-comment";
-      deleteButton.addEventListener("click", function () {
-        // When the delete button is clicked, remove the comment and clear it from local storage
-        const commentContainer = deleteButton.parentNode;
-        commentContainer.remove();
-        localStorage.removeItem(`comment-${day}-${index}`);
-      });
-      const commentContainer = document.createElement("div");
-      commentContainer.className = "comment-container";
-      commentContainer.innerHTML = `<p>${commentText}</p>`;
-      commentContainer.appendChild(deleteButton);
-      commentDisplay.appendChild(commentContainer);
-      commentContainer.style.display = "flex";
-      commentContainer.style.alignItems = "center";
-      commentContainer.id = `comment-${day}-${index}`;
-      commentTextarea.value = "";
-      saveButtonClicked = true;
-    }
+
+function saveCommentAndDisplay() {
+  const commentTextarea = document.getElementById(`commentText-${day}-${index}`);
+  const commentDisplay = document.getElementById(`commentDisplay-${day}-${index}`);
+  const commentText = commentTextarea.value.trim();
+  if (commentText !== "") {
+    saveComment(day, index, commentText);
+    const deleteButton = document.createElement("button");
+    deleteButton.innerText = "X";
+    deleteButton.style.color = "red"
+    deleteButton.backgroundColor = "transparent";
+    deleteButton.className = "btn delete-comment";
+    deleteButton.addEventListener("click", function () {
+      // When the delete button is clicked, remove the comment and clear it from local storage
+      const commentContainer = deleteButton.parentNode;
+      commentContainer.remove();
+      localStorage.removeItem(`comment-${day}-${index}`);
+    });
+    const commentContainer = document.createElement("div");
+    commentContainer.className = "comment-container";
+    commentContainer.innerHTML = `<p>${commentText}</p>`;
+    commentContainer.appendChild(deleteButton);
+    commentDisplay.appendChild(commentContainer);
+    commentContainer.style.display = "flex";
+    commentContainer.style.alignItems = "center";
+    commentContainer.id = `comment-${day}-${index}`;
+    commentTextarea.value = "";
+    // saveButtonClicked = true;
   }
+}
+
   function saveComment(day, index, commentText) {
     const commentKey = `comment-${day}-${index}`;
     localStorage.setItem(commentKey, commentText);
@@ -157,7 +147,6 @@ function generateCommentModal(day, index, personName) {
     window.location.href = "Homepage.html";
   }
 }
-
 function handleRadioSelection(radio, color, personName, taskName) {
   if (radio.checked) {
     const day = radio.getAttribute("name").split("-")[1];
@@ -181,7 +170,6 @@ function handleRadioSelection(radio, color, personName, taskName) {
       };
     }
     ratings[personName][day][task][ratingValue + "Count"] += 1;
-
     if (oldValue == "positive" && ratingValue == "negative") {
       // Decrease the positive count only if it was previously positive
       ratings[personName][day][task]["positiveCount"] -= 1;
@@ -197,7 +185,6 @@ function handleRadioSelection(radio, color, personName, taskName) {
     }
     // Store the updated ratings object back to localStorage
     localStorage.setItem("ratings", JSON.stringify(ratings));
-
     // Calculate and store total counts for the person
     calculateAndStoreTotalCounts(personName);
   }
@@ -207,7 +194,6 @@ function calculateAndStoreTotalCounts(personName) {
   let totalPositiveCount = 0;
   let totalNegativeCount = 0;
   let ratings = JSON.parse(localStorage.getItem("ratings")) || {};
-
   for (const day of days) {
     if (ratings[personName]) {
       for (const task in ratings[personName][day]) {
@@ -217,7 +203,6 @@ function calculateAndStoreTotalCounts(personName) {
       }
     }
   }
-
   // Store the total counts for the person
   localStorage.setItem(
     `${personName}_positive_count`,
@@ -230,20 +215,17 @@ function calculateAndStoreTotalCounts(personName) {
 }
 function generateCards(day, assignments) {
   let index = 1;
-
   for (const personName in assignments[day]) {
     const taskName = assignments[day][personName];
     generateCard(day, personName, taskName, index);
     index++;
   }
 }
-
 generateCards("monday", assignments);
 generateCards("tuesday", assignments);
 generateCards("wednesday", assignments);
 generateCards("thursday", assignments);
 generateCards("friday", assignments);
-
 function getCurrentWeekNumber() {
   const currentDate = new Date();
   currentDate.setHours(0, 0, 0, 0);
