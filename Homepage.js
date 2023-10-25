@@ -147,11 +147,10 @@ function saveCommentAndDisplay() {
     window.location.href = "Homepage.html";
   }
 }
-function handleRadioSelection(radio, color, personName, taskName) {
+function handleRadioSelection(radio, ratingValue, personName, taskName) {
   if (radio.checked) {
     const day = radio.getAttribute("name").split("-")[1];
     const oldValue = ratingstorage;
-    const ratingValue = color;
     ratingstorage = ratingValue;
     console.log(taskName);
     console.log(personName);
