@@ -101,17 +101,17 @@ function generateCommentModal(day, index, personName) {
   });
 
   const saveButton = document.getElementById(`saveButton-${day}-${index}`);
-  saveButton.addEventListener("click", saveCommentAndDisplay);
+  saveButton.addEventListener("click", function(){saveCommentAndDisplay(day,index);});
   const savedCommentKey = `comment-${day}-${index}`;
   const savedCommentText = localStorage.getItem(savedCommentKey);
   if (savedCommentText) {
     const commentTextarea = document.getElementById(`commentText-${day}-${index}`);
     commentTextarea.value = savedCommentText;
     saveButtonClicked = true;
-    saveCommentAndDisplay(day, index, savedCommentText);
+    saveCommentAndDisplay(day, index);
   }
-
-function saveCommentAndDisplay() {
+}
+function saveCommentAndDisplay(day, index) {
   const commentTextarea = document.getElementById(`commentText-${day}-${index}`);
   const commentDisplay = document.getElementById(`commentDisplay-${day}-${index}`);
   const commentText = commentTextarea.value.trim();
@@ -141,13 +141,12 @@ function saveCommentAndDisplay() {
   }
 }
 
-  function saveComment(day, index, commentText) {
-    const commentKey = `comment-${day}-${index}`;
-    localStorage.setItem(commentKey, commentText);
-  }
-  function redirectToHomepage() {
-    window.location.href = "Homepage.html";
-  }
+function saveComment(day, index, commentText) {
+  const commentKey = `comment-${day}-${index}`;
+  localStorage.setItem(commentKey, commentText);
+}
+function redirectToHomepage() {
+  window.location.href = "Homepage.html";
 }
 function handleRadioSelection(radio, ratingValue, personName, taskName) {
   if (radio.checked) {
