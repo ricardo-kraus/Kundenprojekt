@@ -109,7 +109,7 @@ function generateCommentModal(day, index, personName) {
     displaySavedComment(day, index, savedCommentText);
   }
 
-  function handleSaveButtonClick(day, index) {
+  function handleSaveButtonClick() {
     saveCommentAndDisplay(day, index);
   }
 
