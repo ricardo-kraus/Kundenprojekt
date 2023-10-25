@@ -1,24 +1,24 @@
 let personName;
 let ratingstorage;
-const htmlTag = document.documentElement;
+const htmlElement = document.documentElement;
 document.addEventListener("DOMContentLoaded", function () {
   const savedMode = localStorage.getItem("mode");
   if (savedMode === "dark") {
-      htmlTag.setAttribute("data-bs-theme", "dark");
+      htmlElement.setAttribute("data-bs-theme", "dark");
       document.getElementById("darkmode").innerText = "Lightmode";
   } else {
-      htmlTag.setAttribute("data-bs-theme", "light");
+      htmlElement.setAttribute("data-bs-theme", "light");
       document.getElementById("darkmode").innerText = "Darkmode";
   }
 });
 function toggleDarkMode() {
   const darkmodeButton = document.getElementById("darkmode");
-  if (htmlTag.getAttribute("data-bs-theme") === "dark") {
-    htmlTag.setAttribute("data-bs-theme", "light");
+  if (htmlElement.getAttribute("data-bs-theme") === "dark") {
+    htmlElement.setAttribute("data-bs-theme", "light");
     darkmodeButton.innerText = "Darkmode";
     localStorage.setItem("mode", "light");
   } else {
-    htmlTag.setAttribute("data-bs-theme", "dark");
+    htmlElement.setAttribute("data-bs-theme", "dark");
     darkmodeButton.innerText = "Lightmode";
     localStorage.setItem("mode", "dark");
   }
