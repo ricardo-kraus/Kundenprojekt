@@ -80,10 +80,14 @@ function generateCommentModal(day, index, personName) {
   document.body.appendChild(modal);
   const closeButton = document.getElementById(`closeButton-${day}-${index}`);
   closeButton.addEventListener("click", function () {
-    const commentTextarea = document.getElementById(`commentText-${day}-${index}`);
+    const commentTextarea = document.getElementById(
+      `commentText-${day}-${index}`
+    );
     const commentText = commentTextarea.value.trim();
     if (commentText !== "") {
-      const confirmation = window.confirm("Do you want to close without saving?");
+      const confirmation = window.confirm(
+        "Do you want to close without saving?"
+      );
       if (!confirmation) {
         return;
       }
@@ -97,7 +101,9 @@ function generateCommentModal(day, index, personName) {
   const savedCommentKey = `comment-${day}-${index}`;
   const savedCommentText = localStorage.getItem(savedCommentKey);
   if (savedCommentText) {
-    const commentTextarea = document.getElementById(`commentText-${day}-${index}`);
+    const commentTextarea = document.getElementById(
+      `commentText-${day}-${index}`
+    );
     commentTextarea.value = savedCommentText;
     saveButtonClicked = true;
     displaySavedComment(day, index, savedCommentText);
@@ -108,7 +114,9 @@ function generateCommentModal(day, index, personName) {
   }
 
   function saveCommentAndDisplay(day, index) {
-    const commentTextarea = document.getElementById(`commentText-${day}-${index}`);
+    const commentTextarea = document.getElementById(
+      `commentText-${day}-${index}`
+    );
     const commentText = commentTextarea.value.trim();
     if (commentText !== "") {
       saveComment(day, index, commentText);
@@ -163,7 +171,7 @@ function redirectToHomepage() {
   window.location.href = "Homepage.html";
 }
 
-function handleRadioSelection(radio, personName, taskName) {
+function handleRadioSelection(radio, ratingValue, personName, taskName) {
   if (radio.checked) {
     const day = radio.getAttribute("name").split("-")[1];
     const oldValue = ratingstorage;
@@ -185,18 +193,12 @@ function handleRadioSelection(radio, personName, taskName) {
       };
     }
     ratings[personName][day][task][ratingValue + "Count"] += 1;
-    if (oldValue == "positive" && ratingValue == "negative") {
+    if (ratings[personName][day][task]["positiveCount"] == 1 && ratingValue == "negative") {
       // Decrease the positive count only if it was previously positive
       ratings[personName][day][task]["positiveCount"] -= 1;
-    } else if (oldValue == "negative" && ratingValue == "positive") {
+    } else if (ratings[personName][day][task]["negativeCount"] == 1 && ratingValue == "positive") {
       // Decrease the negative count only if it was previously negative
       ratings[personName][day][task]["negativeCount"] -= 1;
-    }
-    else if (oldValue == ratingValue && ratingValue == "positive" && ratings[personName][day][task]["negativeCount"] > 0) {
-      ratings[personName][day][task]["negativeCount"] -= 1;
-    }
-    else if (oldValue == ratingValue && ratingValue == "negative" && ratings[personName][day][task]["positiveCount"] > 0) {
-      ratings[personName][day][task]["positiveCount"] -= 1;
     }
     // Store the updated ratings object back to localStorage
     localStorage.setItem("ratings", JSON.stringify(ratings));
@@ -251,4 +253,3 @@ function getCurrentWeekNumber() {
 }
 const currentWeek = getCurrentWeekNumber();
 document.getElementById("kw").textContent = `KW ${currentWeek}`;
-
