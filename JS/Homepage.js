@@ -97,10 +97,14 @@ function generateCommentModal(day, index, personName) {
 
   const saveButton = document.getElementById(`saveButton-${day}-${index}`);
   const commentTextarea = document.getElementById(
-        `commentText-${day}-${index}`
-      );
-  saveButton.addEventListener("click", handleSaveButtonClick(day, index, commentTextarea));
-  
+    `commentText-${day}-${index}`
+  );
+  const commentText = commentTextarea.value.trim();
+  saveButton.addEventListener(
+    "click",
+    handleSaveButtonClick(day, index, commentText)
+  );
+
   const savedCommentKey = `comment-${day}-${index}`;
   const savedCommentText = localStorage.getItem(savedCommentKey);
   if (savedCommentText) {
@@ -109,18 +113,19 @@ function generateCommentModal(day, index, personName) {
     displaySavedComment(day, index, savedCommentText);
   }
 }
-function handleSaveButtonClick(day, index, commentTextarea) {
-  saveCommentAndDisplay(day, index, commentTextarea);
+function handleSaveButtonClick(day, index, commentText) {
+  saveCommentAndDisplay(day, index, commentText);
 }
 
-function saveCommentAndDisplay(day, index, commentTextarea) {
-  console.log(commentTextarea)
-  const commentText = commentTextarea.value.trim();
+function saveCommentAndDisplay(day, index, commentText) {
+  console.log(commentText);
   if (commentText !== "") {
+    console.log("test")
     saveComment(day, index, commentText);
     displaySavedComment(day, index, commentText);
     commentTextarea.value = "";
     // saveButtonClicked = true;
+    
   }
 }
 
