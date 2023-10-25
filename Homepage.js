@@ -1,16 +1,7 @@
 let personName;
 let ratingstorage;
 const htmlElement = document.documentElement;
-document.addEventListener("DOMContentLoaded", function () {
-  const savedMode = localStorage.getItem("mode");
-  if (savedMode === "dark") {
-    htmlElement.setAttribute("data-bs-theme", "dark");
-    document.getElementById("darkmode").innerText = "Lightmode";
-  } else {
-    htmlElement.setAttribute("data-bs-theme", "light");
-    document.getElementById("darkmode").innerText = "Darkmode";
-  }
-});
+
 function toggleDarkMode() {
   const darkmodeButton = document.getElementById("darkmode");
   if (htmlElement.getAttribute("data-bs-theme") === "dark") {
@@ -141,9 +132,26 @@ function generateCommentModal(day, index, personName) {
   }
 
   function displaySavedComment(day, index, savedCommentText) {
-    const commentDisplay = document.getElementById(
-      `commentDisplay-${day}-${index}`
-    );
+    const commentDisplay = document.getElementById(`commentDisplay-${day}-${index}`);
+    const commentContainer = createCommentContainer(day, index, savedCommentText);
+    commentDisplay.appendChild(commentContainer);
+  }
+
+  function createCommentContainer(day, index, savedCommentText) {
+    const commentContainer = document.createElement("div");
+    commentContainer.className = "comment-container";
+    commentContainer.innerHTML = `<p>${savedCommentText}</p>`;
+    commentContainer.style.display = "flex";
+    commentContainer.style.alignItems = "center";
+    commentContainer.id = `comment-${day}-${index}`;
+
+    const deleteButton = createDeleteButton(day, index);
+    commentContainer.appendChild(deleteButton);
+
+    return commentContainer;
+  }
+
+  function createDeleteButton(day, index) {
     const deleteButton = document.createElement("button");
     deleteButton.innerText = "X";
     deleteButton.style.color = "red";
@@ -154,23 +162,11 @@ function generateCommentModal(day, index, personName) {
       commentContainer.remove();
       localStorage.removeItem(`comment-${day}-${index}`);
     });
-    const commentContainer = document.createElement("div");
-    commentContainer.className = "comment-container";
-    commentContainer.innerHTML = `<p>${savedCommentText}</p>`;
-    commentContainer.appendChild(deleteButton);
-    commentDisplay.appendChild(commentContainer);
-    commentContainer.style.display = "flex";
-    commentContainer.style.alignItems = "center";
-    commentContainer.id = `comment-${day}-${index}`;
-    commentTextarea.value = "";
-    // saveButtonClicked = true;
+
+    return deleteButton;
   }
 }
 
-function saveComment(day, index, commentText) {
-  const commentKey = `comment-${day}-${index}`;
-  localStorage.setItem(commentKey, commentText);
-}
 function redirectToHomepage() {
   window.location.href = "Homepage.html";
 }
