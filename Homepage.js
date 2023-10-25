@@ -1,22 +1,24 @@
 let personName;
 let ratingstorage;
-const htmlTag = document.documentElement;
-const savedMode = localStorage.getItem("mode");
-if (savedMode === "dark") {
-  htmlTag.setAttribute("data-bs-theme", "dark");
-  document.getElementById("darkmode").innerText = "Lightmode";
-} else {
-  htmlTag.setAttribute("data-bs-theme", "light");
-  document.getElementById("darkmode").innerText = "Darkmode";
-}
+const htmlElement = document.documentElement;
+document.addEventListener("DOMContentLoaded", function () {
+  const savedMode = localStorage.getItem("mode");
+  if (savedMode === "dark") {
+      htmlElement.setAttribute("data-bs-theme", "dark");
+      document.getElementById("darkmode").innerText = "Lightmode";
+  } else {
+      htmlElement.setAttribute("data-bs-theme", "light");
+      document.getElementById("darkmode").innerText = "Darkmode";
+  }
+});
 function toggleDarkMode() {
   const darkmodeButton = document.getElementById("darkmode");
-  if (htmlTag.getAttribute("data-bs-theme") === "dark") {
-    htmlTag.setAttribute("data-bs-theme", "light");
+  if (htmlElement.getAttribute("data-bs-theme") === "dark") {
+    htmlElement.setAttribute("data-bs-theme", "light");
     darkmodeButton.innerText = "Darkmode";
     localStorage.setItem("mode", "light");
   } else {
-    htmlTag.setAttribute("data-bs-theme", "dark");
+    htmlElement.setAttribute("data-bs-theme", "dark");
     darkmodeButton.innerText = "Lightmode";
     localStorage.setItem("mode", "dark");
   }
@@ -54,7 +56,6 @@ function generateCard(day, personName, taskName, index) {
   document.getElementById(`cards${day}`).appendChild(card);
   const positiveRadio = document.getElementById(`positive-${day}-${index}`);
   const negativeRadio = document.getElementById(`negative-${day}-${index}`);
-  const neutralRadio = document.getElementById(`neutral-${day}-${index}`);
   positiveRadio.addEventListener("change", function () {
     handleRadioSelection(this, "positive", personName, taskName);
   });
@@ -151,18 +152,23 @@ function generateCommentModal(day, index, personName) {
     commentContainer.style.display = "flex";
     commentContainer.style.alignItems = "center";
     commentContainer.id = `comment-${day}-${index}`;
+    commentTextarea.value = "";
+    // saveButtonClicked = true;
   }
-  
+}
+
+  function saveComment(day, index, commentText) {
+    const commentKey = `comment-${day}-${index}`;
+    localStorage.setItem(commentKey, commentText);
+  }
   function redirectToHomepage() {
     window.location.href = "Homepage.html";
   }
-}
-  
+
 function handleRadioSelection(radio, color, personName, taskName) {
   if (radio.checked) {
     const day = radio.getAttribute("name").split("-")[1];
     const oldValue = ratingstorage;
-    const ratingValue = color;
     ratingstorage = ratingValue;
     console.log(taskName);
     console.log(personName);
