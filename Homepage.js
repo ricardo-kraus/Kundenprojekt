@@ -74,7 +74,7 @@ function generateCommentModal(day, index, personName) {
       <div class="modal-content">
         <div class="modal-header">
           <h5 class="modal-title">Comment for ${personName}</h5>
-          <button type="button" class="btn-close" id="closeButton-${day}-${index}"></button>
+          <button type="button" class="btn-close" id="closeButton-${day}-${index}" data-bs-dismiss="modal"></button>
         </div>
         <div class="modal-body">
           <textarea id="commentText-${day}-${index}" class="form-control" rows="5" placeholder="Enter your comment here"></textarea>
@@ -91,13 +91,13 @@ function generateCommentModal(day, index, personName) {
   closeButton.addEventListener("click", function () {
     const commentTextarea = document.getElementById(`commentText-${day}-${index}`);
     const commentText = commentTextarea.value.trim();
-    if (!saveButtonClicked && commentText !== "") {
+    if (commentText !== "") {
       const confirmation = window.confirm("Do you want to close without saving?");
       if (!confirmation) {
         return;
       }
     }
-    redirectToHomepage();
+    // redirectToHomepage();
   });
 
   const saveButton = document.getElementById(`saveButton-${day}-${index}`);
