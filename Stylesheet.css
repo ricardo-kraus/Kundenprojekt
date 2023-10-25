@@ -180,8 +180,6 @@ input[type="text"]:focus {
     background-color: rgba(44, 44, 44, 0.6);
 }
 
-
-/* Navbar-Stile */
 .navbarhomepage {
     /* background-color: transparent; */
     background-color: rgba(188, 179, 164, 0.6);
@@ -254,8 +252,6 @@ input[type="text"]:focus {
     margin-top: 10px;
     font-size: 20px;
 }
-
-/* Weitere CSS-Stile hier einfügen */
 
 /* Neue Stile für Blocks */
 .block {
