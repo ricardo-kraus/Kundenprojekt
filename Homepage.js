@@ -1,22 +1,15 @@
 let personName;
 let ratingstorage;
-const htmlTag = document.documentElement;
-const savedMode = localStorage.getItem("mode");
-if (savedMode === "dark") {
-  htmlTag.setAttribute("data-bs-theme", "dark");
-  document.getElementById("darkmode").innerText = "Lightmode";
-} else {
-  htmlTag.setAttribute("data-bs-theme", "light");
-  document.getElementById("darkmode").innerText = "Darkmode";
-}
+const htmlElement = document.documentElement;
+
 function toggleDarkMode() {
   const darkmodeButton = document.getElementById("darkmode");
-  if (htmlTag.getAttribute("data-bs-theme") === "dark") {
-    htmlTag.setAttribute("data-bs-theme", "light");
+  if (htmlElement.getAttribute("data-bs-theme") === "dark") {
+    htmlElement.setAttribute("data-bs-theme", "light");
     darkmodeButton.innerText = "Darkmode";
     localStorage.setItem("mode", "light");
   } else {
-    htmlTag.setAttribute("data-bs-theme", "dark");
+    htmlElement.setAttribute("data-bs-theme", "dark");
     darkmodeButton.innerText = "Lightmode";
     localStorage.setItem("mode", "dark");
   }
@@ -72,7 +65,7 @@ function generateCommentModal(day, index, personName) {
       <div class="modal-content">
         <div class="modal-header">
           <h5 class="modal-title">Comment for ${personName}</h5>
-          <button type="button" class="btn-close" id="closeButton-${day}-${index}"></button>
+          <button type="button" class="btn-close" id="closeButton-${day}-${index}" data-bs-dismiss="modal"></button>
         </div>
         <div class="modal-body">
           <textarea id="commentText-${day}-${index}" class="form-control" rows="5" placeholder="Enter your comment here"></textarea>
@@ -87,66 +80,95 @@ function generateCommentModal(day, index, personName) {
   document.body.appendChild(modal);
   const closeButton = document.getElementById(`closeButton-${day}-${index}`);
   closeButton.addEventListener("click", function () {
-    const commentTextarea = document.getElementById(`commentText-${day}-${index}`);
+    const commentTextarea = document.getElementById(
+      `commentText-${day}-${index}`
+    );
     const commentText = commentTextarea.value.trim();
-    if (!saveButtonClicked && commentText !== "") {
-      const confirmation = window.confirm("Do you want to close without saving?");
+    if (commentText !== "") {
+      const confirmation = window.confirm(
+        "Do you want to close without saving?"
+      );
       if (!confirmation) {
         return;
       }
     }
-    redirectToHomepage();
+    // redirectToHomepage();
   });
 
   const saveButton = document.getElementById(`saveButton-${day}-${index}`);
-  saveButton.addEventListener("click", saveCommentAndDisplay);
+  const commentTextarea = document.getElementById(
+        `commentText-${day}-${index}`
+      );
+  saveButton.addEventListener("click", handleSaveButtonClick(day, index, commentTextarea));
+  
   const savedCommentKey = `comment-${day}-${index}`;
   const savedCommentText = localStorage.getItem(savedCommentKey);
   if (savedCommentText) {
-    const commentTextarea = document.getElementById(`commentText-${day}-${index}`);
     commentTextarea.value = savedCommentText;
     saveButtonClicked = true;
-    saveCommentAndDisplay(day, index, savedCommentText);
+    displaySavedComment(day, index, savedCommentText);
   }
+}
+function handleSaveButtonClick(day, index, commentTextarea) {
+  saveCommentAndDisplay(day, index, commentTextarea);
+}
 
-function saveCommentAndDisplay() {
-  const commentTextarea = document.getElementById(`commentText-${day}-${index}`);
-  const commentDisplay = document.getElementById(`commentDisplay-${day}-${index}`);
+function saveCommentAndDisplay(day, index, commentTextarea) {
+  console.log(commentTextarea)
   const commentText = commentTextarea.value.trim();
   if (commentText !== "") {
     saveComment(day, index, commentText);
-    const deleteButton = document.createElement("button");
-    deleteButton.innerText = "X";
-    deleteButton.style.color = "red"
-    deleteButton.backgroundColor = "transparent";
-    deleteButton.className = "btn delete-comment";
-    deleteButton.addEventListener("click", function () {
-      // When the delete button is clicked, remove the comment and clear it from local storage
-      const commentContainer = deleteButton.parentNode;
-      commentContainer.remove();
-      localStorage.removeItem(`comment-${day}-${index}`);
-    });
-    const commentContainer = document.createElement("div");
-    commentContainer.className = "comment-container";
-    commentContainer.innerHTML = `<p>${commentText}</p>`;
-    commentContainer.appendChild(deleteButton);
-    commentDisplay.appendChild(commentContainer);
-    commentContainer.style.display = "flex";
-    commentContainer.style.alignItems = "center";
-    commentContainer.id = `comment-${day}-${index}`;
+    displaySavedComment(day, index, commentText);
     commentTextarea.value = "";
     // saveButtonClicked = true;
   }
 }
 
-  function saveComment(day, index, commentText) {
-    const commentKey = `comment-${day}-${index}`;
-    localStorage.setItem(commentKey, commentText);
-  }
-  function redirectToHomepage() {
-    window.location.href = "Homepage.html";
-  }
+function saveComment(day, index, commentText) {
+  const commentKey = `comment-${day}-${index}`;
+  localStorage.setItem(commentKey, commentText);
 }
+
+function displaySavedComment(day, index, savedCommentText) {
+  const commentDisplay = document.getElementById(
+    `commentDisplay-${day}-${index}`
+  );
+  const commentContainer = createCommentContainer(day, index, savedCommentText);
+  commentDisplay.appendChild(commentContainer);
+}
+
+function createCommentContainer(day, index, savedCommentText) {
+  const commentContainer = document.createElement("div");
+  commentContainer.className = "comment-container";
+  commentContainer.innerHTML = `<p>${savedCommentText}</p>`;
+  commentContainer.style.display = "flex";
+  commentContainer.style.alignItems = "center";
+  commentContainer.id = `comment-${day}-${index}`;
+
+  const deleteButton = createDeleteButton(day, index);
+  commentContainer.appendChild(deleteButton);
+
+  return commentContainer;
+}
+
+function createDeleteButton(day, index) {
+  const deleteButton = document.createElement("button");
+  deleteButton.innerText = "X";
+  deleteButton.style.color = "red";
+  deleteButton.style.backgroundColor = "transparent";
+  deleteButton.className = "btn delete-comment";
+  deleteButton.addEventListener("click", function () {
+    const commentContainer = deleteButton.parentNode;
+    commentContainer.remove();
+    localStorage.removeItem(`comment-${day}-${index}`);
+  });
+
+  return deleteButton;
+}
+function redirectToHomepage() {
+  window.location.href = "Homepage.html";
+}
+
 function handleRadioSelection(radio, ratingValue, personName, taskName) {
   if (radio.checked) {
     const day = radio.getAttribute("name").split("-")[1];
@@ -169,18 +191,18 @@ function handleRadioSelection(radio, ratingValue, personName, taskName) {
       };
     }
     ratings[personName][day][task][ratingValue + "Count"] += 1;
-    if (oldValue == "positive" && ratingValue == "negative") {
+    if (
+      ratings[personName][day][task]["positiveCount"] == 1 &&
+      ratingValue == "negative"
+    ) {
       // Decrease the positive count only if it was previously positive
       ratings[personName][day][task]["positiveCount"] -= 1;
-    } else if (oldValue == "negative" && ratingValue == "positive") {
+    } else if (
+      ratings[personName][day][task]["negativeCount"] == 1 &&
+      ratingValue == "positive"
+    ) {
       // Decrease the negative count only if it was previously negative
       ratings[personName][day][task]["negativeCount"] -= 1;
-    }
-    else if (oldValue == ratingValue && ratingValue == "positive" && ratings[personName][day][task]["negativeCount"] > 0) {
-      ratings[personName][day][task]["negativeCount"] -= 1;
-    }
-    else if (oldValue == ratingValue && ratingValue == "negative" && ratings[personName][day][task]["positiveCount"] > 0) {
-      ratings[personName][day][task]["positiveCount"] -= 1;
     }
     // Store the updated ratings object back to localStorage
     localStorage.setItem("ratings", JSON.stringify(ratings));
@@ -235,4 +257,3 @@ function getCurrentWeekNumber() {
 }
 const currentWeek = getCurrentWeekNumber();
 document.getElementById("kw").textContent = `KW ${currentWeek}`;
-
