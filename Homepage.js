@@ -134,33 +134,40 @@ function generateCommentModal(day, index, personName) {
   
   function displaySavedComment(day, index, savedCommentText) {
     const commentDisplay = document.getElementById(`commentDisplay-${day}-${index}`);
+    const commentContainer = createCommentContainer(day, index, savedCommentText);
+    commentDisplay.appendChild(commentContainer);
+}
+
+function createCommentContainer(day, index, savedCommentText) {
+    const commentContainer = document.createElement("div");
+    commentContainer.className = "comment-container";
+    commentContainer.innerHTML = `<p>${savedCommentText}</p>`;
+    commentContainer.style.display = "flex";
+    commentContainer.style.alignItems = "center";
+    commentContainer.id = `comment-${day}-${index}`;
+
+    const deleteButton = createDeleteButton(day, index);
+    commentContainer.appendChild(deleteButton);
+
+    return commentContainer;
+}
+
+function createDeleteButton(day, index) {
     const deleteButton = document.createElement("button");
     deleteButton.innerText = "X";
     deleteButton.style.color = "red";
     deleteButton.style.backgroundColor = "transparent";
     deleteButton.className = "btn delete-comment";
     deleteButton.addEventListener("click", function () {
-      const commentContainer = deleteButton.parentNode;
-      commentContainer.remove();
-      localStorage.removeItem(`comment-${day}-${index}`);
+        const commentContainer = deleteButton.parentNode;
+        commentContainer.remove();
+        localStorage.removeItem(`comment-${day}-${index}`);
     });
-    const commentContainer = document.createElement("div");
-    commentContainer.className = "comment-container";
-    commentContainer.innerHTML = `<p>${savedCommentText}</p>`;
-    commentContainer.appendChild(deleteButton);
-    commentDisplay.appendChild(commentContainer);
-    commentContainer.style.display = "flex";
-    commentContainer.style.alignItems = "center";
-    commentContainer.id = `comment-${day}-${index}`;
-    commentTextarea.value = "";
-    // saveButtonClicked = true;
+
+    return deleteButton;
   }
 }
 
-  function saveComment(day, index, commentText) {
-    const commentKey = `comment-${day}-${index}`;
-    localStorage.setItem(commentKey, commentText);
-  }
   function redirectToHomepage() {
     window.location.href = "Homepage.html";
   }
