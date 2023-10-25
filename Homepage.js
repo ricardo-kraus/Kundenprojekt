@@ -108,36 +108,35 @@ function generateCommentModal(day, index, personName) {
     saveButtonClicked = true;
     displaySavedComment(day, index, savedCommentText);
   }
-
-  function handleSaveButtonClick() {
+}
+function handleSaveButtonClick(day, index) {
     saveCommentAndDisplay(day, index);
+}
+function saveCommentAndDisplay(day, index) {
+  const commentTextarea = document.getElementById(
+    `commentText-${day}-${index}`
+  );
+  const commentText = commentTextarea.value.trim();
+  if (commentText !== "") {
+    saveComment(day, index, commentText);
+    displaySavedComment(day, index, commentText);
+    commentTextarea.value = "";
+    // saveButtonClicked = true;
   }
-
-  function saveCommentAndDisplay(day, index) {
-    const commentTextarea = document.getElementById(
-      `commentText-${day}-${index}`
-    );
-    const commentText = commentTextarea.value.trim();
-    if (commentText !== "") {
-      saveComment(day, index, commentText);
-      displaySavedComment(day, index, commentText);
-      commentTextarea.value = "";
-      // saveButtonClicked = true;
-    }
-  }
-
-  function saveComment(day, index, commentText) {
-    const commentKey = `comment-${day}-${index}`;
-    localStorage.setItem(commentKey, commentText);
-  }
-
-  function displaySavedComment(day, index, savedCommentText) {
+}
+function saveComment(day, index, commentText) {
+  const commentKey = `comment-${day}-${index}`;
+  localStorage.setItem(commentKey, commentText);
+}
+function redirectToHomepage() {
+  window.location.href = "Homepage.html";
+}
+function displaySavedComment(day, index, savedCommentText) {
     const commentDisplay = document.getElementById(`commentDisplay-${day}-${index}`);
     const commentContainer = createCommentContainer(day, index, savedCommentText);
     commentDisplay.appendChild(commentContainer);
-  }
-
-  function createCommentContainer(day, index, savedCommentText) {
+}
+function createCommentContainer(day, index, savedCommentText) {
     const commentContainer = document.createElement("div");
     commentContainer.className = "comment-container";
     commentContainer.innerHTML = `<p>${savedCommentText}</p>`;
@@ -149,9 +148,8 @@ function generateCommentModal(day, index, personName) {
     commentContainer.appendChild(deleteButton);
 
     return commentContainer;
-  }
-
-  function createDeleteButton(day, index) {
+}
+function createDeleteButton(day, index) {
     const deleteButton = document.createElement("button");
     deleteButton.innerText = "X";
     deleteButton.style.color = "red";
@@ -165,12 +163,6 @@ function generateCommentModal(day, index, personName) {
 
     return deleteButton;
   }
-}
-
-function redirectToHomepage() {
-  window.location.href = "Homepage.html";
-}
-
 function handleRadioSelection(radio, ratingValue, personName, taskName) {
   if (radio.checked) {
     const day = radio.getAttribute("name").split("-")[1];
