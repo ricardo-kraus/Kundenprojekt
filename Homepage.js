@@ -1,16 +1,7 @@
 let personName;
 let ratingstorage;
 const htmlElement = document.documentElement;
-document.addEventListener("DOMContentLoaded", function () {
-  const savedMode = localStorage.getItem("mode");
-  if (savedMode === "dark") {
-      htmlElement.setAttribute("data-bs-theme", "dark");
-      document.getElementById("darkmode").innerText = "Lightmode";
-  } else {
-      htmlElement.setAttribute("data-bs-theme", "light");
-      document.getElementById("darkmode").innerText = "Darkmode";
-  }
-});
+
 function toggleDarkMode() {
   const darkmodeButton = document.getElementById("darkmode");
   if (htmlElement.getAttribute("data-bs-theme") === "dark") {
@@ -102,7 +93,7 @@ function generateCommentModal(day, index, personName) {
 
   const saveButton = document.getElementById(`saveButton-${day}-${index}`);
   saveButton.addEventListener("click", handleSaveButtonClick);
-  
+
   const savedCommentKey = `comment-${day}-${index}`;
   const savedCommentText = localStorage.getItem(savedCommentKey);
   if (savedCommentText) {
@@ -111,11 +102,11 @@ function generateCommentModal(day, index, personName) {
     saveButtonClicked = true;
     displaySavedComment(day, index, savedCommentText);
   }
-  
+
   function handleSaveButtonClick() {
     saveCommentAndDisplay(day, index);
   }
-  
+
   function saveCommentAndDisplay(day, index) {
     const commentTextarea = document.getElementById(`commentText-${day}-${index}`);
     const commentText = commentTextarea.value.trim();
@@ -126,19 +117,19 @@ function generateCommentModal(day, index, personName) {
       // saveButtonClicked = true;
     }
   }
-  
+
   function saveComment(day, index, commentText) {
     const commentKey = `comment-${day}-${index}`;
     localStorage.setItem(commentKey, commentText);
   }
-  
+
   function displaySavedComment(day, index, savedCommentText) {
     const commentDisplay = document.getElementById(`commentDisplay-${day}-${index}`);
     const commentContainer = createCommentContainer(day, index, savedCommentText);
     commentDisplay.appendChild(commentContainer);
-}
+  }
 
-function createCommentContainer(day, index, savedCommentText) {
+  function createCommentContainer(day, index, savedCommentText) {
     const commentContainer = document.createElement("div");
     commentContainer.className = "comment-container";
     commentContainer.innerHTML = `<p>${savedCommentText}</p>`;
@@ -150,27 +141,27 @@ function createCommentContainer(day, index, savedCommentText) {
     commentContainer.appendChild(deleteButton);
 
     return commentContainer;
-}
+  }
 
-function createDeleteButton(day, index) {
+  function createDeleteButton(day, index) {
     const deleteButton = document.createElement("button");
     deleteButton.innerText = "X";
     deleteButton.style.color = "red";
     deleteButton.style.backgroundColor = "transparent";
     deleteButton.className = "btn delete-comment";
     deleteButton.addEventListener("click", function () {
-        const commentContainer = deleteButton.parentNode;
-        commentContainer.remove();
-        localStorage.removeItem(`comment-${day}-${index}`);
+      const commentContainer = deleteButton.parentNode;
+      commentContainer.remove();
+      localStorage.removeItem(`comment-${day}-${index}`);
     });
 
     return deleteButton;
   }
 }
 
-  function redirectToHomepage() {
-    window.location.href = "Homepage.html";
-  }
+function redirectToHomepage() {
+  window.location.href = "Homepage.html";
+}
 
 function handleRadioSelection(radio, color, personName, taskName) {
   if (radio.checked) {
