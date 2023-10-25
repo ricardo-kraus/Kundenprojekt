@@ -173,7 +173,7 @@ input[type="text"]:focus {
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
     background-color: rgba(188, 179, 164, 0.6);
     /* Rote Hintergrundfarbe mit 50% Transparenz */
-    padding: 20px;
+    /* padding: 10px; */
 }
 
 [data-bs-theme="dark"] .card {
@@ -258,8 +258,9 @@ input[type="text"]:focus {
     border: none;
     background-color: transparent;
     border-radius: 10px;
-    padding: 20px;
-}
+    padding: 10px;
+} 
+/* its the block part that i have to work on(betty) */
 
 .block-title {
     font-size: 18px;
