@@ -96,77 +96,75 @@ function generateCommentModal(day, index, personName) {
   });
 
   const saveButton = document.getElementById(`saveButton-${day}-${index}`);
-  saveButton.addEventListener("click", handleSaveButtonClick);
-
+  const commentTextarea = document.getElementById(
+        `commentText-${day}-${index}`
+      );
+  saveButton.addEventListener("click", handleSaveButtonClick(day, index, commentTextarea));
+  
   const savedCommentKey = `comment-${day}-${index}`;
   const savedCommentText = localStorage.getItem(savedCommentKey);
   if (savedCommentText) {
-    const commentTextarea = document.getElementById(
-      `commentText-${day}-${index}`
-    );
     commentTextarea.value = savedCommentText;
     saveButtonClicked = true;
     displaySavedComment(day, index, savedCommentText);
   }
+}
+function handleSaveButtonClick(day, index, commentTextarea) {
+  saveCommentAndDisplay(day, index, commentTextarea);
+}
 
-  function handleSaveButtonClick() {
-    saveCommentAndDisplay(day, index);
-  }
-
-  function saveCommentAndDisplay(day, index) {
-    const commentTextarea = document.getElementById(
-      `commentText-${day}-${index}`
-    );
-    const commentText = commentTextarea.value.trim();
-    if (commentText !== "") {
-      saveComment(day, index, commentText);
-      displaySavedComment(day, index, commentText);
-      commentTextarea.value = "";
-      // saveButtonClicked = true;
-    }
-  }
-
-  function saveComment(day, index, commentText) {
-    const commentKey = `comment-${day}-${index}`;
-    localStorage.setItem(commentKey, commentText);
-  }
-
-  function displaySavedComment(day, index, savedCommentText) {
-    const commentDisplay = document.getElementById(`commentDisplay-${day}-${index}`);
-    const commentContainer = createCommentContainer(day, index, savedCommentText);
-    commentDisplay.appendChild(commentContainer);
-  }
-
-  function createCommentContainer(day, index, savedCommentText) {
-    const commentContainer = document.createElement("div");
-    commentContainer.className = "comment-container";
-    commentContainer.innerHTML = `<p>${savedCommentText}</p>`;
-    commentContainer.style.display = "flex";
-    commentContainer.style.alignItems = "center";
-    commentContainer.id = `comment-${day}-${index}`;
-
-    const deleteButton = createDeleteButton(day, index);
-    commentContainer.appendChild(deleteButton);
-
-    return commentContainer;
-  }
-
-  function createDeleteButton(day, index) {
-    const deleteButton = document.createElement("button");
-    deleteButton.innerText = "X";
-    deleteButton.style.color = "red";
-    deleteButton.style.backgroundColor = "transparent";
-    deleteButton.className = "btn delete-comment";
-    deleteButton.addEventListener("click", function () {
-      const commentContainer = deleteButton.parentNode;
-      commentContainer.remove();
-      localStorage.removeItem(`comment-${day}-${index}`);
-    });
-
-    return deleteButton;
+function saveCommentAndDisplay(day, index, commentTextarea) {
+  console.log(commentTextarea)
+  const commentText = commentTextarea.value.trim();
+  if (commentText !== "") {
+    saveComment(day, index, commentText);
+    displaySavedComment(day, index, commentText);
+    commentTextarea.value = "";
+    // saveButtonClicked = true;
   }
 }
 
+function saveComment(day, index, commentText) {
+  const commentKey = `comment-${day}-${index}`;
+  localStorage.setItem(commentKey, commentText);
+}
+
+function displaySavedComment(day, index, savedCommentText) {
+  const commentDisplay = document.getElementById(
+    `commentDisplay-${day}-${index}`
+  );
+  const commentContainer = createCommentContainer(day, index, savedCommentText);
+  commentDisplay.appendChild(commentContainer);
+}
+
+function createCommentContainer(day, index, savedCommentText) {
+  const commentContainer = document.createElement("div");
+  commentContainer.className = "comment-container";
+  commentContainer.innerHTML = `<p>${savedCommentText}</p>`;
+  commentContainer.style.display = "flex";
+  commentContainer.style.alignItems = "center";
+  commentContainer.id = `comment-${day}-${index}`;
+
+  const deleteButton = createDeleteButton(day, index);
+  commentContainer.appendChild(deleteButton);
+
+  return commentContainer;
+}
+
+function createDeleteButton(day, index) {
+  const deleteButton = document.createElement("button");
+  deleteButton.innerText = "X";
+  deleteButton.style.color = "red";
+  deleteButton.style.backgroundColor = "transparent";
+  deleteButton.className = "btn delete-comment";
+  deleteButton.addEventListener("click", function () {
+    const commentContainer = deleteButton.parentNode;
+    commentContainer.remove();
+    localStorage.removeItem(`comment-${day}-${index}`);
+  });
+
+  return deleteButton;
+}
 function redirectToHomepage() {
   window.location.href = "Homepage.html";
 }
@@ -193,10 +191,16 @@ function handleRadioSelection(radio, ratingValue, personName, taskName) {
       };
     }
     ratings[personName][day][task][ratingValue + "Count"] += 1;
-    if (ratings[personName][day][task]["positiveCount"] == 1 && ratingValue == "negative") {
+    if (
+      ratings[personName][day][task]["positiveCount"] == 1 &&
+      ratingValue == "negative"
+    ) {
       // Decrease the positive count only if it was previously positive
       ratings[personName][day][task]["positiveCount"] -= 1;
-    } else if (ratings[personName][day][task]["negativeCount"] == 1 && ratingValue == "positive") {
+    } else if (
+      ratings[personName][day][task]["negativeCount"] == 1 &&
+      ratingValue == "positive"
+    ) {
       // Decrease the negative count only if it was previously negative
       ratings[personName][day][task]["negativeCount"] -= 1;
     }
