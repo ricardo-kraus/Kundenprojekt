@@ -4,11 +4,11 @@ const htmlElement = document.documentElement;
 document.addEventListener("DOMContentLoaded", function () {
   const savedMode = localStorage.getItem("mode");
   if (savedMode === "dark") {
-      htmlElement.setAttribute("data-bs-theme", "dark");
-      document.getElementById("darkmode").innerText = "Lightmode";
+    htmlElement.setAttribute("data-bs-theme", "dark");
+    document.getElementById("darkmode").innerText = "Lightmode";
   } else {
-      htmlElement.setAttribute("data-bs-theme", "light");
-      document.getElementById("darkmode").innerText = "Darkmode";
+    htmlElement.setAttribute("data-bs-theme", "light");
+    document.getElementById("darkmode").innerText = "Darkmode";
   }
 });
 function toggleDarkMode() {
@@ -89,10 +89,14 @@ function generateCommentModal(day, index, personName) {
   document.body.appendChild(modal);
   const closeButton = document.getElementById(`closeButton-${day}-${index}`);
   closeButton.addEventListener("click", function () {
-    const commentTextarea = document.getElementById(`commentText-${day}-${index}`);
+    const commentTextarea = document.getElementById(
+      `commentText-${day}-${index}`
+    );
     const commentText = commentTextarea.value.trim();
     if (commentText !== "") {
-      const confirmation = window.confirm("Do you want to close without saving?");
+      const confirmation = window.confirm(
+        "Do you want to close without saving?"
+      );
       if (!confirmation) {
         return;
       }
@@ -102,22 +106,26 @@ function generateCommentModal(day, index, personName) {
 
   const saveButton = document.getElementById(`saveButton-${day}-${index}`);
   saveButton.addEventListener("click", handleSaveButtonClick);
-  
+
   const savedCommentKey = `comment-${day}-${index}`;
   const savedCommentText = localStorage.getItem(savedCommentKey);
   if (savedCommentText) {
-    const commentTextarea = document.getElementById(`commentText-${day}-${index}`);
+    const commentTextarea = document.getElementById(
+      `commentText-${day}-${index}`
+    );
     commentTextarea.value = savedCommentText;
     saveButtonClicked = true;
     displaySavedComment(day, index, savedCommentText);
   }
-  
+
   function handleSaveButtonClick() {
     saveCommentAndDisplay(day, index);
   }
-  
+
   function saveCommentAndDisplay(day, index) {
-    const commentTextarea = document.getElementById(`commentText-${day}-${index}`);
+    const commentTextarea = document.getElementById(
+      `commentText-${day}-${index}`
+    );
     const commentText = commentTextarea.value.trim();
     if (commentText !== "") {
       saveComment(day, index, commentText);
@@ -126,14 +134,16 @@ function generateCommentModal(day, index, personName) {
       // saveButtonClicked = true;
     }
   }
-  
+
   function saveComment(day, index, commentText) {
     const commentKey = `comment-${day}-${index}`;
     localStorage.setItem(commentKey, commentText);
   }
-  
+
   function displaySavedComment(day, index, savedCommentText) {
-    const commentDisplay = document.getElementById(`commentDisplay-${day}-${index}`);
+    const commentDisplay = document.getElementById(
+      `commentDisplay-${day}-${index}`
+    );
     const deleteButton = document.createElement("button");
     deleteButton.innerText = "X";
     deleteButton.style.color = "red";
@@ -157,15 +167,15 @@ function generateCommentModal(day, index, personName) {
   }
 }
 
-  function saveComment(day, index, commentText) {
-    const commentKey = `comment-${day}-${index}`;
-    localStorage.setItem(commentKey, commentText);
-  }
-  function redirectToHomepage() {
-    window.location.href = "Homepage.html";
-  }
+function saveComment(day, index, commentText) {
+  const commentKey = `comment-${day}-${index}`;
+  localStorage.setItem(commentKey, commentText);
+}
+function redirectToHomepage() {
+  window.location.href = "Homepage.html";
+}
 
-function handleRadioSelection(radio, color, personName, taskName) {
+function handleRadioSelection(radio, ratingValue, personName, taskName) {
   if (radio.checked) {
     const day = radio.getAttribute("name").split("-")[1];
     const oldValue = ratingstorage;
@@ -187,18 +197,12 @@ function handleRadioSelection(radio, color, personName, taskName) {
       };
     }
     ratings[personName][day][task][ratingValue + "Count"] += 1;
-    if (oldValue == "positive" && ratingValue == "negative") {
+    if (ratings[personName][day][task]["positiveCount"] == 1 && ratingValue == "negative") {
       // Decrease the positive count only if it was previously positive
       ratings[personName][day][task]["positiveCount"] -= 1;
-    } else if (oldValue == "negative" && ratingValue == "positive") {
+    } else if (ratings[personName][day][task]["negativeCount"] == 1 && ratingValue == "positive") {
       // Decrease the negative count only if it was previously negative
       ratings[personName][day][task]["negativeCount"] -= 1;
-    }
-    else if (oldValue == ratingValue && ratingValue == "positive" && ratings[personName][day][task]["negativeCount"] > 0) {
-      ratings[personName][day][task]["negativeCount"] -= 1;
-    }
-    else if (oldValue == ratingValue && ratingValue == "negative" && ratings[personName][day][task]["positiveCount"] > 0) {
-      ratings[personName][day][task]["positiveCount"] -= 1;
     }
     // Store the updated ratings object back to localStorage
     localStorage.setItem("ratings", JSON.stringify(ratings));
@@ -253,4 +257,3 @@ function getCurrentWeekNumber() {
 }
 const currentWeek = getCurrentWeekNumber();
 document.getElementById("kw").textContent = `KW ${currentWeek}`;
-
