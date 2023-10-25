@@ -1,39 +1,33 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
+  <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Statistics</title>
-    <link rel="stylesheet" href="Statistik.css" />
+    <link rel="stylesheet" href="Stylesheet.css" />
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-</head>
-<body>
+  </head>
+  <body>
     <nav class="navbar">
-        <div class="container-fluid">
-            <div class="navbar-content">
-                <span class="navbar-title">Statistics</span>
-                <a class="navbar-brand">
-                    <img src="https://tie-international.com/wp-content/uploads/2022/08/cropped-cropped-cropped-tie_international_v3.0_transparent.png"
-                        alt="Header-Bild"
-                        class="header-image"
-                        width="60"
-                        height="48">
-                </a>
-                <button id="adminpage-button">Admin Page</button>
-            </div>
+      <div class="container-fluid">
+        <div class="navbar-content">
+          <span class="navbar-title">Statistics</span>
+          <a class="navbar-brand">
+          <img
+            src="Hauptseite/Logo-TIE-International.png"
+            alt="TIE"
+            width="48"
+            height="40"
+          />
+          </a>
+          <button id="adminpage-button">Admin Page</button>
         </div>
-    </nav>
-
-    <div class="bg-gradient">
-        <!-- Füge das folgende Select-Element hier ein -->
-        <label for="sortSelector">Sortieren nach: </label>
-        <select id="sortSelector" onchange="changeSort()">
-            <option value="alphabetical">Alphabetisch</option>
-            <option value="positive">Meiste Positive Stimmen</option>
-            <option value="negative">Meiste Negative Stimmen</option>
-        </select>
-        <canvas id="mainDiagramm" width="400" height="600"></canvas>
-        <script src="./js/Statistik.js"></script>
+      </div>
     </div>
-</body>
+  </nav>
+    <div class="bg-gradient">
+      <canvas id="mainDiagramm" width="400" height="600"></canvas>
+      <script src="./Js/Statistik.js"></script>
+    </div>
+  </body>
 </html>
