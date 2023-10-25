@@ -163,7 +163,7 @@ function redirectToHomepage() {
   window.location.href = "Homepage.html";
 }
 
-function handleRadioSelection(radio, color, personName, taskName) {
+function handleRadioSelection(radio, personName, taskName) {
   if (radio.checked) {
     const day = radio.getAttribute("name").split("-")[1];
     const oldValue = ratingstorage;
