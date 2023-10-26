@@ -156,6 +156,8 @@ input[type="text"]:focus {
 
 
 
+
+
 /* Homepage */
 /* Allgemeine Stile */
 
@@ -247,13 +249,11 @@ input[type="text"]:focus {
     right: 20px;
 }
 
-/* Woche anzeigen-Stile */
 #kw {
     margin-top: 10px;
     font-size: 20px;
 }
 
-/* Neue Stile für Blocks */
 .block {
     border: none;
     background-color: transparent;
