@@ -1,4 +1,11 @@
-/* Adminpage */
+
+header {
+    position: relative; 
+    background: transparent;
+    padding: 0.3% 0;
+    text-align: center; 
+}
+
 body {
     font-family: 'Arial', sans-serif;
     margin: 0;
@@ -10,7 +17,9 @@ body {
     color: #333;
 }
 
-.container {
+/* Adminpage */
+
+#app {
     margin-top: 4%;
     display: flex;
     justify-content: space-between;
@@ -22,12 +31,7 @@ body {
     transform-origin: top left; 
 }
 
-header {
-    position: relative; 
-    background: transparent;
-    padding: 0.3% 0;
-    text-align: center; 
-}
+
 
 .header-image {
     position: absolute;
@@ -268,6 +272,7 @@ input[type="text"]:focus {
     margin-bottom: 10px;
     color: aliceblue;
     border-bottom: 5px white;
+    width: 120%;
 }
 
 .block-subtitle {
@@ -314,6 +319,9 @@ input[type="text"]:focus {
     transform: rotate(180deg);
 }
 
+#container-Homepage{
+margin-top: 5%;
+}
 
 
 

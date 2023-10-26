@@ -20,6 +20,7 @@ function generateCard(day, personName, taskName, index) {
   const cardId = `card${day}${index}`;
   const card = document.createElement("div");
   card.className = "card mx-auto mb-5 ";
+  card.style.width = "120%";
   card.innerHTML = `
     <div class="card-body">
       <div class="card-title fs-5 fw-semibold" id="${cardId}" personName="${personName}">
@@ -243,6 +244,7 @@ generateCards("tuesday", assignments);
 generateCards("wednesday", assignments);
 generateCards("thursday", assignments);
 generateCards("friday", assignments);
+
 function getCurrentWeekNumber() {
   const currentDate = new Date();
   currentDate.setHours(0, 0, 0, 0);
