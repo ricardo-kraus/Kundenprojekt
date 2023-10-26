@@ -96,10 +96,9 @@ function generateCommentModal(day, index, personName) {
   });
 
   const saveButton = document.getElementById(`saveButton-${day}-${index}`);
-  const commentTextarea = document.getElementById(
-        `commentText-${day}-${index}`
-      );
-  saveButton.addEventListener("click", handleSaveButtonClick(day, index, commentTextarea));
+  const commentTextarea = document.getElementById(`commentText-${day}-${index}`);
+  saveButton.addEventListener("click", () => handleSaveButtonClick(day, index, commentTextarea));
+  // the arrow funktion delays the 'handleSaveButtonClick' until the 'saveButton' is clicked
   
   const savedCommentKey = `comment-${day}-${index}`;
   const savedCommentText = localStorage.getItem(savedCommentKey);
