@@ -232,6 +232,11 @@ img {
     width: 120%;
 }
 
+.delete-comment{
+    margin-top: 0%;
+}
+
+
 .block-subtitle {
     font-size: 14px;
     color: #777777;
@@ -351,3 +356,4 @@ img {
     border-radius: 5px;
     transition: background-color 0.3s;
 }
+
