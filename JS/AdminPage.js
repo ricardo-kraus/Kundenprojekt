@@ -128,6 +128,52 @@ document.addEventListener("DOMContentLoaded", function () {
     const listItem = document.createElement("li");
     listItem.textContent = text;
 
+    const modalButton = document.createElement("button");
+    modalButton.textContent = text;
+    modalButton.classList.add("btn", "btn-link");
+    modalButton.setAttribute("data-bs-toggle", "modal");
+    modalButton.setAttribute("data-bs-target", "#modal-" + text);
+    listItem.appendChild(modalButton);
+
+    const modal = document.createElement("div")
+    modal.className = "modal fade";
+    modal.id = "modal-" + text;
+    modal.innerHTML = `
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Select days for ${text}</h5>
+          <button type="button" class="btn-close" id="closeButton" data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body">
+          <div class="row">
+            <div class="col">
+              <input type="checkbox" class="btn-check" id="btn-check-outlined-${text}" checked autocomplete="off">
+              <label class="btn btn-outline-secondary btn-days" for="btn-check-outlined-${text}">Monday</label>
+            </div>
+            <div class="col">
+              <input type="checkbox" class="btn-check" id="btn-check-2-outlined-${text}" checked autocomplete="off">
+              <label class="btn btn-outline-secondary btn-days" for="btn-check-2-outlined-${text}">Tuesday</label>
+            </div>
+            <div class="col">
+              <input type="checkbox" class="btn-check" id="btn-check-3-outlined-${text}" checked autocomplete="off">
+              <label class="btn btn-outline-secondary btn-days" for="btn-check-3-outlined-${text}">Wednesday</label>
+            </div>
+            <div class="col">
+              <input type="checkbox" class="btn-check" id="btn-check-4-outlined-${text}" checked autocomplete="off">
+              <label class="btn btn-outline-secondary btn-days" for="btn-check-4-outlined-${text}">Thursday</label>
+            </div>
+            <div class="col">
+              <input type="checkbox" class="btn-check" id="btn-check-5-outlined-${text}" checked autocomplete="off">
+              <label class="btn btn-outline-secondary btn-days" for="btn-check-5-outlined-${text}">Friday</label>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  `;
+  document.body.appendChild(modal);
+
     const closeButton = document.createElement("span");
     closeButton.textContent = "X";
     closeButton.className = "close-button";
