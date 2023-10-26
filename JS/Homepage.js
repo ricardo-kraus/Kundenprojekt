@@ -46,12 +46,35 @@ function generateCard(day, personName, taskName, index) {
   document.getElementById(`cards${day}`).appendChild(card);
   const positiveRadio = document.getElementById(`positive-${day}-${index}`);
   const negativeRadio = document.getElementById(`negative-${day}-${index}`);
-  positiveRadio.addEventListener("change", function () {
-    handleRadioSelection(this, "positive", personName, taskName);
-  });
-  negativeRadio.addEventListener("change", function () {
-    handleRadioSelection(this, "negative", personName, taskName);
-  });
+  // positiveRadio.addEventListener("change", function () {
+  //   handleRadioSelection(this, "positive", personName, taskName);
+  // });
+  // negativeRadio.addEventListener("change", function () {
+  //   handleRadioSelection(this, "negative", personName, taskName);
+  // });
+  
+  // positiveRadio.addEventListener("change", function () {
+  //   if (radio.checked){
+  //     handleRadioSelection(this, "positive", personName, taskName);
+  //   } else{
+  //     handleRadioSelection(this, "negative", personName, taskName);
+  //   }
+  // });
+  let radio = `input[name="rating-${day}-${index}"]`;
+  let prev = null;
+  let radios = document.querySelectorAll(radio);
+  console.log(radios);
+  for (let i = 0; i < radios.length; i++) {
+    radios[i].addEventListener('change', function() {
+      console.log("test")
+      (prev) ? console.log(prev.value): null;
+      if (this !== prev) {
+          prev = this;
+      }
+      console.log(this.value)
+    });
+
+  }
   generateCommentModal(day, index, personName);
 }
 function generateCommentModal(day, index, personName) {
