@@ -361,4 +361,7 @@ img {
 }
 .btn-link {
     text-decoration: none;
-  }
+    margin-bottom: 10px;
+    font-size: 18px;
+    color: black;
+}

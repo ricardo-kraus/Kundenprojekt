@@ -126,7 +126,6 @@ document.addEventListener("DOMContentLoaded", function () {
   function createListItemWithCloseButton(text, parentElement) {
     // hier habe ich einen Button gemacht um die elemente also aufgaben oder personen aus der liste zu entfernen
     const listItem = document.createElement("li");
-    listItem.textContent = text;
 
     const modalButton = document.createElement("button");
     modalButton.textContent = text;
