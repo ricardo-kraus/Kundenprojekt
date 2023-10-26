@@ -17,28 +17,12 @@ body {
     color: #333;
 }
 
-/* Adminpage */
-
-#app {
-    margin-top: 4%;
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    padding: 20px;
-    max-width: 150%;
-    padding-left: 6%;
-    transform: scale(0.95); 
-    transform-origin: top left; 
-}
-
-
-
-.header-image {
-    position: absolute;
-    top: 10px; 
-    right: 10px; 
-    width: 100px; 
-    height: auto; 
+[data-bs-theme="dark"] body {
+    font-family: Arial, sans-serif;
+    background: linear-gradient(45deg, rgb(100, 3, 0), rgb(16, 14, 109), rgb(100, 3, 0));
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
 }
 
 h1 {
@@ -46,6 +30,57 @@ h1 {
     color: rgb(255, 255, 255);
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
     margin: 0;
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+li {
+    margin-bottom: 10px;
+    font-size: 18px;
+}
+
+button {
+    margin-top: 10px;
+    padding: 12px 24px;
+    background-color: rgb(56, 55, 114);
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-size: 17px;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: rgb(151, 25, 32);
+}
+
+input[type="text"] {
+    width: calc(100% - 24px); 
+    padding: 12px;
+    margin-bottom: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box; 
+    height: 18%;
+}
+
+img {
+    width: 48;
+    height: 40;
+    margin-top: 0;
+}
+
+.header-image {
+    position: absolute;
+    top: 10px; 
+    right: 10px; 
+    width: 100px; 
+    height: auto; 
 }
 
 .title {
@@ -91,62 +126,6 @@ h1 {
     font-weight: 600;
 }
 
-ul {
-    list-style-type: none;
-    padding: 0;
-}
-
-li {
-    margin-bottom: 10px;
-    font-size: 18px;
-}
-
-button {
-    margin-top: 10px;
-    padding: 12px 24px;
-    background-color: rgb(56, 55, 114);
-    color: white;
-    border: none;
-    cursor: pointer;
-    font-size: 17px;
-    border-radius: 5px;
-    transition: background-color 0.3s;
-}
-
-button:hover {
-    background-color: rgb(151, 25, 32);
-}
-
-input[type="text"] {
-    width: 100%;
-    padding: 12px;
-    margin-bottom: 10px;
-    font-size: 16px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-}
-
-input[type="text"]:focus {
-    outline: none;
-    border-color: rgb(56, 55, 114);
-}
-
-input[type="text"] {
-    width: calc(100% - 24px); 
-    padding: 12px;
-    margin-bottom: 10px;
-    font-size: 16px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    box-sizing: border-box; 
-    height: 18%;
-}
-
-input[type="text"]:focus {
-    outline: none;
-    border-color: rgb(56, 55, 114);
-}
-
 .close-button {
     cursor: pointer;
     font-size: 16px;
@@ -156,21 +135,6 @@ input[type="text"]:focus {
 
 .close-button:hover {
     text-decoration: underline; 
-}
-
-
-
-
-
-/* Homepage */
-/* Allgemeine Stile */
-
-[data-bs-theme="dark"] body {
-    font-family: Arial, sans-serif;
-    background: linear-gradient(45deg, rgb(100, 3, 0), rgb(16, 14, 109), rgb(100, 3, 0));
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-attachment: fixed;
 }
 
 .card {
@@ -222,7 +186,6 @@ input[type="text"]:focus {
     margin: 0;
 }
 
-/* Dark Mode-Stile */
 .darkModeButton {
     font-size: 16px;
     margin-left: 90%;
@@ -253,18 +216,12 @@ input[type="text"]:focus {
     right: 20px;
 }
 
-#kw {
-    margin-top: 10px;
-    font-size: 20px;
-}
-
 .block {
     border: none;
     background-color: transparent;
     border-radius: 10px;
     padding: 10px;
-} 
-/* its the block part that i have to work on(betty) */
+}
 
 .block-title {
     font-size: 18px;
@@ -305,27 +262,22 @@ input[type="text"]:focus {
 .img-thumbs-up{
     width: 1rem;
 }
-.img-thumbs-down{
-    width: 1rem;
-    transform: rotate(180deg);
-}
+
 [data-bs-theme="dark"] .img-thumbs-up {
     width: 1rem;
     filter: invert(100%);
 }
+
+.img-thumbs-down{
+    width: 1rem;
+    transform: rotate(180deg);
+}
+
 [data-bs-theme="dark"] .img-thumbs-down {
     width: 1rem;
     filter: invert(100%);
     transform: rotate(180deg);
 }
-
-#container-Homepage{
-margin-top: 5%;
-}
-
-
-
-/* Statistiks */
 
 .navbar-content {
     display: flex;
@@ -349,11 +301,7 @@ margin-top: 5%;
     justify-content: flex-end;
     align-items: center;
 }
-img {
-    width: 48;
-    height: 40;
-    margin-top: 0;
-}
+
 .bg-gradient{
     background-image: linear-gradient(
         to right top,
@@ -361,6 +309,33 @@ img {
         rgba(56, 55, 114, 0.9),
         rgba(151, 36, 32, 0.9));
 }
+
+.margin-img {
+    margin-bottom: 10%;
+    margin-right: 10%;
+}
+
+#app {
+    margin-top: 4%;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 20px;
+    max-width: 150%;
+    padding-left: 6%;
+    transform: scale(0.95); 
+    transform-origin: top left; 
+}
+
+#kw {
+    margin-top: 10px;
+    font-size: 20px;
+}
+
+#container-Homepage{
+    margin-top: 5%;
+}
+
 #adminpage-button {
     position: absolute;
     left: 20px;
@@ -375,8 +350,4 @@ img {
     font-size: 17px;
     border-radius: 5px;
     transition: background-color 0.3s;
-}
-.margin-img {
-    margin-bottom: 10%;
-    margin-right: 10%;
 }
