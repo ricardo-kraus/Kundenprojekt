@@ -232,6 +232,11 @@ img {
     width: 120%;
 }
 
+.delete-comment{
+    margin-top: 0%;
+}
+
+
 .block-subtitle {
     font-size: 14px;
     color: #777777;
@@ -354,3 +359,6 @@ img {
 .btn-days{
     width: 100%;
 }
+.btn-link {
+    text-decoration: none;
+  }

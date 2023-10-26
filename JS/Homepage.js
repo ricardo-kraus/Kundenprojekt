@@ -140,10 +140,15 @@ function displaySavedComment(day, index, savedCommentText) {
 function createCommentContainer(day, index, savedCommentText) {
   const commentContainer = document.createElement("div");
   commentContainer.className = "comment-container";
-  commentContainer.innerHTML = `<p>${savedCommentText}</p>`;
   commentContainer.style.display = "flex";
   commentContainer.style.alignItems = "center";
   commentContainer.id = `comment-${day}-${index}`;
+
+  const commentText = document.createElement("p");
+  commentText.textContent = savedCommentText;
+  commentText.style.marginBottom = "0"; // Remove bottom margin for the text
+
+  commentContainer.appendChild(commentText);
 
   const deleteButton = createDeleteButton(day, index);
   commentContainer.appendChild(deleteButton);
@@ -153,7 +158,7 @@ function createCommentContainer(day, index, savedCommentText) {
 
 function createDeleteButton(day, index) {
   const deleteButton = document.createElement("button");
-  deleteButton.innerText = "X";
+  deleteButton.innerText = "x";
   deleteButton.style.color = "red";
   deleteButton.style.backgroundColor = "transparent";
   deleteButton.className = "btn delete-comment";
