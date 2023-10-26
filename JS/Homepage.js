@@ -1,5 +1,4 @@
 let personName;
-let ratingstorage;
 const htmlElement = document.documentElement;
 
 function toggleDarkMode() {
@@ -171,8 +170,6 @@ function redirectToHomepage() {
 function handleRadioSelection(radio, ratingValue, personName, taskName) {
   if (radio.checked) {
     const day = radio.getAttribute("name").split("-")[1];
-    const oldValue = ratingstorage;
-    ratingstorage = ratingValue;
     console.log(taskName);
     console.log(personName);
     let task = taskName;
