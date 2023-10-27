@@ -99,34 +99,74 @@ addTaskForm.addEventListener("submit", function (e) {
 });
 
 assignButton.addEventListener("click", function () {
-  // hier werden die Aufgaben den personen zugeteilt
-
   if (people.length === 0 || tasks.length === 0) {
     Swal.fire({
-      icon: "warning", // hier habe ich mit hilfe von SweetAlert eine warnmeldung hinzugefügt fals es keine personen oder aufgaben hat
+      icon: "warning",
       title: "Warning",
       text: "Please enter people and tasks before assigning.",
     });
     return;
   }
 
+  let people_monday = [];
+  let people_tuesday = [];
+  let people_wednesday = [];
+  let people_thursday = [];
+  let people_friday = [];
+
+  for (let i = 0; i < people.length; i++) {
+    const person = people[i];
+    const personData = localStorage.getItem(person);
+
+    if (personData !== null) {
+      let availableDays = JSON.parse(localStorage.getItem(person)); // Parse the available days JSON
+      const day = ["monday", "tuesday", "wednesday", "thursday", "friday"];
+
+      for (let i = 0; i < day.length; i++) {
+        if (availableDays.includes(day[i])) {
+          console.log(`${person} is available on ${day[i]}`);
+          switch (day[i]) {
+            case "monday":
+              people_monday.push(person);
+              break;
+            case "tuesday":
+              people_tuesday.push(person);
+              break;
+            case "wednesday":
+              people_wednesday.push(person);
+              break;
+            case "thursday":
+              people_thursday.push(person);
+              break;
+            case "friday":
+              people_friday.push(person);
+              break;
+          }
+        } else {
+          console.log(`${person} is not available on ${day[i]}`);
+        }
+      }
+    }
+  }
+
+  // Now you have separate arrays for each day with only available people
+  // Use these arrays in your `assignTasksOneDay` function as needed.
   assignments = {
-    // hier werden die personen den wochentagen zugewiessen
-    monday: assignTasksOneDay(people, tasks),
-    tuesday: assignTasksOneDay(people, tasks),
-    wednesday: assignTasksOneDay(people, tasks),
-    thursday: assignTasksOneDay(people, tasks),
-    friday: assignTasksOneDay(people, tasks),
+    monday: assignTasksOneDay(people_monday, tasks),
+    tuesday: assignTasksOneDay(people_tuesday, tasks),
+    wednesday: assignTasksOneDay(people_wednesday, tasks),
+    thursday: assignTasksOneDay(people_thursday, tasks),
+    friday: assignTasksOneDay(people_friday, tasks),
   };
 
-  saveAssignmentsToLocalStorage(); // hier werden die daten in local storage gespeichert und aktialisiert
-
+  saveAssignmentsToLocalStorage();
   Swal.fire({
     icon: "success",
-    title: "Success", // hier habe ich mit sweetAlert eine erfolgs meldung eingefügt
+    title: "Success",
     text: "Tasks assigned successfully!",
   });
 });
+
 
 function createListItemWithCloseButton(text, parentElement) {
   // hier habe ich einen Button gemacht um die elemente also aufgaben oder personen aus der liste zu entfernen
@@ -208,7 +248,6 @@ function createListItemWithCloseButton(text, parentElement) {
         target.classList.contains("btn-check") &&
         id.startsWith("btn-check-" + index + "-outlined-" + text)
       ) {
-
         if (target.checked) {
           const existingDays = JSON.parse(localStorage.getItem(text));
           if (!existingDays.includes(day[index - 1])) {
