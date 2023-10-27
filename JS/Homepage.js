@@ -13,11 +13,9 @@ function toggleDarkMode() {
     localStorage.setItem("mode", "dark");
   }
 }
-
 document.getElementById("darkmode").addEventListener("click", toggleDarkMode);
 assignmentsJSON = localStorage.getItem("assignments");
 assignments = JSON.parse(assignmentsJSON);
-
 function generateCard(day, personName, taskName, index) {
   const cardId = `card${day}${index}`;
   const card = document.createElement("div");
@@ -37,7 +35,7 @@ function generateCard(day, personName, taskName, index) {
         <img class="img-thumbs-up"  src="https://icon-library.com/images/icon-thumbs-up/icon-thumbs-up-11.jpg" alt="thumbs up" />
         </label>
         <input type="radio" class="btn-check" name="rating-${day}-${index}" id="neutral-${day}-${index}" autocomplete="off" value="neutral" checked>
-        <label class="btn btn-outline-warning" for="neutral-${day}-${index}"></label>
+        <label class="btn btn-outline-warning" for="positive-${day}-${index}">    </label>
         <input type="radio" class="btn-check" name="rating-${day}-${index}" id="negative-${day}-${index}" autocomplete="off" value="negative">
         <label class="btn btn-outline-danger" for="negative-${day}-${index}">
         <img class="img-thumbs-down"  src="https://icon-library.com/images/icon-thumbs-up/icon-thumbs-up-11.jpg" alt="thumbs up" />
@@ -58,7 +56,6 @@ function generateCard(day, personName, taskName, index) {
   }
   generateCommentModal(day, index, personName);
 }
-
 function generateCommentModal(day, index, personName) {
   const modalId = `commentModal-${day}-${index}`;
   const modal = document.createElement("div");
@@ -112,7 +109,6 @@ function generateCommentModal(day, index, personName) {
     displaySavedComment(day, index, savedCommentText);
   }
 }
-
 function handleSaveButtonClick(day, index, commentTextarea) {
   saveCommentAndDisplay(day, index, commentTextarea);
 }
@@ -174,7 +170,6 @@ function createDeleteButton(day, index) {
 
   return deleteButton;
 }
-
 function redirectToHomepage() {
   window.location.href = "Homepage.html";
 }
@@ -182,60 +177,40 @@ function redirectToHomepage() {
 function handleRadioSelection(radio, ratingValue, personName, taskName) {
   if (radio.checked) {
     const day = radio.getAttribute("name").split("-")[1];
-    const index = radio.getAttribute("name").split("-")[2];
-    const cardId = `card${day}${index}`;
-
-    if (!clickedStateMap[cardId]) {
-      clickedStateMap[cardId] = { positive: false, negative: false };
+    let task = taskName;
+    let ratings = JSON.parse(localStorage.getItem("ratings")) || {};
+    if (!ratings[personName]) {
+      ratings[personName] = {};
     }
-
-    if (!clickedStateMap[cardId].positive && !clickedStateMap[cardId].negative) {
-      // Set the clicked state for the selected rating
-      clickedStateMap[cardId][ratingValue] = true;
-
-      let task = taskName;
-      let ratings = JSON.parse(localStorage.getItem("ratings")) || {};
-      if (!ratings[personName]) {
-        ratings[personName] = {};
-      }
-      if (!ratings[personName][day]) {
-        ratings[personName][day] = {};
-      }
-      if (!ratings[personName][day][task]) {
-        ratings[personName][day][task] = {
-          negativeCount: 0,
-          positiveCount: 0,
-        };
-      }
-      ratings[personName][day][task][ratingValue + "Count"] += 1;
-      if (
-        ratings[personName][day][task]["positiveCount"] === 1 &&
-        ratingValue === "negative"
-      ) {
-        // Decrease the positive count only if it was previously positive
-        ratings[personName][day][task]["positiveCount"] -= 1;
-      } else if (
-        ratings[personName][day][task]["negativeCount"] === 1 &&
-        ratingValue === "positive"
-      ) {
-        // Decrease the negative count only if it was previously negative
-        ratings[personName][day][task]["negativeCount"] -= 1;
-      }
-      // Store the updated ratings object back to localStorage
-      localStorage.setItem("ratings", JSON.stringify(ratings));
-      // Calculate and store total counts for the person
-      calculateAndStoreTotalCounts(personName);
-    } else {
-      setTimeout(() => {
-        const neutralButton = document.querySelector(`input[name="card-${day}-${index}"][value="neutral"]`);
-        if (neutralButton) {
-          neutralButton.click();
-        }
-      }, 100);
+    if (!ratings[personName][day]) {
+      ratings[personName][day] = {};
     }
+    if (!ratings[personName][day][task]) {
+      ratings[personName][day][task] = {
+        negativeCount: 0,
+        positiveCount: 0,
+      };
+    }
+    ratings[personName][day][task][ratingValue + "Count"] += 1;
+    if (
+      ratings[personName][day][task]["positiveCount"] == 1 &&
+      ratingValue == "negative"
+    ) {
+      // Decrease the positive count only if it was previously positive
+      ratings[personName][day][task]["positiveCount"] -= 1;
+    } else if (
+      ratings[personName][day][task]["negativeCount"] == 1 &&
+      ratingValue == "positive"
+    ) {
+      // Decrease the negative count only if it was previously negative
+      ratings[personName][day][task]["negativeCount"] -= 1;
+    }
+    // Store the updated ratings object back to localStorage
+    localStorage.setItem("ratings", JSON.stringify(ratings));
+    // Calculate and store total counts for the person
+    calculateAndStoreTotalCounts(personName);
   }
 }
-
 function calculateAndStoreTotalCounts(personName) {
   const days = ["monday", "tuesday", "wednesday", "thursday", "friday"];
   let totalPositiveCount = 0;
@@ -260,7 +235,6 @@ function calculateAndStoreTotalCounts(personName) {
     totalNegativeCount.toString()
   );
 }
-
 function generateCards(day, assignments) {
   let index = 1;
   for (const personName in assignments[day]) {
@@ -269,7 +243,6 @@ function generateCards(day, assignments) {
     index++;
   }
 }
-
 generateCards("monday", assignments);
 generateCards("tuesday", assignments);
 generateCards("wednesday", assignments);
@@ -284,6 +257,5 @@ function getCurrentWeekNumber() {
   const weekNumber = Math.ceil(((currentDate - yearStart) / 86400000 + 1) / 7);
   return weekNumber;
 }
-
 const currentWeek = getCurrentWeekNumber();
 document.getElementById("kw").textContent = `KW ${currentWeek}`;
