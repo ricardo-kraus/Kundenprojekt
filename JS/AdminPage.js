@@ -87,7 +87,10 @@ addTaskForm.addEventListener("submit", function (e) {
       // und hier schaut der code ob die Aufgaben schon vorhanden sind. fals ja werden sie nicht hinzugefügt
       tasks.push(taskName);
       createListItemWithCloseButton(taskName, tasksList);
-
+      localStorage.setItem(
+        taskName,
+        JSON.stringify(["monday", "tuesday", "wednesday", "thursday", "friday"])
+      );
       saveAssignmentsToLocalStorage();
       saveTasksToLocalStorage(); // hier werden sie in local storage gespeichert
     }
@@ -189,8 +192,10 @@ function createListItemWithCloseButton(text, parentElement) {
   closeButton.addEventListener("click", function () {
     if (parentElement === peopleList) {
       removePerson(text);
+      localStorage.removeItem(text);
     } else if (parentElement === tasksList) {
       removeTask(text);
+      localStorage.removeItem(text);
     }
   });
   document.addEventListener("change", function (event) {
@@ -203,16 +208,14 @@ function createListItemWithCloseButton(text, parentElement) {
         target.classList.contains("btn-check") &&
         id.startsWith("btn-check-" + index + "-outlined-" + text)
       ) {
-        console.log(index + text);
-        console.log(day[index - 1]);
 
         if (target.checked) {
-          console.log("checked" + text);
           const existingDays = JSON.parse(localStorage.getItem(text));
-          existingDays.push(day[index - 1]);
-          localStorage.setItem(text, JSON.stringify(existingDays));
+          if (!existingDays.includes(day[index - 1])) {
+            existingDays.push(day[index - 1]);
+            localStorage.setItem(text, JSON.stringify(existingDays));
+          }
         } else {
-          console.log(day[index - 1]);
           const existingDays = JSON.parse(localStorage.getItem(text));
           const dayIndex = existingDays.indexOf(day[index - 1]);
           if (dayIndex !== -1) {
