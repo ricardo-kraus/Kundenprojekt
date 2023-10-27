@@ -179,7 +179,7 @@ function createListItemWithCloseButton(text, parentElement) {
   document.body.appendChild(modal);
 
   const closeButton = document.createElement("span");
-  closeButton.textContent = "X";
+  closeButton.textContent = "x";
   closeButton.className = "close-button";
   closeButton.style.color = "red";
   closeButton.style.fontSize = "100%";
