@@ -13,6 +13,7 @@ function toggleDarkMode() {
     localStorage.setItem("mode", "dark");
   }
 }
+
 document.getElementById("darkmode").addEventListener("click", toggleDarkMode);
 assignmentsJSON = localStorage.getItem("assignments");
 assignments = JSON.parse(assignmentsJSON);
@@ -56,6 +57,7 @@ function generateCard(day, personName, taskName, index) {
   }
   generateCommentModal(day, index, personName);
 }
+
 function generateCommentModal(day, index, personName) {
   const modalId = `commentModal-${day}-${index}`;
   const modal = document.createElement("div");
@@ -109,6 +111,7 @@ function generateCommentModal(day, index, personName) {
     displaySavedComment(day, index, savedCommentText);
   }
 }
+
 function handleSaveButtonClick(day, index, commentTextarea) {
   saveCommentAndDisplay(day, index, commentTextarea);
 }
@@ -170,6 +173,7 @@ function createDeleteButton(day, index) {
 
   return deleteButton;
 }
+
 function redirectToHomepage() {
   window.location.href = "Homepage.html";
 }
@@ -223,6 +227,7 @@ function handleRadioSelection(radio, ratingValue, personName, taskName) {
     calculateAndStoreTotalCounts(personName);
   }
 }
+
 function calculateAndStoreTotalCounts(personName) {
   const days = ["monday", "tuesday", "wednesday", "thursday", "friday"];
   let totalPositiveCount = 0;
@@ -247,6 +252,7 @@ function calculateAndStoreTotalCounts(personName) {
     totalNegativeCount.toString()
   );
 }
+
 function generateCards(day, assignments) {
   let index = 1;
   for (const personName in assignments[day]) {
@@ -255,6 +261,7 @@ function generateCards(day, assignments) {
     index++;
   }
 }
+
 generateCards("monday", assignments);
 generateCards("tuesday", assignments);
 generateCards("wednesday", assignments);
@@ -269,5 +276,6 @@ function getCurrentWeekNumber() {
   const weekNumber = Math.ceil(((currentDate - yearStart) / 86400000 + 1) / 7);
   return weekNumber;
 }
+
 const currentWeek = getCurrentWeekNumber();
 document.getElementById("kw").textContent = `KW ${currentWeek}`;
