@@ -35,7 +35,7 @@ function generateCard(day, personName, taskName, index) {
         <img class="img-thumbs-up"  src="https://icon-library.com/images/icon-thumbs-up/icon-thumbs-up-11.jpg" alt="thumbs up" />
         </label>
         <input type="radio" class="btn-check" name="rating-${day}-${index}" id="neutral-${day}-${index}" autocomplete="off" value="neutral" checked>
-        <label class="btn btn-outline-warning" for="positive-${day}-${index}">    </label>
+        <label class="btn btn-outline-warning" for="neutral-${day}-${index}">    </label>
         <input type="radio" class="btn-check" name="rating-${day}-${index}" id="negative-${day}-${index}" autocomplete="off" value="negative">
         <label class="btn btn-outline-danger" for="negative-${day}-${index}">
         <img class="img-thumbs-down"  src="https://icon-library.com/images/icon-thumbs-up/icon-thumbs-up-11.jpg" alt="thumbs up" />
@@ -204,6 +204,18 @@ function handleRadioSelection(radio, ratingValue, personName, taskName) {
     ) {
       // Decrease the negative count only if it was previously negative
       ratings[personName][day][task]["negativeCount"] -= 1;
+    } else if (
+      ratings[personName][day][task]["negativeCount"] == 1 &&
+      ratingValue == "neutral"
+    ) {
+      // Decrease the negative count only if it was previously negative
+      ratings[personName][day][task]["negativeCount"] -= 1;
+    } else if (
+      ratings[personName][day][task]["positiveCount"] == 1 &&
+      ratingValue == "neutral"
+    ) {
+      // Decrease the negative count only if it was previously negative
+      ratings[personName][day][task]["positiveCount"] -= 1;
     }
     // Store the updated ratings object back to localStorage
     localStorage.setItem("ratings", JSON.stringify(ratings));
