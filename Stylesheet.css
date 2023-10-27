@@ -365,3 +365,10 @@ img {
     font-size: 18px;
     color: black;
 }
+.btn-link:hover {
+    text-decoration: none;
+    margin-bottom: 10px;
+    font-size: 18px;
+    color: black;
+    font-weight: 600;
+}
